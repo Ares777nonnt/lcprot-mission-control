@@ -1,7 +1,7 @@
 /* LCpro T Mission Control Research Edition · offline cache (2026-10-13) */
-const CACHE = 'lcprot-mission-research-2026-10-13-v1';
+const CACHE = 'lcprot-mission-guided-2026-10-13-v2';
 const PREFIX = 'lcprot-mission-';
-const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js'];
+const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();
