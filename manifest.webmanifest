@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "LCpro T Mission Control — Research Edition · Guided Workflow",
+  "name": "LCpro T Mission Control — Clarity 1.2",
   "short_name": "LCpro T Research",
-  "description": "Guida LCpro T, diagnostica, analisi scientifica, diario locale e report offline",
+  "description": "Esperimenti guidati LCpro T, analisi CSV, diario e report scientifici",
   "lang": "it",
   "start_url": "./index.html",
   "scope": "./",
