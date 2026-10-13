@@ -1,0 +1,115 @@
+/* LCpro T Clarity 1.6 — discreet semantic colors and accessible motion.
+   Green highlights an observed measurement, not biological fitness;
+   blue indicates a model estimate. Amber = caution, red = invalid/error. */
+:root {
+  --viz-observed: #076d53;
+  --viz-observed-bg: #ecf9f3;
+  --viz-observed-border: #8ccdb5;
+  --viz-model: #2564a0;
+  --viz-model-bg: #eff6ff;
+  --viz-model-border: #b3cfea;
+  --viz-caution: #925b16;
+  --viz-caution-bg: #fff7e9;
+  --viz-invalid: #a53531;
+  --viz-invalid-bg: #fff2f1;
+  --viz-ease: cubic-bezier(.2,.7,.2,1);
+}
+/* Important output values get identity rather than a 'good/bad' verdict. */
+.clarity-photosynthesis>div:first-child,
+.clarity-summary-numbers>div:first-child {
+  background:var(--viz-observed-bg)!important;
+  border:1px solid var(--viz-observed-border)!important;
+  border-left:4px solid var(--viz-observed)!important;
+}
+.clarity-photosynthesis>div:first-child strong,
+.clarity-summary-numbers>div:first-child strong {color:var(--viz-observed)!important;font-variant-numeric:tabular-nums}
+.clarity-photosynthesis>div:nth-child(2),
+.clarity-summary-numbers>div:nth-child(2) {
+  background:var(--viz-model-bg)!important;
+  border:1px solid var(--viz-model-border)!important;
+  border-left:4px solid var(--viz-model)!important;
+}
+.clarity-photosynthesis>div:nth-child(2) strong,
+.clarity-summary-numbers>div:nth-child(2) strong {color:var(--viz-model)!important;font-variant-numeric:tabular-nums}
+.clarity-photosynthesis small,.clarity-summary-numbers b{letter-spacing:.01em}
+/* Fit metrics are valuable but neither a green pass nor a red fail by default. */
+#curveResults .research-metrics>div {background:#f4f8fa;border:1px solid #dce8ef;color:#24495b}
+#curveResults .research-metrics strong {color:#204f64;font-variant-numeric:tabular-nums}
+/* Warnings remain accessible when viewed without color. */
+.research-rule.warning,.research-warning,.clarity-fit-warning {border-left:4px solid #d79b41!important;background:var(--viz-caution-bg);color:#754b18}
+.research-rule.error,.research-notice.bad {border-left:4px solid #c65b53!important;background:var(--viz-invalid-bg);color:#873630}
+.research-rule.ok {border-left:4px solid #1a8d6e!important;background:#ebf8f2;color:#1f624e}
+.research-rule.info {border-left:4px solid #4f88bd!important;background:#eff6fc;color:#285b7d}
+.flow-pill.done,.ux-stage-done {color:#146a4f;border-color:#8ccdb5;background:#eef9f1}
+/* Smooth but quiet interaction feedback. */
+.ux-choice,.ux-main-btn,.lab-tab,.lab-action,.flow-footer button,
+.flow-pill,.btn,.flow-check,.theme-toggle,.visual-motion-toggle {
+  transition:background-color 180ms var(--viz-ease),border-color 180ms var(--viz-ease),
+    box-shadow 180ms var(--viz-ease),color 180ms var(--viz-ease),transform 180ms var(--viz-ease);
+}
+@media (hover:hover) and (pointer:fine){
+  .ux-choice:hover{transform:translateY(-2px);box-shadow:0 13px 26px rgba(22,85,78,.12)}
+  .flow-footer button:not(:disabled):hover,.lab-action:not(:disabled):hover{transform:translateY(-1px)}
+}
+.ux-choice:active,.flow-footer button:not(:disabled):active{transform:translateY(0)}
+.visual-motion-toggle {border:1px solid #c7dad9;border-radius:999px;background:#fff;
+  color:#315b59;font-size:12px;font-weight:700;min-height:35px;padding:6px 12px;cursor:pointer}
+.visual-motion-toggle:focus-visible{outline:3px solid #db9c44;outline-offset:2px}
+.visual-motion-toggle[aria-pressed="false"]{color:#65777b;background:#f2f5f5}
+.visual-motion-toggle .motion-glyph{margin-right:4px}
+/* Elements are re-created by each step/fit render, so CSS animation replay is deterministic. */
+@keyframes lc-soft-enter {from{opacity:.55;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lc-line-reveal {from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes lc-point-appear {from{opacity:0}to{opacity:1}}
+@keyframes lc-notice-flash {0%{box-shadow:0 0 0 0 rgba(12,133,111,.18)}60%{box-shadow:0 0 0 5px rgba(12,133,111,.06)}100%{box-shadow:none}}
+@keyframes lc-invalid-flash{0%{box-shadow:0 0 0 0 rgba(193,74,70,.19)}100%{box-shadow:none}}
+#lab-protocol .flow-step-header,#lab-protocol .flow-now,#lab-protocol .flow-data,
+#lab-protocol .flow-review,#curveResults .clarity-photosynthesis,
+#curveResults .research-metrics>div,#reportSummary .clarity-summary-numbers>div {
+  animation:lc-soft-enter 240ms var(--viz-ease) both;
+}
+#lab-protocol .flow-data{animation-delay:45ms}
+#lab-protocol .flow-review{animation-delay:70ms}
+#curveResults .research-metrics>div:nth-child(2){animation-delay:35ms}
+#curveResults .research-metrics>div:nth-child(3){animation-delay:70ms}
+#curveResults .research-metrics>div:nth-child(4){animation-delay:105ms}
+#researchSVG .lc-fit-line {stroke-dasharray:1;stroke-dashoffset:0;animation:lc-line-reveal 650ms var(--viz-ease) both}
+#researchSVG circle {animation:lc-point-appear 280ms ease-out both}
+#researchSVG circle:nth-of-type(2n){animation-delay:55ms}
+.research-notice.visual-feedback:not(.bad){animation:lc-notice-flash 440ms ease-out}
+.research-notice.visual-feedback.bad{animation:lc-invalid-flash 440ms ease-out}
+/* Dark theme: preserve semantic meaning with explicit high-contrast color tokens. */
+body.theme-night .clarity-photosynthesis>div:first-child,
+body.theme-night .clarity-summary-numbers>div:first-child {background:#153c34!important;border-color:#418d76!important}
+body.theme-night .clarity-photosynthesis>div:first-child strong,
+body.theme-night .clarity-summary-numbers>div:first-child strong{color:#8ce7c1!important}
+body.theme-night .clarity-photosynthesis>div:nth-child(2),
+body.theme-night .clarity-summary-numbers>div:nth-child(2){background:#182f4e!important;border-color:#4e81bd!important}
+body.theme-night .clarity-photosynthesis>div:nth-child(2) strong,
+body.theme-night .clarity-summary-numbers>div:nth-child(2) strong{color:#9dccff!important}
+body.theme-night #curveResults .research-metrics>div{background:#203347;border-color:#395879}
+body.theme-night #curveResults .research-metrics strong{color:#d9efff}
+body.theme-night .research-rule.warning,body.theme-night .research-warning,
+body.theme-night .clarity-fit-warning{background:#443622;color:#ffe6b8}
+body.theme-night .research-rule.error,body.theme-night .research-notice.bad{background:#4a2b32;color:#ffcfcb}
+body.theme-night .research-rule.ok{background:#183d36;color:#c4ffe3}
+body.theme-night .research-rule.info{background:#1c3851;color:#cde7ff}
+body.theme-night .visual-motion-toggle{background:#1c3650;border-color:#3d6384;color:#edf6ff}
+@media(max-width:700px){
+  .visual-motion-toggle{min-height:34px;font-size:11px}
+  .clarity-photosynthesis>div strong,.clarity-summary-numbers>div strong{font-variant-numeric:tabular-nums}
+}
+/* Respect user's system preference and provide app-level disabling. */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0ms!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+html.motion-off *,html.motion-off *::before,html.motion-off *::after{
+  animation-duration:.01ms!important;animation-delay:0ms!important;
+  transition-duration:.01ms!important;scroll-behavior:auto!important
+}
+@media print{
+  *,*::before,*::after{animation:none!important;transition:none!important;transform:none!important}
+  .visual-motion-toggle{display:none!important}
+  #researchSVG .lc-fit-line{stroke-dashoffset:0!important}
+}
