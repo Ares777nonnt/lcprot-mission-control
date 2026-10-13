@@ -1,25 +1,30 @@
-const CACHE = 'lcprot-mission-2026-10-12-v4';
-const PRECACHE = ['./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+/* LCpro T Mission Control Research Edition · offline cache (2026-10-13) */
+const CACHE = 'lcprot-mission-research-2026-10-13-v1';
+const PREFIX = 'lcprot-mission-';
+const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js'];
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(PRECACHE)));
+  event.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();
 });
 self.addEventListener('activate', event => {
   event.waitUntil((async()=>{
     const keys=await caches.keys();
-    await Promise.all(keys.filter(k=>k.startsWith('lcprot-mission-')&&k!==CACHE).map(k=>caches.delete(k)));
+    await Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE).map(k=>caches.delete(k)));
     await self.clients.claim();
   })());
 });
 self.addEventListener('fetch', event => {
-  const req=event.request;
-  if(req.method!=='GET'||new URL(req.url).origin!==self.location.origin)return;
+  const req=event.request, url=new URL(req.url);
+  if(req.method!=='GET'||url.origin!==location.origin)return;
   if(req.mode==='navigate'){
-    event.respondWith(fetch(req).then(response=>{
-      if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put('./index.html',copy)));}
-      return response;
-    }).catch(()=>caches.match('./index.html')));
-    return;
+    event.respondWith((async()=>{
+      try {
+        const res=await fetch(req);
+        if(res.ok){const cache=await caches.open(CACHE);await cache.put('./index.html',res.clone());}
+        return res;
+      }catch(e){return (await caches.match(req))||(await caches.match('./index.html'))||Response.error();}
+    })());
+  }else{
+    event.respondWith(caches.match(req).then(cached=>cached||fetch(req)));
   }
-  event.respondWith(caches.match(req).then(cached=>cached||fetch(req)));
 });
