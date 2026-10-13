@@ -1,49 +1,61 @@
-# LCpro T Mission Control — Clarity 1.3
+# LCpro T Mission Control — Clarity 1.4
 
-Release del 13 ottobre 2026. PWA statica per **GitHub Pages**, PC, iPhone/iPad e Android.
+PWA locale/statica pronta per GitHub Pages. Aggiornamento dedicato a **navigazione, continuità del percorso e chiarezza dei risultati fotosintetici**, non a nuove formule di fitting.
 
-## Novità della versione 1.3
+## Novità della 1.4
 
-Il percorso sperimentale guidato ha **nove passaggi**. Ciascuno presenta nell'ordine:
+- **Cinque fasi visive** (Prepara → Misura → Carica dati → Analizza → Concludi) che raccolgono i nove passaggi scientifici già previsti, con avanzamento salvato per esperimento.
+- **Scheda breve direttamente nel percorso**, con specie, ID pianta, tipo di curva, Tleaf, area e trattamento. I metadati avanzati restano nel Diario. La scheda è salvata in IndexedDB dopo aver premuto il relativo pulsante.
+- **Importazione CSV nel passaggio 6**, collegata all'esperimento attivo, senza dover cambiare scheda o selezionare nuovamente l'esperimento. Originale immutato e tracciato come nelle versioni precedenti.
+- Se si apre Diario, Health Check, Curve Lab o Report, compare una **barra per tornare al punto esatto del percorso**.
+- Le motivazioni retrospettive e la valutazione di qualità **non richiedono più 20 caratteri**. Restano richieste attestazioni esplicite; per i dati non disponibili si può dichiarare “Non documentato”. La valutazione qualità offre scelte rapide e una nota facoltativa.
+- L'esclusione di un record dal fit propone **motivazioni standard selezionabili** o una motivazione libera, sempre conservata nel registro delle modifiche.
+- **Amax osservata e Asat stimata** ben separate nelle metriche di Curve Lab, nel riepilogo del passo 9, nel Report Studio e nel report stampabile. Avviso quando Q90 è oltre il massimo PAR misurato. Nessuna modifica alle formule numeriche del modello.
+- “**Ho già un CSV da analizzare**” crea una nuova scheda in modalità retrospettiva e apre il percorso direttamente, senza prima passare dal Diario.
+- Layout responsive e colori ad alto contrasto in tema giorno/notte.
 
-1. **Sull’LCpro T** — poche azioni da eseguire sullo strumento.
-2. **Nell'app** — cosa annotare, verificare o aprire in Mission Control.
-3. **Perché è importante?** — giustificazione scientifica consultabile a richiesta.
-4. **Dati e strumenti** — campi necessari e collegamenti al Diario/Health Check/Curve Lab.
-5. **Conferma le verifiche** — etichette brevi e criteri completi espandibili; avanzamento bloccato se sono assenti attestazioni o dati richiesti.
+## Installazione / aggiornamento GitHub Pages
 
-La sequenza `.SQS` viene **letta localmente** e non inviata automaticamente all'LCpro T. L'app non comanda lo strumento e non rileva direttamente la stabilità. Per una curva A/Q crescente da PAR 0, la guida segnala il rischio di induzione fotosintetica e richiede di documentare la scelta del protocollo; **non impone tempi o PAR iniziali universali e non preseleziona una strategia per i nuovi esperimenti**.
+1. **Prima di aggiornare**: nel sito attuale vai su **Diario → Backup completo JSON** e conserva i CSV originali separatamente. Verifica che il file JSON scaricato sia stato salvato correttamente.
+2. Estrai lo ZIP e carica nella **radice** del repository GitHub Pages, sostituendo quelli già presenti, i seguenti **10 file applicativi**:
 
-Non sono state cambiate le formule di Curve Lab, i controlli di Health Check, il formato del Diario, il backup o il CSV originale. Le schede 1.1/1.2 sono compatibili: la nuova interfaccia riutilizza i record già esistenti.
-
-## Aggiornamento del sito GitHub Pages
-
-1. Nell'app pubblicata apri **Diario → Esporta backup JSON**, e conserva i CSV originali anche fuori dal browser.
-2. Estrai l'archivio ZIP. Carica i **9 file applicativi** nella radice del repository già esistente `lcprot-mission-control`:
    - `index.html`
    - `sw.js`
    - `manifest.webmanifest`
+   - `research-core.js`
+   - `research-app.js`
    - `guided-workflow.js`
    - `ux-shell.js`
-   - `research-app.js`
-   - `research-core.js`
+   - `clarity-flow.js` **(nuovo)**
    - `icon-192.png`
    - `icon-512.png`
-3. Puoi caricare anche `README.md` per aggiornare le istruzioni nel repository. **Non serve pubblicare `validation/`**.
-4. Conferma il commit e attendi che **GitHub → Actions → pages build and deployment** risulti completato.
-5. Apri `https://ares777nonnnt.github.io/lcprot-mission-control/` con connessione attiva; se occorre aggiorna la pagina. La versione deve mostrare **Clarity 1.3** nella scheda del percorso.
-6. **Non cancellare i dati del sito** e non disinstallare la PWA per forzare un aggiornamento: potresti cancellare il Diario salvato localmente.
 
-## Uso guidato
+   Puoi caricare anche questo `README.md` (facoltativo). **Non** caricare lo ZIP come file del sito.
+3. Premi **Commit changes**, attendi che la pubblicazione Pages sia terminata e apri online `https://ares777nonnnt.github.io/lcprot-mission-control/`.
+4. Controlla nel percorso la dicitura **CLARITY 1.4**. La cache PWA aggiornata contiene anche `clarity-flow.js`.
+5. Se l'interfaccia appare ancora vecchia, attendi il rinnovo del Service Worker e ricarica online. **Non cancellare dati del sito o disinstallare la PWA** per forzare l'aggiornamento: cancellare IndexedDB può eliminare l'archivio locale.
 
-Dalla Home scegli **Inizia un nuovo esperimento** oppure **Riprendi**. La sezione «Esperimento» mostra la fase corrente: non è necessario navigare fra tutti i tool. Per le spiegazioni apri «Perché è importante?»; per la formulazione precisa delle attestazioni usa «Mostra criteri completi».
+## Primo collaudo consigliato
 
-Per un CSV già registrato, apri «Ho già un CSV da analizzare», compila la scheda in Diario, importa il file e attiva «Registro retrospettivo» nel percorso. In tale modalità **non affermare di aver eseguito in tempo reale verifiche non documentate**.
+1. **Inizia un nuovo esperimento** → compila i campi brevi direttamente nel passaggio 1 → **Salva scheda**.
+2. Completa le verifiche realmente effettuate. Se la misura è già conclusa, seleziona **Ho già un CSV da analizzare** dalla Home per la modalità retrospettiva.
+3. Nel passaggio **CSV**, importa il file originale e verifica record, unità e ordine.
+4. In **Health Check**, valuta gli avvisi. Non usare l'assenza di segnalazioni come validazione scientifica.
+5. In **Curve Lab**, controlla **Amax osservata** e **Asat stimata** separatamente, oltre a fit, residui e incertezza. Salva il fit nel Diario.
+6. Torna al percorso → completa le verifiche → in **Report Studio** genera il documento e conserva backup JSON e CSV.
 
-## Validazione e limiti
+## Principi scientifici e limiti
 
-- Test JavaScript di sintassi; test numerici su curve sintetiche per il motore scientifico; interazione completa dei 9 passaggi con IndexedDB simulato.
-- Esame dei blocchi obbligatori, lettura di .SQS crescente, importazione CSV reale di prova `LOG-030.CSV` e salvataggio fit.
-- Verifica responsiva su Chromium desktop/mobile simulato, non sostitutiva di un test fisico su iOS/Android.
-- Il service worker precache la shell tramite percorsi **relativi** compatibili con il sottopercorso GitHub Pages; la prima visita richiede connessione. Il funzionamento offline sui dispositivi reali è ancora da verificare.
-- Le stime numeriche non sono validate per uso diretto in pubblicazioni senza controllo indipendente; l'app non sostituisce un SOP approvato o la formazione all'LCpro T.
+- Un'asserzione in checklist documenta una verifica dell'operatore: l'app **non comunica in tempo reale con l'LCpro T** e non certifica la stabilizzazione.
+- I termini Amax osservata (valore misurato) e Asat stimata (asintoto netto del modello) **non sono equivalenti**. Asat può richiedere estrapolazione quando la saturazione non è raggiunta entro la PAR misurata.
+- I valori per Curve Lab non sono ancora validati per un impiego diretto in pubblicazioni senza analisi indipendente e una valutazione del protocollo.
+- Lo storage IndexedDB è **locale al browser/dispositivo** e non è automaticamente sincronizzato: programma backup regolari.
+- Il PDF si ottiene tramite **Stampa → Salva come PDF** dal report HTML. Su alcuni browser mobili, disponibilità e percorso di salvataggio possono variare.
+
+## Verifiche eseguite in preparazione
+
+- Controllo di sintassi di tutti gli script JavaScript e degli script incorporati nell'HTML.
+- Test in Chromium con **IndexedDB simulato**: creazione e salvataggio scheda rapida; navigazione e ritorno al percorso; caricamento del CSV originale `LOG-030.CSV` con 15 record; fit A/Q; salvataggio snapshot; riepilogo e Report Studio.
+- Numeri di regressione sul CSV di prova: **Amax osservata 11,11; Asat stimata 12,68 µmol CO₂ m⁻² s⁻¹** con il modello iperbolico rettangolare (bootstrap disattivato durante il test).
+- Test su viewport mobile a 390 px: assenza di overflow orizzontale e apertura del percorso retrospettivo.
+- Non è stato possibile verificare in questo ambiente il comportamento completo **di IndexedDB e Service Worker reali** o l'installazione e la stampa su iOS/Android. Serve collaudo sul sito pubblicato.

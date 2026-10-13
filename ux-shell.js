@@ -1,4 +1,4 @@
-/* LCpro T Mission Control · Clarity UX shell 1.2
+/* LCpro T Mission Control · Clarity UX shell 1.4
  * Only changes navigation and presentation; does not alter experiment data or analysis.
  */
 (function(){'use strict';
@@ -55,18 +55,15 @@ async function startNew(){try{
  }catch(err){alert('Impossibile creare la scheda: '+err.message);}}
 async function already(){
  try{
-  if(!get().session){
-   if(!window.LCResearch?.makeNew)throw new Error('Archivio non disponibile');
-   await window.LCResearch.makeNew();
-   if(!get().session)return;
-   window.LCGuided?.sync?.(true);
-  }
-  go('log');
-  const previous=$('uxImportHint');if(previous)previous.remove();
-  const el=document.createElement('div');el.id='uxImportHint';el.className='research-notice';
-  el.textContent='Per una misura già conclusa: importa il CSV originale in questa scheda, poi torna al Percorso e attiva “Registro retrospettivo”. Non dichiarare controlli che non hai documentato.';
-  $('lab-log')?.prepend(el);
- }catch(err){alert('Impossibile aprire il Diario: '+err.message);}
+  if(!window.LCResearch?.makeNew)throw new Error('Archivio non disponibile');
+  // Ogni nuovo CSV deve conservare un originale in una scheda distinta.
+  await window.LCResearch.makeNew();
+  if(!get().session)return;
+  window.LCGuided?.sync?.(true);
+  await window.LCGuided?.setRetrospective?.(true);
+  go('protocol');
+  const n=$('flowNotice');if(n)n.textContent='Misura già conclusa: compila la scheda breve. Il percorso retrospettivo registrerà soltanto i controlli documentabili.';
+ }catch(err){alert('Impossibile iniziare l’analisi retrospettiva: '+err.message);}
 }
 
 function init(){

@@ -1,7 +1,7 @@
-/* LCpro T Mission Control Research Edition · offline cache (2026-10-13) · Clarity 1.3 */
-const CACHE = 'lcprot-mission-clarity-2026-10-13-v3';
+/* LCpro T Mission Control Research Edition · offline cache (2026-10-13) · Clarity 1.5 */
+const CACHE = 'lcprot-mission-clarity-2026-10-13-v5';
 const PREFIX = 'lcprot-mission-';
-const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js'];
+const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();
@@ -25,6 +25,11 @@ self.addEventListener('fetch', event => {
       }catch(e){return (await caches.match(req))||(await caches.match('./index.html'))||Response.error();}
     })());
   }else{
-    event.respondWith(caches.match(req).then(cached=>cached||fetch(req)));
+    // Network-first for app code prevents stale JS after a GitHub Pages update.
+    event.respondWith((async()=>{
+      const cached=await caches.match(req);
+      try{const res=await fetch(req);if(res.ok){const cache=await caches.open(CACHE);await cache.put(req,res.clone());}return res;}
+      catch(e){return cached||Response.error();}
+    })());
   }
 });
