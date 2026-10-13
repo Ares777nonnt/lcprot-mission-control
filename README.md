@@ -36,3 +36,7 @@ Interfaccia semplificata rispetto alla Research Edition Guided 1.1 (13 ottobre 2
 - **Dati:** conferma che i vecchi esperimenti siano visibili senza avere svuotato IndexedDB.
 
 Non è effettuato alcun collegamento diretto con lo strumento LCpro T. Le verifiche restano attestate dall'operatore e non costituiscono validazione metrologica.
+
+
+## Hotfix 1.2.1 — 13 ottobre 2026
+Corretto errore `initSeqChecks is not defined` in `index.html` (prima chiamata a render prima della definizione). Aggiornata la versione della cache in `sw.js`. Per risolvere il problema pubblicare almeno `index.html` e `sw.js` nella root del repository e ricaricare la pagina online. Non eliminare i dati locali.
