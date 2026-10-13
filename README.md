@@ -1,42 +1,49 @@
-# LCpro T Mission Control — Clarity 1.2
+# LCpro T Mission Control — Clarity 1.3
 
-Interfaccia semplificata rispetto alla Research Edition Guided 1.1 (13 ottobre 2026).
+Release del 13 ottobre 2026. PWA statica per **GitHub Pages**, PC, iPhone/iPad e Android.
 
-## Quali sono le modifiche
+## Novità della versione 1.3
 
-- Schermata iniziale con tre azioni principali: **Nuovo esperimento**, **Riprendi esperimento**, **Ho già un CSV**.
-- Navigazione primaria ridotta a **Inizio, Esperimento, Diario, Strumenti**.
-- I dieci strumenti preesistenti non sono eliminati ma raggruppati nel pannello chiudibile **Strumenti**.
-- Il percorso guidato mantiene **tutte le nove verifiche obbligatorie**, ma la panoramica delle nove fasi è nascosta in un pannello espandibile; viene mostrata subito solo la fase attiva.
-- Header meno ingombrante e interfaccia responsive per tablet/smartphone; contrasto per tema giorno/notte.
-- La creazione di un nuovo esperimento avviene dalla Home e conduce direttamente al percorso obbligato. Per un CSV già acquisito, si usa il Diario e poi **Registro retrospettivo**.
-- Nessun cambiamento alle formule scientifiche, ai CSV originali, al database IndexedDB, al backup o alle regole Health Check.
+Il percorso sperimentale guidato ha **nove passaggi**. Ciascuno presenta nell'ordine:
 
-## Aggiornamento su GitHub Pages
+1. **Sull’LCpro T** — poche azioni da eseguire sullo strumento.
+2. **Nell'app** — cosa annotare, verificare o aprire in Mission Control.
+3. **Perché è importante?** — giustificazione scientifica consultabile a richiesta.
+4. **Dati e strumenti** — campi necessari e collegamenti al Diario/Health Check/Curve Lab.
+5. **Conferma le verifiche** — etichette brevi e criteri completi espandibili; avanzamento bloccato se sono assenti attestazioni o dati richiesti.
 
-1. **Prima dell'aggiornamento:** nel Diario della versione precedente esporta **Backup JSON**. Conserva separatamente i CSV originali. Non cancellare i dati del sito.
-2. Estrai lo ZIP e carica nella root del repository `lcprot-mission-control` questi **9 file**, con `Add file → Upload files`:
+La sequenza `.SQS` viene **letta localmente** e non inviata automaticamente all'LCpro T. L'app non comanda lo strumento e non rileva direttamente la stabilità. Per una curva A/Q crescente da PAR 0, la guida segnala il rischio di induzione fotosintetica e richiede di documentare la scelta del protocollo; **non impone tempi o PAR iniziali universali e non preseleziona una strategia per i nuovi esperimenti**.
+
+Non sono state cambiate le formule di Curve Lab, i controlli di Health Check, il formato del Diario, il backup o il CSV originale. Le schede 1.1/1.2 sono compatibili: la nuova interfaccia riutilizza i record già esistenti.
+
+## Aggiornamento del sito GitHub Pages
+
+1. Nell'app pubblicata apri **Diario → Esporta backup JSON**, e conserva i CSV originali anche fuori dal browser.
+2. Estrai l'archivio ZIP. Carica i **9 file applicativi** nella radice del repository già esistente `lcprot-mission-control`:
    - `index.html`
-   - `manifest.webmanifest`
    - `sw.js`
-   - `icon-192.png` / `icon-512.png`
-   - `research-core.js` / `research-app.js`
+   - `manifest.webmanifest`
    - `guided-workflow.js`
-   - **`ux-shell.js` (nuovo)**
-3. Conferma il commit su `main`. Attendi GitHub Pages → Actions e riapri l'URL del sito **online**.
-4. L'aggiornamento offline utilizza la cache `lcprot-mission-clarity-2026-10-13-v1`. Non disinstallare l'app prima di fare backup.
+   - `ux-shell.js`
+   - `research-app.js`
+   - `research-core.js`
+   - `icon-192.png`
+   - `icon-512.png`
+3. Puoi caricare anche `README.md` per aggiornare le istruzioni nel repository. **Non serve pubblicare `validation/`**.
+4. Conferma il commit e attendi che **GitHub → Actions → pages build and deployment** risulti completato.
+5. Apri `https://ares777nonnnt.github.io/lcprot-mission-control/` con connessione attiva; se occorre aggiorna la pagina. La versione deve mostrare **Clarity 1.3** nella scheda del percorso.
+6. **Non cancellare i dati del sito** e non disinstallare la PWA per forzare un aggiornamento: potresti cancellare il Diario salvato localmente.
 
-## Collaudo dopo l'aggiornamento
+## Uso guidato
 
-- **Inizio:** verifica che le azioni aprano le sezioni corrette e che la navigazione sia leggibile su mobile.
-- **Nuovo esperimento:** crea scheda, controlla che il percorso inizi dal passaggio 1 e che i vincoli siano ancora operativi.
-- **Riprendi:** ritorna alla fase lasciata incompleta.
-- **Ho già un CSV:** allega CSV nel Diario e attiva la modalità retrospettiva nel percorso.
-- **Strumenti:** verifica che guida, SQS, grafici, diagnostica, fit e report siano tutti ancora presenti.
-- **Dati:** conferma che i vecchi esperimenti siano visibili senza avere svuotato IndexedDB.
+Dalla Home scegli **Inizia un nuovo esperimento** oppure **Riprendi**. La sezione «Esperimento» mostra la fase corrente: non è necessario navigare fra tutti i tool. Per le spiegazioni apri «Perché è importante?»; per la formulazione precisa delle attestazioni usa «Mostra criteri completi».
 
-Non è effettuato alcun collegamento diretto con lo strumento LCpro T. Le verifiche restano attestate dall'operatore e non costituiscono validazione metrologica.
+Per un CSV già registrato, apri «Ho già un CSV da analizzare», compila la scheda in Diario, importa il file e attiva «Registro retrospettivo» nel percorso. In tale modalità **non affermare di aver eseguito in tempo reale verifiche non documentate**.
 
+## Validazione e limiti
 
-## Hotfix 1.2.1 — 13 ottobre 2026
-Corretto errore `initSeqChecks is not defined` in `index.html` (prima chiamata a render prima della definizione). Aggiornata la versione della cache in `sw.js`. Per risolvere il problema pubblicare almeno `index.html` e `sw.js` nella root del repository e ricaricare la pagina online. Non eliminare i dati locali.
+- Test JavaScript di sintassi; test numerici su curve sintetiche per il motore scientifico; interazione completa dei 9 passaggi con IndexedDB simulato.
+- Esame dei blocchi obbligatori, lettura di .SQS crescente, importazione CSV reale di prova `LOG-030.CSV` e salvataggio fit.
+- Verifica responsiva su Chromium desktop/mobile simulato, non sostitutiva di un test fisico su iOS/Android.
+- Il service worker precache la shell tramite percorsi **relativi** compatibili con il sottopercorso GitHub Pages; la prima visita richiede connessione. Il funzionamento offline sui dispositivi reali è ancora da verificare.
+- Le stime numeriche non sono validate per uso diretto in pubblicazioni senza controllo indipendente; l'app non sostituisce un SOP approvato o la formazione all'LCpro T.
