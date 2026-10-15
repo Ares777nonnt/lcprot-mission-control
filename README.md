@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 2.3
+# LCpro T Mission Control · Clarity 2.3.1
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
 
@@ -58,3 +58,7 @@ Nuovi file necessari nella 2.1: continuity-core.js, vault.js, recovery.js, exper
 ## Veste grafica 2.3
 
 Palette botanica con verde salvia e avorio, navigazione con icone vettoriali locali, intestazione del Diario, schede e riepiloghi con colori leggeri. Nessuna dipendenza da font o immagini remote; tema scuro, animazioni ridotte e stampa preservati. Il flusso e i database restano quelli della versione 2.2.
+
+## Logo 2.3.1
+
+Logo fornito dall’utente conservato senza modifiche in app-logo.jpg (1024×1024). Usato da intestazione, favicon, icona Apple e manifest PWA. Nel solo header il margine bianco viene nascosto via CSS; per le icone di sistema il file originale mantiene il margine sicuro. Inclusione offline nel service worker.
