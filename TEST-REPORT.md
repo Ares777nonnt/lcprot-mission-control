@@ -77,3 +77,14 @@ Test test-v262.cjs su Microsoft Edge headless, fixture sintetiche sotto /lab/:
 - Interfaccia desktop/mobile a 320 px, temi chiaro/scuro, assenza di overflow orizzontale e di eccezioni JavaScript.
 
 PASS anche test-regression-v26.cjs: archivio storico, A/Q e A/Ci, gerarchia biologica, importazione guidata, bozze, backup e ripristino riprendibile, report e offline. Gli archivi reali dell’utente non sono disponibili per i test.
+
+
+## Parametri fisiologici 2.7
+
+PASS test-v27-core.cjs: formule e unità di tutti i sette parametri con risultati attesi indipendenti; Cref variabile senza sostituzione fissa; media dei rapporti per record prima delle medie annidate; più CSV di B1 e una replica B2 contati come n=2; DS campionaria e n specifico per parametro; dati mancanti, E/gs/Ci/Cref nulli e negativi; An negativo conservato; esclusioni e letture rimosse; asse Ci negli esperimenti A/Ci; A/An, separatore punto e virgola e virgola decimale; E distinta da e; oggetti originali invariati.
+
+PASS test-v27-ui.cjs su Edge headless con importazione reale di quattro CSV sintetici in due condizioni: sette selettori e grafici, tabella a Qleaf=100 con An=31.25 e A/E=5.4375 (n=2), motivi ND, filtri delle condizioni, export delle medie e di tutti i record, report con sette parametri, scala e unità mobile, temi giorno/notte, assenza di overflow a 390 px, reload e ricalcolo offline, nessuna eccezione JavaScript.
+
+PASS test-v262.cjs per la gestione delle letture importate: riassegnazione, rimozione recuperabile, backup, recupero offline e archivio storico immutato. PASS test-regression-v26.cjs per migrazione, parser, fit A/Q e A/Ci, bozze, backup riprendibile e report. Screenshot desktop, mobile e report controllati visivamente.
+
+Sono test software con fixture sintetiche, non una validazione scientifica su misure reali o su ogni esportazione LCpro T. Le unità presuppongono le convenzioni CSV del manuale ADC; file convertiti in altre unità richiedono verifica prima dell’uso. Nessun test inferenziale fra condizioni aggiunto.

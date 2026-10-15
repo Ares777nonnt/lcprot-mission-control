@@ -10,11 +10,11 @@ const finite=v=>Number.isFinite(v);
 function csvLine(line,sep){let out=[],v='',quote=false;for(let i=0;i<line.length;i++){let c=line[i];if(c==='"'){if(quote&&line[i+1]==='"'){v+='"';i++}else quote=!quote}else if(c===sep&&!quote){out.push(v.trim());v=''}else v+=c;}out.push(v.trim());return out}
 function delimiter(s){return [',',';','\t'].sort((a,b)=>csvLine(s,b).length-csvLine(s,a).length)[0]}
 function readCSV(raw){const lines=String(raw).replace(/^\uFEFF/,'').split(/\r\n|\n|\r/).filter(s=>s.trim()&&!s.trim().startsWith('#'));
-const hidx=lines.findIndex(line=>{let f=csvLine(line,',').map(normalize);return f.includes('record')&&f.includes('qleaf')&&f.includes('a')});let usable=hidx>=0?lines.slice(hidx):lines; if(usable.length<2)throw Error('CSV privo di intestazioni e record sufficienti.');
-const sep=delimiter(usable[0]),h=csvLine(usable[0],sep),norm=h.map(normalize);if(!norm.includes('a'))throw Error('Colonna A non identificata: servono intestazioni CSV originali LCpro T.');
+const hidx=lines.findIndex(line=>{let f=csvLine(line,delimiter(line)).map(normalize);return (f.includes('a')||f.includes('an'))&&(f.includes('qleaf')||f.includes('par')||f.includes('ci'))});let usable=hidx>=0?lines.slice(hidx):lines; if(usable.length<2)throw Error('CSV privo di intestazioni e record sufficienti.');
+const sep=delimiter(usable[0]),h=csvLine(usable[0],sep),norm=h.map(normalize);if(!norm.includes('a')&&!norm.includes('an'))throw Error('Colonna A non identificata: servono intestazioni CSV originali LCpro T.');
 const rows=usable.slice(1).map(l=>csvLine(l,sep)).filter(r=>r.length>=Math.min(8,h.length));if(!rows.length)throw Error('Nessun record riconoscibile.');
 if(rows.length>100000)throw Error('Troppe righe per il laboratorio in browser (max 100.000).');
-const map={a:['a'],q:['qleaf','par'],ci:['ci'],gs:['gs'],e:['e'],tleaf:['tleaf'],tlmethod:['tlmtd'],tch:['tch'],cref:['cref'],co2ctl:['cctl'],area:['area'],record:['record'],datetime:['dt'],time:['tm'],flow:['u'],pressure:['p'],co2delta:['c'],vpd:['vpd']};
+const map={a:['a','an'],q:['qleaf','par'],ci:['ci'],gs:['gs'],e:['e'],tleaf:['tleaf'],tlmethod:['tlmtd'],tch:['tch'],cref:['cref'],co2ctl:['cctl'],area:['area'],record:['record'],datetime:['dt'],time:['tm'],flow:['u'],pressure:['p'],co2delta:['c'],vpd:['vpd']};
 const cols={};for(let k of Object.keys(map)){cols[k]=norm.findIndex(z=>map[k].includes(z));}
 cols.e=h.findIndex(x=>x.trim()==='E');
 const data=rows.map((r,i)=>{const x={index:i+1};for(let k of Object.keys(cols)){let j=cols[k];x[k]=j<0?NaN:(k==='tlmethod'||k==='co2ctl'||k==='datetime'||k==='time'?String(r[j]??'').trim():num(r[j]))};x.raw=r;return x});

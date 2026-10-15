@@ -80,3 +80,13 @@
  #workspaceOperationStatus{color:var(--ui-green);font-size:15px;line-height:1.6}#workspaceDialog .workspace-bio-check{display:flex;align-items:center;gap:10px}#workspaceDialog li{overflow-wrap:anywhere;line-height:1.6}
 }
 @media(max-width:700px){.workspace-bulk button{flex:1 1 100%;white-space:normal}#workspaceRemovedRows li{align-items:stretch;flex-direction:column}}
+
+@media screen{
+ #experimentWorkspace .experiment-metrics,#experimentWorkspace .experiment-metric-matrix{padding:20px;border:1px solid var(--ui-line);border-radius:14px;background:var(--ui-soft);margin:20px 0}
+ .experiment-metrics h3,.experiment-metric-matrix h3{font-size:21px;margin:0 0 12px;line-height:1.4}.experiment-metrics p,.experiment-metric-matrix p{font-size:15px;line-height:1.65;color:var(--ui-muted)}
+ .experiment-metrics label,.experiment-metric-matrix label{display:grid;gap:7px;max-width:520px;font-size:15px}#expMetric,#expMetricX{width:100%;min-height:46px;font-size:16px}#expMetricMatrix table{min-width:1050px}#expMetricMatrix td{white-space:nowrap}#expMetricMatrix th small{font-weight:400}#expMetricMatrix small{display:block;font-size:13px;color:var(--ui-muted);margin:6px 0}#expMetricMissing{margin:20px 0}#expMetricRecords{margin-top:20px;min-height:44px;white-space:normal}
+ html:is([data-read-size=large],[data-read-size=larger]) :is(.experiment-metrics p,.experiment-metric-matrix p,#expMetricMatrix small){font-size:var(--reading-small)!important}
+}
+@media screen and (max-width:700px){#experimentWorkspace .experiment-metrics,#experimentWorkspace .experiment-metric-matrix{padding:15px}#expMetricRecords{width:100%}}
+
+@media(max-width:760px){.exp-chart-scroll[data-metric-axis]::before{content:attr(data-metric-axis)}}

@@ -1,6 +1,28 @@
-# LCpro T Mission Control · Clarity 2.6.2
+# LCpro T Mission Control · Clarity 2.7
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Parametri fisiologici · 2.7
+
+In **Esperimento → Analizza**, scegli An, gs, E, Ci/Ca, A/E, An/gs o An/Ci. Il grafico usa Qleaf per gli esperimenti A/Q e Ci per A/Ci; i filtri delle condizioni e la vista singole letture / media biologica si applicano al parametro selezionato. La tabella confronta tutti i parametri a una stessa X scelta dall’operatore: non si mediano livelli diversi della curva.
+
+| Parametro | Origine o formula | Unità |
+|---|---|---|
+| An | A (oppure An) dal CSV | µmol CO₂ m⁻² s⁻¹ |
+| gs | gs dal CSV | mol H₂O m⁻² s⁻¹ |
+| E | E maiuscola dal CSV | mmol H₂O m⁻² s⁻¹ |
+| Ci/Ca | Ci / Cref | adimensionale |
+| A/E | An / E | µmol CO₂ mmol⁻¹ H₂O |
+| An/gs | An / gs | µmol CO₂ mol⁻¹ H₂O |
+| An/Ci | An / Ci | mol m⁻² s⁻¹ |
+
+**Ca = Cref**, CO₂ di riferimento in ingresso registrata nel file, anche quando alimentata da bombola. Non si sostituisce con 400 ppm, con il setpoint o con la CO₂ in uscita. Cref mancante rende Ci/Ca non disponibile. Definizioni e unità: [manuale ADC LCpro T, appendici 1 e 3](https://www.adc.co.uk/wp-content/uploads/LCproT-manual.pdf). An, gs ed E sono valori già elaborati dallo strumento, non ricalcolati dall’app dai segnali grezzi. An/Ci è un rapporto descrittivo, non Vcmax né una pendenza di carbossilazione.
+
+I rapporti vengono calcolati **per record**, prima della media dei record a X identiche per lettura, delle letture per ID biologico e degli ID per condizione. Lo stesso ID in più CSV non aumenta n. Ogni parametro ha un proprio n: i dati mancanti non diventano zeri. DS campionaria solo per n ≥ 2. Denominatori mancanti, non numerici, nulli o negativi non producono rapporti; Ci negativo non produce Ci/Ca. An negativo resta visibile. Nessuna soglia arbitraria per denominatori positivi piccoli. Esclusioni e letture rimosse restano fuori dai calcoli.
+
+**Esporta → Grafico e dati del confronto** scarica il grafico e le medie del parametro e delle condizioni selezionate. **Scarica tutti i parametri per record** include tutti e sette i valori, ID, condizioni, X, Ca e motivi di indisponibilità, conservando la precisione numerica. I CSV numerici usano il punto decimale. Il report HTML include tutti i parametri e le medie biologiche; per contenere la dimensione, ogni tabella del report mostra al massimo 500 righe, esplicitando il limite. Le esportazioni CSV comprendono tutte le righe.
+
+I dati storici vengono riletti dai CSV originali; nessun cambio agli schemi IndexedDB, ai fit salvati o ai backup precedenti. Calcolo ed esportazioni disponibili offline dopo l’aggiornamento della cache.
 
 ## Gestione delle letture importate · 2.6.2
 
