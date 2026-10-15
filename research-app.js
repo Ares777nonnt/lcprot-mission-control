@@ -192,7 +192,7 @@ for(const n of newlyDone)stamp('workflow_stage','Passaggio '+(n+1)+' completato:
 await transact('readwrite',o=>o.put(session));await refresh();}
 async function openReading(reading,context){
  const id='reading:'+reading.id;if(id!==session?.id&&!allowSwitch())return false;const existing=await transact('readonly',o=>o.get(id));
- if(!existing){const now=new Date().toISOString(),meta={...baseMeta(),species:'',...(reading.meta||{}),plant:reading.bio||reading.meta?.plant||'Da assegnare',type:context.kind,treatment:context.condition,notes:'Esperimento: '+context.experiment};
+ if(!existing){const now=new Date().toISOString(),meta={...baseMeta(),species:'',...(reading.meta||{}),plant:reading.bio||reading.meta?.plant||'Da assegnare',type:context.kind,treatment:context.condition,notes:[reading.meta?.notes,'Esperimento: '+context.experiment].filter(Boolean).join('\n')};
  const item={id,created:now,updated:now,meta,filename:reading.name,rawCsv:reading.rawCsv,sha256:reading.sha256||'',exclusions:reading.exclusions||[],exclusionNotes:{},audit:[{at:now,type:'experiment_reading',detail:'Lettura collegata a '+context.experiment+' / '+context.condition}]};await transact('readwrite',o=>o.put(item));}
  await refresh();return await selectExperiment(id,true);
 }

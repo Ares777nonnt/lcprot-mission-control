@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 2.5
+# LCpro T Mission Control · Clarity 2.6
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
 
@@ -84,3 +84,15 @@ Segoe UI per titoli e interfaccia, palette **Bosco e terracotta** per il giorno 
 Il Diario mostra riepiloghi calcolati sull’archivio reale, schede con letture/condizioni/ID biologici dichiarati e uno stato aggregato. Gli ID sono conteggi di etichette dichiarate, non una valutazione di indipendenza biologica. Un esperimento senza letture è Bozza; metadati/ID mancanti richiedono completamento; letture da analizzare o fit da rivedere richiedono verifica. Il resto è Salvato.
 
 La palette è estesa a esperimento, importazione, analisi, editor multiplo e recupero bozze. Nel confronto il testo dei filtri resta ad alto contrasto con un campione del colore della serie; i colori delle curve e i dati esportati non cambiano. Nessuna migrazione o modifica agli schemi dei database.
+
+## Scheda esperimento 2.6
+
+**Organizza** raccoglie obiettivo, nome, valori comuni, condizioni e piano facoltativo. Ogni condizione permette di modificare nome/note, aprire le proprie letture o iniziare un’importazione già contestualizzata. La creazione di una condizione porta all’importazione con quella condizione selezionata.
+
+In **Acquisisci**, **Letture salvate** e **Importa CSV** sono due viste distinte. Le letture confermate sono raggruppate per condizione e ID biologico dichiarato; ID vuoti rimangono un gruppo da assegnare, senza inferenze. Ricerca e filtro mostrano un sottoinsieme senza modificare i dati. Scheda/note, qualità/fit e correzione dell’assegnazione sono accessibili dalla lettura mantenendo l’esperimento visibile. Le vecchie modifiche collettive restano in Modifica avanzata.
+
+**Condizione e replica** sposta una lettura all’interno dello stesso esperimento o corregge l’ID nel confronto, con audit dell’esperimento. Conserva ID della lettura, CSV, SHA, esclusioni e scheda di analisi. Non cambia il campo Pianta della scheda originale; ID biologico del confronto e metadati originali sono distinti. Una verifica di concorrenza rifiuta un’assegnazione diventata obsoleta. Nome/obiettivo/valori comuni e nome/note di condizione hanno controlli analoghi, su transazioni del database progetti. Gli esperimenti virtuali 1.6 vengono copiati alla prima modifica, conservando la scheda storica.
+
+Specie, operatore e protocollo comuni sono valori predefiniti solo per i CSV aggiunti successivamente. Vengono copiati nella bozza all’ingresso, quindi un cambiamento dei valori comuni non riscrive bozze o letture esistenti. Ogni file può fare eccezione nell’anteprima. La data di misura resta esplicita, mai dedotta dall’importazione.
+
+**Esporta** mostra un controllo preliminare con collegamenti alle letture da completare/verificare e avvisi sulle bozze escluse. L’esportazione resta disponibile per le letture confermate. Il report riporta l’obiettivo se dichiarato; i metodi dei fit e delle medie non cambiano. Tutti i nuovi metadati dei progetti sono inclusi nel backup completo; schema e nomi dei database restano invariati.

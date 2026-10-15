@@ -51,3 +51,9 @@ Regressione precedente in `test-regression-v24.cjs`, con il selettore del dialog
 ## Restyling 2.5
 
 `test-v25-ui.cjs`: colori giorno/notte verificati nei valori CSS effettivi; Segoe UI; conteggi del Diario confrontati con fixture; navigazione, analisi e ritorno al confronto; letture Standard/Grande/Molto grande a 320 e 390 px senza overflow della pagina; screenshot desktop, smartphone e tema scuro. `test-v24.cjs`: modifica multipla, audit, conflitti, bozze e preferenze persistenti/offline superati. `test-regression-v24.cjs`: migrazione dell’archivio precedente, importazione A/Q e A/Ci, esclusioni, repliche, backup/ripristino e report superati. Dati sintetici; nessun errore JavaScript.
+
+## Scheda esperimento 2.6
+
+`test-v26.cjs`: obiettivo e valori comuni; modifica condizione; importazione contestuale; più letture dello stesso ID raggruppate; cambiamento dei valori comuni senza riscrivere la bozza precedente; nuovo CSV con i nuovi valori; assegnazione e spostamento fra condizioni con CSV/SHA/ID preservati e audit; rifiuto di aggiornamento obsoleto; ricerca; apertura scheda nel contesto; note di protocollo preservate; revisione prima del report senza blocco; obiettivo nel report; nuovi metadati nel backup; smartphone, tema scuro e riapertura offline. Dati sintetici, nessun errore JavaScript.
+
+Regressione in `test-regression-v26.cjs`: apre esplicitamente la sezione avanzata per i vecchi controlli di assegnazione e la vista Importa CSV per i valori comuni; mantiene le verifiche precedenti su archivio 1.6, A/Q e A/Ci, esclusioni, medie biologiche, bozze, backup, ripristino riprendibile e report.
