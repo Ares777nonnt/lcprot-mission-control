@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 1.9
+# LCpro T Mission Control · Clarity 2.0
 
 Aggiornamento del pacchetto 1.6 fornito, senza dipendenze remote.
 
@@ -8,7 +8,7 @@ Apri **Esperimenti** dalla navigazione principale. Anche le azioni della Home Nu
 
 1. Crea un esperimento A/Q o A/Ci.
 2. Aggiungi condizioni e metadati: trattamento, temperatura, CO₂, luce, unità e protocollo.
-3. Scegli condizione, ID biologico e campione/foglia. Importa uno o più CSV della stessa replica. Per altre piante ripeti con un altro ID.
+3. Carica insieme i CSV e controlla le anteprime. Assegna condizione e ID biologico a ciascun file, poi conferma il gruppo. Puoi assegnare condizioni e piante differenti nella stessa importazione.
 4. Confronta singole letture oppure medie biologiche ± deviazione standard. Filtra le condizioni; esporta SVG, CSV delle medie o stampa/PDF.
 
 Espandi la condizione per modificare nome, metadati e ID biologici, poi premi **Salva condizioni e repliche**. Il tipo di curva è fissato alla creazione. Un CSV corrisponde a una lettura: non si segmentano automaticamente file contenenti più condizioni.
@@ -33,7 +33,7 @@ Conserva **entrambi** i backup: JSON del Diario originale e backup 1.7 dell'area
 
 1. Esporta il backup del Diario e conserva CSV e vecchio ZIP.
 2. Carica tutti i file del pacchetto nella stessa cartella del repository, sovrascrivendo gli omonimi. Mantieni dominio e percorso dell'app.
-3. Dopo il deployment apri online, lascia aggiornare il service worker e ricarica. Controlla Clarity 1.9 nell'area Esperimenti.
+3. Dopo il deployment apri online, lascia aggiornare il service worker e ricarica. Controlla Clarity 2.0 nell'area Esperimenti.
 4. Verifica le schede storiche e prova offline dopo il caricamento online completo. Non cancellare i dati del sito o disinstallare la PWA per aggiornare.
 
 Nuovi file necessari: experiments-core.js, experiments-app.js, experiments.css. Cache aggiornata; percorsi relativi compatibili con sottocartelle. Manifest id, start_url e scope preservati. Nessuna pubblicazione remota effettuata.
@@ -55,3 +55,19 @@ Esperimenti integrati nella pagina e nel tema, senza schermata sovrapposta. Tre 
 - I nuovi CSV non ricevono automaticamente una specie botanica nella scheda di analisi: va dichiarata dall'operatore.
 
 Nessuna modifica di schema dei database o del formato dei backup. File aggiuntivi necessari: journal-core.js, journal.js, journal.css. Carica tutti i file del pacchetto e mantieni lo stesso indirizzo GitHub Pages.
+
+## Nuovo nella 2.0 — Riepilogo operativo e importazione guidata
+
+Il riepilogo evidenzia condizioni, CSV archiviati, ID biologici non assegnati e file ancora da confermare. Suggerisce il prossimo passo senza bloccare la navigazione. Le schede delle condizioni mostrano CSV e repliche dichiarate separatamente. Puoi impostare facoltativamente un numero atteso di repliche per condizione: i file ripetuti dello stesso ID non aumentano la numerosità biologica. Il piano non certifica indipendenza, qualità o sufficienza statistica delle repliche.
+
+Importazione: selezione multipla o trascinamento → anteprima per file → assegnazione di condizione, replica e foglia → conferma esplicita. Specie e data/ora della misura sono facoltative in preparazione e possono essere completate nel Diario. La data di importazione viene conservata separatamente e non viene presentata come data della misura.
+
+Puoi applicare valori comuni ai file selezionati. I CSV con contenuto identico già nell'esperimento o nella preparazione sono inizialmente esclusi: per importarli devi selezionarli e confermarli espressamente come letture distinte. Un nome uguale con contenuto diverso produce un avviso. Le repliche biologiche non vengono dedotte dai nomi dei file.
+
+I file non leggibili restano visibili e non selezionabili; puoi rimuoverli e importare soltanto quelli validi selezionati. La validazione dell'intero gruppo selezionato precede la scrittura: condizione o ID mancanti e duplicati non confermati impediscono il salvataggio del gruppo. La scrittura delle letture è una singola transazione, senza aggiornare i CSV storici.
+
+Limiti: 20 file e 32 MB complessivi in preparazione, massimo 8 MB per CSV. Le assegnazioni in preparazione restano disponibili navigando nell'app e tornando allo stesso esperimento, ma sono temporanee: non sono un backup e vanno confermate prima di ricaricare o chiudere la pagina. Il browser può mostrare un avviso di uscita.
+
+Restyling condiviso: intestazione più compatta, palette verde salvia, gerarchia tipografica, riepilogo e azioni più leggibili, campi impilati su mobile e tema notte. Nessuna modifica ai fit o alle regole statistiche del confronto.
+
+Nuovi file necessari: mission-core.js, mission.js e mission.css. Database e backup restano compatibili con la 1.9; expectedBio e importedAt sono campi aggiuntivi opzionali. Carica tutto il pacchetto nello stesso percorso GitHub Pages.

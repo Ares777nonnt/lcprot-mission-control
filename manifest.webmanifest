@@ -1,14 +1,14 @@
 {
   "id": "./",
-  "name": "LCpro T Mission Control — Clarity 1.9",
+  "name": "LCpro T Mission Control — Clarity 2.0",
   "short_name": "LCpro T Research",
-  "description": "Diario, esperimenti, letture e confronto delle curve in un unico percorso offline",
+  "description": "Riepilogo esperimenti e importazione guidata dei CSV, con Diario e confronto offline",
   "lang": "it",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#101a2e",
-  "theme_color": "#12263a",
+  "background_color": "#f3f5f1",
+  "theme_color": "#173f3b",
   "icons": [
     {
       "src": "./icon-192.png",
