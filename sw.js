@@ -1,5 +1,5 @@
-/* LCpro T Mission Control - offline cache - Clarity 2.6.1 */
-const CACHE = 'lcprot-mission-clarity-2026-10-15-v19';
+/* LCpro T Mission Control - offline cache - Clarity 2.6.2 */
+const CACHE = 'lcprot-mission-clarity-2026-10-15-v20';
 const PREFIX = 'lcprot-mission-';
 const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js','./visual-edition.css','./visual-edition.js','./experiments-core.js','./experiments-app.js','./experiments.css','./journal-core.js','./journal.js','./journal.css','./mission-core.js','./mission.js','./mission.css','./continuity-core.js','./vault.js','./recovery.js','./experiment-report.js','./continuity.css','./interface.css','./interface.js','./polish.css','./app-logo.jpg','./productivity.js','./productivity.css','./forest-night.css','./workspace.js','./workspace.css','./day-edition.css'];
 self.addEventListener('install', event => {

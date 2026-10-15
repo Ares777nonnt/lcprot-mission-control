@@ -1,6 +1,12 @@
-# LCpro T Mission Control · Clarity 2.6.1
+# LCpro T Mission Control · Clarity 2.6.2
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Gestione delle letture importate · 2.6.2
+
+In **Esperimento → Acquisisci → Letture salvate**, ogni lettura offre **Riassegna** e **Rimuovi dall’esperimento**. Seleziona più letture per lavorare in gruppo; **Seleziona visibili** rispetta ricerca e filtro, mentre il conteggio comprende tutte le letture selezionate. La riassegnazione multipla conserva gli ID biologici salvo attivazione esplicita della loro modifica. Uno stesso ID identifica la stessa unità biologica: più CSV non aumentano il numero di repliche.
+
+La rimozione richiede conferma e toglie la lettura da curve, medie e report dell’esperimento. Non cancella fisicamente il CSV né la scheda di analisi: **Letture rimosse** permette **Ripristina** o **Annulla tutte le rimozioni**, anche dopo reload offline. I dati recuperabili sono inclusi nel backup completo, con verifica delle impronte e riallacciamento alle analisi durante il ripristino. Le operazioni sono registrate nell’audit; una selezione cambiata nel frattempo viene rifiutata senza applicare modifiche parziali. Nessun cambio alla versione dei database.
 
 ## Tema chiaro e firma 2.6.1
 

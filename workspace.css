@@ -67,3 +67,16 @@
 }
 
 @media screen{#workspaceFrame #workspaceNext{background:var(--theme-accent);color:var(--theme-accent-text);border-color:var(--theme-accent)}}
+
+@media screen{
+ .workspace-select{display:flex!important;flex-direction:row!important;align-items:center;gap:9px;font-size:14px;margin:0 0 12px!important;color:var(--ui-muted)}
+ .workspace-select input,#workspaceDialog .workspace-bio-check input{width:20px!important;height:20px;flex:none;accent-color:var(--ui-green)}
+ .workspace-bulk{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border:1px solid var(--ui-line);border-radius:12px;background:var(--ui-soft);padding:14px;margin:18px 0}
+ .workspace-bulk>span{flex:1 0 100%;font-weight:600}.workspace-bulk button{min-height:44px}
+ #experimentWorkspace button.workspace-remove{color:var(--ui-danger);border-color:var(--ui-danger)}
+ #workspaceRemoved{border:1px solid var(--ui-line);border-radius:12px;padding:16px;margin:24px 0;background:var(--ui-paper)}
+ #workspaceRemoved summary{font-weight:600;font-size:17px}#workspaceRemoved p{font-size:15px;color:var(--ui-muted);line-height:1.6}
+ #workspaceRemovedRows{padding:0;list-style:none}#workspaceRemovedRows li{display:flex;justify-content:space-between;align-items:center;gap:15px;border-top:1px solid var(--ui-line);padding:14px 0}#workspaceRemovedRows span{min-width:0;overflow-wrap:anywhere}#workspaceRemovedRows small{display:block;color:var(--ui-muted);font-size:14px}
+ #workspaceOperationStatus{color:var(--ui-green);font-size:15px;line-height:1.6}#workspaceDialog .workspace-bio-check{display:flex;align-items:center;gap:10px}#workspaceDialog li{overflow-wrap:anywhere;line-height:1.6}
+}
+@media(max-width:700px){.workspace-bulk button{flex:1 1 100%;white-space:normal}#workspaceRemovedRows li{align-items:stretch;flex-direction:column}}

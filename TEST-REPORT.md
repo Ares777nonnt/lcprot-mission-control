@@ -62,3 +62,18 @@ Regressione in `test-regression-v26.cjs`: apre esplicitamente la sezione avanzat
 ## Aggiornamento grafico 2.6.1
 
 PASS con test-v261-ui.cjs su Edge headless: flusso Diario/Esperimento/Strumenti, apertura e ritorno delle letture, esportazione, colori giorno/notte e Segoe UI. Dimensioni Standard/Grande/Molto grande a 320 e 390 px senza overflow orizzontale. Credito esatto Giuseppe Muscari Tomajoli, logo originale decodificato e attribuzioni ADC BioScientific ancora accessibili. Nessun errore JavaScript. Screenshot desktop e mobile controllati visivamente. Nessuna modifica ai dati o ai calcoli; restano applicabili i limiti delle verifiche precedenti.
+
+
+## Gestione letture 2.6.2
+
+Test test-v262.cjs su Microsoft Edge headless, fixture sintetiche sotto /lab/:
+
+- Riassegnazione singola e multipla; conservazione di CSV, SHA, ID e metadati; ID biologici conservati oppure modificati solo tramite scelta esplicita. Letture ripetute della stessa unità biologica contate come n=1.
+- Selezione delle sole letture visibili con ricerca, deselection e annullamento della conferma senza scritture.
+- Rimozione singola/multipla dal confronto; schede tecniche conservate; ripristino individuale o completo con gli stessi CSV, SHA, metadati, esclusioni e ID.
+- Persistenza dopo reload e operazioni offline; rimozione di una lettura storica tramite materializzazione senza alterare il record originale.
+- Backup delle letture rimosse, controllo SHA, rimappatura degli ID e ripristino reale delle copie con recupero dei collegamenti alle analisi.
+- Selezione obsoleta rifiutata atomicamente; nessuna rimozione parziale.
+- Interfaccia desktop/mobile a 320 px, temi chiaro/scuro, assenza di overflow orizzontale e di eccezioni JavaScript.
+
+PASS anche test-regression-v26.cjs: archivio storico, A/Q e A/Ci, gerarchia biologica, importazione guidata, bozze, backup e ripristino riprendibile, report e offline. Gli archivi reali dell’utente non sono disponibili per i test.
