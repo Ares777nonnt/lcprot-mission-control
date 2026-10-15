@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 1.8
+# LCpro T Mission Control · Clarity 1.9
 
 Aggiornamento del pacchetto 1.6 fornito, senza dipendenze remote.
 
@@ -33,7 +33,7 @@ Conserva **entrambi** i backup: JSON del Diario originale e backup 1.7 dell'area
 
 1. Esporta il backup del Diario e conserva CSV e vecchio ZIP.
 2. Carica tutti i file del pacchetto nella stessa cartella del repository, sovrascrivendo gli omonimi. Mantieni dominio e percorso dell'app.
-3. Dopo il deployment apri online, lascia aggiornare il service worker e ricarica. Controlla Clarity 1.8 nell'area Esperimenti.
+3. Dopo il deployment apri online, lascia aggiornare il service worker e ricarica. Controlla Clarity 1.9 nell'area Esperimenti.
 4. Verifica le schede storiche e prova offline dopo il caricamento online completo. Non cancellare i dati del sito o disinstallare la PWA per aggiornare.
 
 Nuovi file necessari: experiments-core.js, experiments-app.js, experiments.css. Cache aggiornata; percorsi relativi compatibili con sottocartelle. Manifest id, start_url e scope preservati. Nessuna pubblicazione remota effettuata.
@@ -43,3 +43,15 @@ Vedi TEST-REPORT.md. Tornando alla 1.6 il database originale rimane disponibile,
 ## Nuovo nella 1.8
 
 Esperimenti integrati nella pagina e nel tema, senza schermata sovrapposta. Tre passaggi con informazioni contestuali; archivio, backup schema 1, database e statistiche restano compatibili con la 1.7. Percorso guidato della singola lettura collegato all’esperimento; letture nuove analizzabili direttamente.
+
+## Nuovo nella 1.9 — Diario e flusso della lettura
+
+- Diario come archivio ricercabile: viste Esperimenti e Letture, filtri Da completare, Con fit salvato e Da organizzare.
+- Ogni scheda propone il prossimo passo e distingue CSV assente, metadati incompleti, fit da salvare e fit salvato/da rivedere. Lo stato non certifica la qualità scientifica dei dati. Una modifica dei metadati dopo il fit richiede prudenzialmente una revisione.
+- Scheda della lettura con campi essenziali subito visibili, impostazioni avanzate richiudibili, tracciabilità separata e barra Salva/Continua.
+- Percorso Scheda → Qualità → Curva → Report senza selezionare di nuovo il CSV; confronto e condizioni rimangono nell'esperimento.
+- Modifiche non salvate segnalate; il cambio di lettura permette di annullare lo scarto. Riaprire la stessa lettura conserva la bozza. L'avviso alla chiusura della pagina dipende dal browser.
+- Organizza una lettura storica in un esperimento e una condizione dichiarando l'ID biologico. Il CSV originale e la scheda di analisi restano conservati; il Diario non mostra due volte la stessa scheda tecnica collegata. Le copie importate da backup rimangono copie distinte.
+- I nuovi CSV non ricevono automaticamente una specie botanica nella scheda di analisi: va dichiarata dall'operatore.
+
+Nessuna modifica di schema dei database o del formato dei backup. File aggiuntivi necessari: journal-core.js, journal.js, journal.css. Carica tutti i file del pacchetto e mantieni lo stesso indirizzo GitHub Pages.

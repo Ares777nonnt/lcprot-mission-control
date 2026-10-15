@@ -18,7 +18,7 @@ function updatePhases(){const holder=$('clarityPhaseNav');if(!holder)return;
 }
 function syncNav(){if(!$('lab-home')?.hidden){$('clarityBreadcrumb').hidden=true;return;}const current=[...document.querySelectorAll('.lab-panel')].find(x=>!x.hidden&&getComputedStyle(x).display!=='none')?.id?.replace(/^lab-/,'')||'';
  const bar=$('clarityBreadcrumb');if(!bar)return;
- if(!names[current]){bar.hidden=true;return;}
+ if(!names[current]||(window.LCJournal&&['log','health','research-curves','report'].includes(current))){bar.hidden=true;return;}
  const s=window.LCResearch?.getState?.().session;
  bar.hidden=false;
  $('clarityLocation').textContent=(s?.meta?.plant||'Esperimento')+' · '+names[current]+' · Passaggio '+(stage()+1)+'/9';

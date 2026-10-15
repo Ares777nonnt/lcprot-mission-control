@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "LCpro T Mission Control â€” Clarity 1.8",
+  "name": "LCpro T Mission Control — Clarity 1.9",
   "short_name": "LCpro T Research",
-  "description": "Esperimenti, condizioni, repliche biologiche e confronto curve offline",
+  "description": "Diario, esperimenti, letture e confronto delle curve in un unico percorso offline",
   "lang": "it",
   "start_url": "./index.html",
   "scope": "./",

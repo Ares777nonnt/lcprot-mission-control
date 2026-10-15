@@ -1,4 +1,4 @@
-# Verifica Clarity 1.8 — 15 ottobre 2026
+# Verifica Clarity 1.9 — 15 ottobre 2026
 
 Test con Node.js, Playwright e Microsoft Edge headless, profilo temporaneo. App servita sotto /lab/ come sottocartella GitHub Pages. Dati sintetici; nessun archivio reale fornito.
 
@@ -17,6 +17,8 @@ PASS:
 
 Non verificati: archivio reale utente, installazione iOS/Android, deployment remoto, stampa PDF fisica, quota e memoria con archivi molto grandi. Il controllo A/Ci riguarda asse e logica condivisa, non una validazione scientifica dei modelli.
 
-Script test-v18.cjs fornito separatamente dal pacchetto web. Richiede Node.js, Playwright ed Edge; adattare il percorso Playwright al proprio ambiente.
+Script test-v19.cjs fornito separatamente dal pacchetto web. Richiede Node.js, Playwright ed Edge; adattare il percorso Playwright al proprio ambiente.
 
 PASS integrazione 1.8: lettura nuova → Health Check → Curve Lab → esclusione motivata → ritorno al confronto; Home/Riprendi e selezione della voce principale Esperimenti. Confronto ricaricato dalle esclusioni salvate, nessuna nuova voce esperimento duplicata per la scheda tecnica collegata.
+
+PASS 1.9: modello del Diario senza doppia riga per una scheda tecnica già collegata; ricerca; stati CSV/metadati/fit salvato/fit da rivedere; filtri; scheda essenziale con avanzate richiuse; guardia sulle modifiche non salvate e annullamento del cambio lettura; note salvate; collegamento di una lettura storica a condizione e ID biologico senza alterare l'originale storico di controllo; nuova vista disponibile offline dopo reload; screenshot e controllo visivo desktop/mobile/tema notte. Nessuna eccezione JavaScript raccolta. Tutti i test precedenti di esperimenti, backup e confronto rieseguiti.

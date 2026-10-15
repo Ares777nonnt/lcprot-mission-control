@@ -1,7 +1,7 @@
-/* LCpro T Mission Control Research Edition Ã‚Â· offline cache (2026-10-13) Ã‚Â· Clarity 1.8 */
-const CACHE = 'lcprot-mission-clarity-2026-10-15-v8';
+/* LCpro T Mission Control - offline cache - Clarity 1.9 */
+const CACHE = 'lcprot-mission-clarity-2026-10-15-v9';
 const PREFIX = 'lcprot-mission-';
-const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js','./visual-edition.css','./visual-edition.js','./experiments-core.js','./experiments-app.js','./experiments.css'];
+const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js','./visual-edition.css','./visual-edition.js','./experiments-core.js','./experiments-app.js','./experiments.css','./journal-core.js','./journal.js','./journal.css'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();

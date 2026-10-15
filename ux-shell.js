@@ -52,7 +52,7 @@ function go(name){
  }
  document.querySelectorAll('[data-ux-go]').forEach(b=>{const on=b.dataset.uxGo===active;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  $('uxTools')?.classList.toggle('ux-tool-selected',!['home','experiments','protocol','log'].includes(active));
- status();stageStatus();window.LCExperiments?.refreshContext();
+ status();stageStatus();window.LCExperiments?.refreshContext();window.LCJournal?.onNavigate(active);
  if(name==='home')window.scrollTo?.({top:0,behavior:'smooth'});
 }
 // Redirect existing global tab callbacks through the shell too.
@@ -79,7 +79,7 @@ async function already(){
 
 function init(){
  if(!$('lab-home')||typeof existing!=='function')return;
- document.querySelectorAll('[data-ux-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.uxGo)));
+ document.querySelectorAll('[data-ux-go]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.uxGo==='log')window.LCJournal?.resetView();go(b.dataset.uxGo);}));
  $('uxNew').addEventListener('click',startNew);
  $('uxContinue').addEventListener('click',()=>go('experiments'));
  $('uxAlreadyHaveCsv').addEventListener('click',already);

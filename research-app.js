@@ -15,22 +15,26 @@ async function refresh(){sessions=await transact('readonly',o=>o.getAll());sessi
 function renderSessionSelectors(){let controls=['researchSelect','healthSelect','curveSelect','reportSelect'];for(let id of controls){const el=$(id);if(!el)continue;let current=session?.id||'';el.innerHTML='<option value="">— Scegli lettura —</option>'+sessions.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.meta?.plant||'Senza ID')+' · '+esc(x.meta?.species||'Specie')+' · '+esc(x.filename||'Nessun CSV')+'</option>').join('');el.value=sessions.some(s=>s.id===current)?current:'';}}
 const dateNow=()=>{let d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16)};
 const baseMeta=()=>({species:'Ocimum basilicum',cultivar:'',plant:'',leaf:'',operator:'',date:dateNow(),type:'aq',light:'led',treatment:'',area:'',tlmethod:'unknown',co2mode:'ambient',co2set:'',flow:'',temp:'',notes:''});
-function fillMeta(meta){for(let e of document.querySelectorAll('[data-rmeta]'))e.value=String(meta[e.dataset.rmeta]??'');}
+function metaValue(meta,k){let v=String(meta?.[k]??'');if(k==='date'&&/(Z|[+-]\d\d:\d\d)$/.test(v)){const d=new Date(v);if(!Number.isNaN(+d))v=new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);}return v;}
+function fillMeta(meta){for(let e of document.querySelectorAll('[data-rmeta]'))e.value=metaValue(meta,e.dataset.rmeta);}
 function readMeta(){let m={};for(let e of document.querySelectorAll('[data-rmeta]'))m[e.dataset.rmeta]=e.value.trim();return m;}
 function stamp(type,detail){session.audit.push({at:new Date().toISOString(),type,detail});session.updated=new Date().toISOString();}
-async function makeNew(){if(session&&JSON.stringify(readMeta())!==JSON.stringify(session.meta)&&!confirm('La scheda corrente contiene modifiche non salvate. Continuare?'))return;
-let now=new Date().toISOString();session={id:uniqueId(),created:now,updated:now,meta:baseMeta(),filename:'',rawCsv:'',sha256:'',exclusions:[],exclusionNotes:{},audit:[{at:now,type:'create',detail:'Nuovo esperimento creato'}]};parsed=null;analysis=null;exclusions=new Set();await transact('readwrite',o=>o.put(session));await refresh();fillMeta(session.meta);renderCurrent();toast('Nuova scheda creata: assegnale un ID pianta e salvala.');}
-async function selectExperiment(id){if(!id){session=null;parsed=null;analysis=null;exclusions=new Set();renderCurrent();return;}let found=sessions.find(s=>s.id===id);if(!found){toast('Esperimento non trovato.',true);return;}session=structuredClone(found);try{parsed=session.rawCsv?C.readCSV(session.rawCsv):null;}catch(e){parsed=null;toast('CSV archiviato non leggibile: '+e.message,true);}exclusions=new Set(session.exclusions||[]);analysis=null;fillMeta(session.meta||baseMeta());
+function hasUnsavedChanges(){return !!session&&Object.entries(readMeta()).some(([k,v])=>metaValue(session.meta,k)!==v);}
+function allowSwitch(){return !hasUnsavedChanges()||confirm('La lettura contiene modifiche non salvate. Scartarle e cambiare lettura?');}
+async function makeNew(){if(!allowSwitch())return false;
+let now=new Date().toISOString();session={id:uniqueId(),created:now,updated:now,meta:baseMeta(),filename:'',rawCsv:'',sha256:'',exclusions:[],exclusionNotes:{},audit:[{at:now,type:'create',detail:'Nuovo esperimento creato'}]};parsed=null;analysis=null;exclusions=new Set();await transact('readwrite',o=>o.put(session));await refresh();fillMeta(session.meta);renderCurrent();toast('Nuova lettura creata: completa specie, pianta e data, poi salva.');return true;}
+async function selectExperiment(id,skipGuard=false){if(id===session?.id&&hasUnsavedChanges())return true;if(id!==session?.id&&!skipGuard&&!allowSwitch()){renderSessionSelectors();return false;}if(!id){session=null;parsed=null;analysis=null;exclusions=new Set();renderCurrent();return;}let found=sessions.find(s=>s.id===id);if(!found){toast('Esperimento non trovato.',true);return;}session=structuredClone(found);try{parsed=session.rawCsv?C.readCSV(session.rawCsv):null;}catch(e){parsed=null;toast('CSV archiviato non leggibile: '+e.message,true);}exclusions=new Set(session.exclusions||[]);analysis=null;fillMeta(session.meta||baseMeta());
 if(session.fitSettings){$('curveModel').value=session.fitSettings.model||'rect';$('curveGamma').value=String(session.fitSettings.gamma??42.75);$('curveK').value=String(session.fitSettings.k??710);$('curveBootstrap').checked=session.fitSettings.bootstrap!==false;}
 else {$('curveModel').value='rect';$('curveGamma').value='42.75';$('curveK').value='710';$('curveBootstrap').checked=true;}
-renderSessionSelectors();renderCurrent();}
-async function saveMeta(){if(!session)return toast('Crea o scegli prima un esperimento.',true);let previous=JSON.stringify(session.meta),oldMeta=structuredClone(session.meta),next=readMeta();if(!next.species||!next.plant||!next.date)return toast('Specie, ID pianta e data sono obbligatori.',true);
+renderSessionSelectors();renderCurrent();return true;}
+async function saveMeta(){if(!session)return toast('Crea o scegli prima un esperimento.',true);let previous=JSON.stringify(session.meta),oldMeta=structuredClone(session.meta),next=readMeta();if(!next.species||!next.plant||!next.date){toast('Completa specie, ID pianta e data prima di salvare.',true);return false;}
+if(metaValue(session.meta,'date')===next.date)next.date=session.meta.date;
 if(next.type!==session.meta.type){analysis=null;}
 const critical=['species','plant','leaf','date','type','area','tlmethod','co2mode','co2set','flow','temp','light','treatment'];
 if(session.workflow && critical.some(k=>String(session.meta[k]??'')!==String(next[k]??''))){
  session.workflow.done=[];session.workflow.at=0;session.workflow.checks={};
  stamp('workflow_invalidation','Parametri sperimentali fondamentali modificati: riconsiderare tutte le fasi');
-}session.meta=next;if(previous!==JSON.stringify(next)){const changes=Object.keys(next).filter(k=>String(oldMeta[k]??'')!==String(next[k]??'')).map(k=>k+': '+String(oldMeta[k]??'')+' → '+String(next[k]??''));stamp('metadata','Modifiche: '+changes.join(' | '));}await transact('readwrite',o=>o.put(session));await refresh();renderCurrent();if(window.LCGuided)window.LCGuided.sync(true);toast('Scheda salvata in IndexedDB sul dispositivo. Effettua backup periodici.');}
+}session.meta=next;if(previous!==JSON.stringify(next)){const changes=Object.keys(next).filter(k=>String(oldMeta[k]??'')!==String(next[k]??'')).map(k=>k+': '+String(oldMeta[k]??'')+' → '+String(next[k]??''));stamp('metadata','Modifiche: '+changes.join(' | '));}await transact('readwrite',o=>o.put(session));await refresh();renderCurrent();if(window.LCGuided)window.LCGuided.sync(true);toast('Metadati della lettura salvati sul dispositivo.');return true;}
 async function delExperiment(){if(!session||!confirm('Eliminare definitivamente questo esperimento da questo dispositivo? Esporta prima il backup.'))return;let id=session.id;await transact('readwrite',o=>o.delete(id));session=null;parsed=null;analysis=null;exclusions=new Set();await refresh();renderCurrent();toast('Scheda rimossa dall’archivio locale.');}
 async function sha256(text){if(!crypto.subtle)return 'non disponibile';const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text));return [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 async function attachCSV(input){let file=input.files?.[0];input.value='';if(!file)return;if(!session)return toast('Prima crea o seleziona una scheda sperimentale.',true);if(session.rawCsv)return toast('CSV originale già allegato e immutabile. Crea una nuova scheda per un altro file.',true);if(file.size>8*1024*1024)return toast('CSV oltre 8 MB: importazione bloccata per la memoria mobile.',true);
@@ -39,7 +43,7 @@ catch(e){toast('Importazione rifiutata: '+e.message,true);}}
 async function saveQuickMeta(changes){if(!session)return false;
   for(const [k,v] of Object.entries(changes)){const el=document.querySelector(`[data-rmeta="${k}"]`);if(el)el.value=v;}
   const m=readMeta();if(!m.species||!m.plant||!m.date){toast('Inserisci almeno specie, ID pianta e data.',true);return false;}
-  await saveMeta();return true;
+  return await saveMeta();
 }
 async function attachFile(file){if(!file)return;await attachCSV({files:[file],value:''});}
 function download(content,name,type){const blob=content instanceof Blob?content:new Blob([content],{type:type||'application/octet-stream'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),15000);}
@@ -52,7 +56,7 @@ function metaCSV(){let cols=['id','species','plant','leaf','date','type','treatm
 function renderCurrent(){let active=session;for(let id of ['researchSelect','healthSelect','curveSelect','reportSelect'])if($(id))$(id).value=active?.id||'';
 $('researchSummary').innerHTML=active?'<b>'+esc(active.meta?.species)+' / '+esc(active.meta?.plant||'ID da inserire')+'</b> · '+esc(active.meta?.type?.toUpperCase())+' · '+(active.rawCsv?'<b>'+esc(active.filename)+'</b>, '+(parsed?.n||'?')+' record':'Nessun CSV collegato')+'<br><small>Creato: '+esc(active.created)+' · SHA-256: '+esc(active.sha256||'—')+'</small>':'Nessuna scheda selezionata. Crea un esperimento per iniziare.';
 $('researchAudit').innerHTML=active?(active.audit||[]).slice().reverse().map(e=>'<li><time>'+esc(e.at)+'</time> · <strong>'+esc(e.type)+'</strong> · '+esc(e.detail)+'</li>').join(''):'<li>Nessun evento</li>';
-renderHealth();renderCurve();renderReport();if(window.LCGuided)window.LCGuided.sync();}
+renderHealth();renderCurve();renderReport();if(window.LCGuided)window.LCGuided.sync();window.dispatchEvent(new CustomEvent('lc:research'));}
 function showRules(items,target){$(target).innerHTML=items.map(x=>'<div class="research-rule '+esc(x.severity)+'"><b>'+({error:'⛔',warning:'⚠️',info:'ℹ️',ok:'✓'}[x.severity]||'•')+' '+esc(x.title)+'</b><p>'+esc(x.detail)+'</p><small><strong>Verifica consigliata:</strong> '+esc(x.action)+'</small></div>').join('')||'<p>Non valutabile: dati assenti.</p>'}
 function renderHealth(){if(session&&parsed){let checks=C.diagnose(parsed.rows,session.meta);showRules(checks,'healthRules');$('healthSummary').textContent=parsed.rows.length+' record · '+checks.filter(x=>x.severity==='warning'||x.severity==='error').length+' segnalazioni da verificare. Regole v1.0 (non certificazione strumentale).';}else {$('healthRules').innerHTML='<p class="research-faint">Nessun CSV collegato: puoi usare il controllo manuale qui sotto.</p>';$('healthSummary').textContent='Apri una scheda con CSV per avviare la diagnosi automatica.';}}
 function runManual(){let o={};for(let el of document.querySelectorAll('[data-rmanual]'))o[el.dataset.rmanual]=C.num(el.value);o.tlmethod=$('manualTlMethod').value;const meta={tlmethod:o.tlmethod,co2mode:$('manualCo2Mode').value,co2set:$('manualCO2set').value};lastManualQC=C.diagnose(o,meta);showRules(lastManualQC,'manualHealthResults');$('healthManualNote').textContent='Controllo manuale eseguito: non archiviato automaticamente nella scheda sperimentale.';}
@@ -187,19 +191,19 @@ session.workflow=w;
 for(const n of newlyDone)stamp('workflow_stage','Passaggio '+(n+1)+' completato: '+['Scheda','SQS','Camera','Acclimatazione','Acquisizione','CSV','Health Check','Curve Lab','Report / Backup'][n]);
 await transact('readwrite',o=>o.put(session));await refresh();}
 async function openReading(reading,context){
- const id='reading:'+reading.id,existing=await transact('readonly',o=>o.get(id));
- if(!existing){const now=new Date().toISOString(),meta={...baseMeta(),...(reading.meta||{}),plant:reading.bio||reading.meta?.plant||'Da assegnare',type:context.kind,treatment:context.condition,notes:'Esperimento: '+context.experiment};
+ const id='reading:'+reading.id;if(id!==session?.id&&!allowSwitch())return false;const existing=await transact('readonly',o=>o.get(id));
+ if(!existing){const now=new Date().toISOString(),meta={...baseMeta(),species:'',...(reading.meta||{}),plant:reading.bio||reading.meta?.plant||'Da assegnare',type:context.kind,treatment:context.condition,notes:'Esperimento: '+context.experiment};
  const item={id,created:now,updated:now,meta,filename:reading.name,rawCsv:reading.rawCsv,sha256:reading.sha256||'',exclusions:reading.exclusions||[],exclusionNotes:{},audit:[{at:now,type:'experiment_reading',detail:'Lettura collegata a '+context.experiment+' / '+context.condition}]};await transact('readwrite',o=>o.put(item));}
- await refresh();await selectExperiment(id);
+ await refresh();return await selectExperiment(id,true);
 }
-window.LCResearch={openReading,onTab,getState:()=>({session,sessions,parsed,analysis}),saveWorkflow,makeNew,selectExperiment,saveMeta,saveQuickMeta,attachFile};
+window.LCResearch={hasUnsavedChanges,openReading,onTab,getState:()=>({session,sessions,parsed,analysis}),saveWorkflow,makeNew,selectExperiment,saveMeta,saveQuickMeta,attachFile};
 async function init(){for(let selectId of ['researchSelect','healthSelect','curveSelect','reportSelect'])$(selectId).addEventListener('change',e=>selectExperiment(e.target.value));
 $('researchNew').onclick=makeNew;$('researchSave').onclick=saveMeta;$('researchDelete').onclick=delExperiment;$('researchFile').onchange=e=>attachCSV(e.target);$('researchBackup').onclick=exportBackup;$('researchRestore').onchange=e=>importBackup(e.target);$('researchIndex').onclick=metaCSV;
 $('healthManualButton').onclick=runManual;
 $('curveModel').onchange=recomputeFit;$('curveGamma').onchange=recomputeFit;$('curveK').onchange=recomputeFit;$('curveBootstrap').onchange=recomputeFit;
 $('curveSvgSave').onclick=saveCurveSvg;$('curveJsonSave').onclick=saveAnalysisJson;$('curveCommit').onclick=commitFit;
 $('reportPreview').onclick=openReport;$('reportHTML').onclick=saveReportHtml;
-try{db=await openDb();await refresh();if(sessions.length){await selectExperiment(sessions[0].id);toast('Archivio locale caricato: '+sessions.length+' esperimenti.');}else{fillMeta(baseMeta());renderCurrent();toast('Archivio pronto. Crea il tuo primo esperimento.');}}
+try{db=await openDb();await refresh();if(sessions.length){await selectExperiment(sessions[0].id);toast('Archivio locale caricato: '+sessions.length+' letture.');}else{fillMeta(baseMeta());renderCurrent();toast('Archivio pronto. Crea il tuo primo esperimento.');}}
 catch(e){toast('Archivio non disponibile ('+e.message+'). Verifica le impostazioni del browser, esci dalla modalità privata e riprova.',true);for(let id of ['researchNew','researchSave','researchDelete','researchBackup'])$(id).disabled=true;}}
 window.addEventListener('DOMContentLoaded',init);
 })();
