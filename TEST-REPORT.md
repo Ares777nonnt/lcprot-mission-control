@@ -47,3 +47,7 @@ Suite di interfaccia esistente superata su desktop e smartphone 390 px, con cont
 Suite `test-v24.cjs` con dati sintetici in Edge: anteprima e annullamento senza scritture; applicazione su letture non ancora materializzate; conservazione dei CSV, esclusioni e ID biologici; audit e sincronizzazione dei metadati nelle viste esperimento; conflitto su una sola scheda con annullamento dell’intera transazione; protezione bozze; invalidazione workflow e stato fit da rivedere; preferenze persistenti dopo reload; larghezze 320/390/1440 px; dialoghi su smartphone e recupero offline. Nessun errore JavaScript.
 
 Regressione precedente in `test-regression-v24.cjs`, con il selettore del dialogo limitato a quello aperto per distinguere il nuovo editor multiplo dal dialogo delle esclusioni. La migrazione non cambia gli schemi dei database. Archivio reale dell’utente non disponibile; verifica effettuata su fixture sintetiche.
+
+## Restyling 2.5
+
+`test-v25-ui.cjs`: colori giorno/notte verificati nei valori CSS effettivi; Segoe UI; conteggi del Diario confrontati con fixture; navigazione, analisi e ritorno al confronto; letture Standard/Grande/Molto grande a 320 e 390 px senza overflow della pagina; screenshot desktop, smartphone e tema scuro. `test-v24.cjs`: modifica multipla, audit, conflitti, bozze e preferenze persistenti/offline superati. `test-regression-v24.cjs`: migrazione dell’archivio precedente, importazione A/Q e A/Ci, esclusioni, repliche, backup/ripristino e report superati. Dati sintetici; nessun errore JavaScript.

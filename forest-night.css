@@ -1,0 +1,144 @@
+/* Clarity 2.5 · approved Bosco e terracotta / Notte botanica, Segoe UI. */
+@media screen{
+ :root{--ui-bg:#faf8f5;--ui-paper:#fff;--ui-text:#23352d;--ui-muted:#62766a;--ui-line:#dbe3dd;--ui-green:#365d4a;--ui-soft:#e9f0ea;--ui-amber:#875617;--ui-danger:#994b3d;--ui-shadow:0 6px 20px #263d2e05;--theme-accent:#b45e43;--theme-accent-text:#fff;--theme-hero:#e9f0e8;--theme-hero-end:#f3f6ee;--theme-border:#ceddd0;--theme-nav:#e8efe8;--theme-art:#6e9479;--theme-amber-bg:#fff0dd;--theme-amber-text:#875617;--theme-review-bg:#fbe9e1;--theme-review-text:#985239;--theme-ok-bg:#e7f0eb;--theme-ok-text:#3c6b56;--theme-info-bg:#e9f0f7;--theme-info-text:#365b78}
+ body.theme-night{--ui-bg:#151d29;--ui-paper:#1d2939;--ui-text:#edf1f5;--ui-muted:#b1bdcb;--ui-line:#39485b;--ui-green:#9bb5cc;--ui-soft:#2b3e53;--ui-amber:#f1cf90;--ui-danger:#efbca4;--ui-shadow:0 6px 20px #0000000a;--theme-accent:#f39a54;--theme-accent-text:#241a12;--theme-hero:#243247;--theme-hero-end:#1d293a;--theme-border:#41536a;--theme-nav:#202e40;--theme-art:#8ca6c1;--theme-amber-bg:#493b25;--theme-amber-text:#f1cf90;--theme-review-bg:#4a322d;--theme-review-text:#efbca4;--theme-ok-bg:#284238;--theme-ok-text:#b5dbc7;--theme-info-bg:#263c52;--theme-info-text:#bed7ef;color-scheme:dark}
+ body,body.theme-night{background:var(--ui-bg);color:var(--ui-text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+ body :is(button,input,select,textarea,svg){font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+ body .wrap{max-width:1400px}
+ body .themebar button,body.theme-night .themebar button,body .interface-version,body.theme-night .interface-version{background:var(--ui-paper);color:var(--ui-muted);border-color:var(--ui-line)}
+ body .themebar :is(button,summary){font-size:14px;min-height:38px}
+ body .hero h1{font-weight:650;letter-spacing:-.6px}
+ body .hero h1 span{color:var(--ui-muted);font-weight:450}
+ body .ux-primary-nav,body.theme-night .ux-primary-nav{background:var(--theme-nav);border-color:var(--theme-border);box-shadow:none}
+ body .ux-primary-nav .ux-main-btn,body.theme-night .ux-primary-nav .ux-main-btn{background:transparent;color:var(--ui-muted);font-weight:600}
+ body .ux-primary-nav .ux-main-btn.active,body.theme-night .ux-primary-nav .ux-main-btn.active{background:var(--ui-paper);color:var(--ui-green);box-shadow:0 2px 5px #00000005}
+ body .ux-primary-nav .ux-main-btn:hover{background:var(--ui-paper)}
+ body :is(.lab-panel,.ux-tools),body.theme-night :is(.lab-panel,.ux-tools){background:var(--ui-paper);color:var(--ui-text);border-color:var(--ui-line);box-shadow:var(--ui-shadow)}
+ body button.lab-action:not(.secondary),body button.primary,body #experimentWorkspace button.primary,body.theme-night button.lab-action:not(.secondary),body.theme-night #experimentWorkspace button.primary{background:var(--theme-accent);border-color:var(--theme-accent);color:var(--theme-accent-text);box-shadow:0 3px 9px #8c48220d}
+ body button.lab-action.secondary,body.theme-night button.lab-action.secondary{background:var(--ui-paper)!important;color:var(--ui-green)!important;border-color:var(--ui-line)!important;box-shadow:none}
+ body input:not([type=checkbox]):not([type=file]),body select,body textarea{background:var(--ui-paper)!important;color:var(--ui-text)!important;border-color:var(--ui-line)!important}
+ body :is(input,textarea)::placeholder{color:var(--ui-muted);opacity:1}
+ body :is(button,input,select,textarea,a,summary):focus-visible{outline-color:var(--theme-accent)!important}
+ body :is(.research-faint,.lab-muted,.lab-help,.research-kicker,.interface-eyebrow){color:var(--ui-muted)}
+ /* Journal: same proportions and pale welcome surface as the approved mockup. */
+ #lab-log:has(#journalLibrary:not([hidden])),body.theme-night #lab-log:has(#journalLibrary:not([hidden])){padding:0!important;background:transparent;border:0;box-shadow:none;overflow:visible}
+ #lab-log .journal-header,body.theme-night #lab-log .journal-header{display:grid;grid-template-columns:minmax(0,1fr);background:linear-gradient(115deg,var(--theme-hero),var(--theme-hero-end));border:1px solid var(--theme-border);border-radius:20px;padding:32px 35px 0;gap:0;color:var(--ui-text);min-height:0}
+ #lab-log .journal-header::before{right:35px;top:-5px;width:340px;height:320px;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 310' fill='none' stroke='%236e9479' stroke-width='1.1'%3E%3Cpath d='M75 310C81 253 122 174 210 37M124 223C47 226 28 167 38 117c63 9 95 44 86 106Zm35-62C103 142 97 96 122 49c48 26 63 66 37 112Zm32-62C154 65 172 22 215 5c25 42 13 72-24 94ZM145 192c80 20 133-11 151-67-74-10-129 14-151 67Zm36-65c64 1 108-35 111-91-61 9-101 40-111 91Z'/%3E%3C/svg%3E")}
+ body.theme-night #lab-log .journal-header::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 310' fill='none' stroke='%238ca6c1' stroke-width='1.1'%3E%3Cpath d='M75 310C81 253 122 174 210 37M124 223C47 226 28 167 38 117c63 9 95 44 86 106Zm35-62C103 142 97 96 122 49c48 26 63 66 37 112Zm32-62C154 65 172 22 215 5c25 42 13 72-24 94ZM145 192c80 20 133-11 151-67-74-10-129 14-151 67Zm36-65c64 1 108-35 111-91-61 9-101 40-111 91Z'/%3E%3C/svg%3E")}
+ #lab-log .journal-header>div:first-child{max-width:65ch}
+ #lab-log .journal-header h2{color:var(--ui-text);font-size:38px;line-height:1.2;letter-spacing:-1px;font-weight:650;margin:10px 0 13px}
+ #lab-log .journal-header .research-kicker{color:var(--ui-green);font-size:13px;font-weight:600;letter-spacing:1.4px}
+ #lab-log .journal-header p{color:var(--ui-muted);font-size:16px;line-height:1.65;max-width:51ch}
+ #lab-log .journal-header .journal-actions{margin-top:24px;justify-self:start;width:auto;gap:10px}
+ #lab-log .journal-header button.lab-action:not(.secondary),body.theme-night #lab-log .journal-header button.lab-action:not(.secondary){background:var(--theme-accent);border-color:var(--theme-accent);color:var(--theme-accent-text);padding:12px 18px;min-height:48px}
+ #lab-log .journal-header button.lab-action.secondary{background:var(--ui-paper)!important;color:var(--ui-green)!important;border-color:var(--theme-border)!important}
+ .journal-overview{display:flex;gap:45px;border-top:1px solid var(--theme-border);padding:23px 0;margin-top:29px}
+ .journal-overview>div{display:flex;align-items:baseline;gap:12px;min-width:0}
+ .journal-overview strong{font-size:32px;font-weight:550;letter-spacing:-.7px;line-height:1.2;color:var(--ui-green)}
+ .journal-overview span{font-size:14px;line-height:1.5;color:var(--ui-muted)}
+ #journalLibrary>#journalCounts,#journalLibrary>#journalNotice,#journalLibrary>.journal-toolbar,#journalLibrary>#journalVisible,#journalLibrary>#journalCards,#journalLibrary>.journal-backup,#journalLibrary>#journalOrganize,#journalLibrary>#recoveryCenter{margin-left:0;margin-right:0}
+ #journalLibrary>#journalCounts{font-size:14px;padding:0;margin-top:21px;color:var(--ui-muted)}
+ #journalLibrary>.journal-toolbar{background:transparent;border:0;padding:0!important;border-radius:0;gap:18px;align-items:end;margin-top:20px}
+ .journal-toolbar label{font-size:14px!important}
+ body .journal-tabs,body.theme-night .journal-tabs{background:var(--theme-nav);padding:5px;border-radius:13px}
+ body .journal-tabs button,body.theme-night .journal-tabs button{color:var(--ui-muted)}
+ body .journal-tabs button.active,body.theme-night .journal-tabs button.active{background:var(--ui-paper);color:var(--ui-green);box-shadow:none}
+ #journalCards{gap:18px}
+ body .journal-card,body.theme-night .journal-card{background:var(--ui-paper)!important;border:1px solid var(--ui-line)!important;border-radius:17px!important;box-shadow:none!important;padding:23px!important}
+ .journal-card::before{display:none}
+ .journal-card h3{font-size:23px;line-height:1.35;letter-spacing:-.55px;font-weight:600}
+ body .journal-card p,body .journal-card small,body.theme-night .journal-card p,body.theme-night .journal-card small,body.theme-night .journal-card-top{color:var(--ui-muted)}
+ .journal-card-top{align-items:center;min-height:31px;flex-wrap:wrap;gap:8px}
+ body .journal-kind,body.theme-night .journal-kind{background:var(--ui-soft);color:var(--ui-green);font-size:14px;border-radius:7px}
+ .journal-kind::before{display:none}
+ .journal-card-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-top:1px solid var(--ui-line);border-bottom:1px solid var(--ui-line);padding:18px 0;margin-top:20px}
+ .journal-card-metrics strong{font-size:24px;line-height:1.3;font-weight:550;display:block;color:var(--ui-text)}
+ .journal-card-metrics span{font-size:14px;line-height:1.5;color:var(--ui-muted);display:block;margin-top:5px}
+ .journal-project-card .journal-actions{border:0;margin-top:14px;padding-top:0}
+ body .journal-project-card .journal-actions button.lab-action:not(.secondary){background:transparent!important;border:0!important;box-shadow:none!important;color:var(--ui-green)!important;padding-left:0;justify-content:start}
+ body .journal-project-card .journal-actions button.lab-action.secondary{border:0!important;color:var(--ui-muted)!important;box-shadow:none}
+ /* Workspace and supporting surfaces share the same theme tokens. */
+ body #workspaceFrame,body.theme-night #workspaceFrame{background:linear-gradient(115deg,var(--theme-hero),var(--theme-hero-end));border-color:var(--theme-border)}
+ body #workspaceKind,body.theme-night #workspaceKind{background:var(--ui-soft);color:var(--ui-green)}
+ body #workspaceFrame nav,body.theme-night #workspaceFrame nav{border-color:var(--theme-border)}
+ body #workspaceFrame nav button,body.theme-night #workspaceFrame nav button{background:transparent;color:var(--ui-muted)}
+ body #workspaceFrame nav button span,body.theme-night #workspaceFrame nav button span{background:var(--ui-paper);border-color:var(--theme-border);color:var(--ui-green)}
+ body #workspaceFrame nav button.active,body.theme-night #workspaceFrame nav button.active{background:var(--ui-soft);color:var(--ui-green);border-bottom-color:var(--ui-green)!important}
+ body #workspaceFrame nav button.active span,body.theme-night #workspaceFrame nav button.active span{background:var(--ui-green);color:var(--ui-paper);border-color:var(--ui-green);box-shadow:none}
+ body #experimentWorkspace,body.theme-night #experimentWorkspace{background:var(--ui-paper);border-color:var(--ui-line);color:var(--ui-text)}
+ body #experimentWorkspace button:not(.primary),body.theme-night #experimentWorkspace button:not(.primary){background:var(--ui-paper);color:var(--ui-text);border-color:var(--ui-line)}
+ body #experimentWorkspace .mission-metrics>div:nth-child(n),body.theme-night #experimentWorkspace .mission-metrics>div:nth-child(n){background:var(--ui-soft)!important;border-color:var(--ui-line)!important;box-shadow:none}
+ body .mission-metrics strong,body.theme-night .mission-metrics strong{color:var(--ui-green)}
+ body .mission-metrics span,body.theme-night .mission-metrics span{color:var(--ui-muted)}
+ body #experimentWorkspace .exp-condition-card,body.theme-night #experimentWorkspace .exp-condition-card{background:var(--ui-paper);border-color:var(--ui-line)}
+ body #experimentWorkspace .exp-condition-card span,body.theme-night #experimentWorkspace .exp-condition-card span{color:var(--ui-muted)}
+ body #experimentWorkspace .intake-drop,body.theme-night #experimentWorkspace .intake-drop{background:var(--theme-hero);border-color:var(--ui-green);color:var(--ui-text)}
+ body .intake-drop-icon,body.theme-night .intake-drop-icon{background:var(--ui-soft);color:var(--ui-green)}
+ body .intake-row,body.theme-night .intake-row,body .intake-confirm,body.theme-night .intake-confirm,body .mission-plan,body.theme-night .mission-plan{background:var(--ui-paper);border-color:var(--ui-line);color:var(--ui-text)}
+ body #readingInspector,body.theme-night #readingInspector,body .journal-reading-rail,body.theme-night .journal-reading-rail{background:var(--theme-hero-end)!important;color:var(--ui-text);border-color:var(--ui-line)}
+ body #readingInspector button,body.theme-night #readingInspector button{background:var(--ui-paper);color:var(--ui-text);border-color:var(--ui-line)}
+ body #readingInspector button.current,body.theme-night #readingInspector button.current{background:var(--ui-soft);border-color:var(--ui-green);box-shadow:inset 3px 0 var(--ui-green)}
+ body .journal-reading-rail nav button.active,body.theme-night .journal-reading-rail nav button.active{background:var(--ui-soft);color:var(--ui-green);border-color:var(--ui-green)}
+ body .interface-export-card,body.theme-night .interface-export-card,body .journal-empty,body.theme-night .journal-empty{background:var(--ui-paper);border-color:var(--ui-line);box-shadow:none}
+ body #bulkToolbar,body.theme-night #bulkToolbar{background:var(--ui-soft);border-color:var(--ui-line)}
+ body #recoveryCenter,body.theme-night #recoveryCenter{background:var(--theme-hero-end);border-color:var(--ui-line);color:var(--ui-text)}
+ body .journal-savebar,body.theme-night .journal-savebar,body #bulkDialog,body.theme-night #bulkDialog,body #archiveDialog,body.theme-night #archiveDialog{background:var(--ui-paper)!important;border-color:var(--ui-line)!important;color:var(--ui-text)}
+ /* Status always has a label; amber/review/green keep their semantic meanings. */
+ body .journal-status.fit,body .journal-status.ready,body.theme-night .journal-status.fit,body.theme-night .journal-status.ready,body .research-rule.ok,body.theme-night .research-rule.ok{background:var(--theme-ok-bg);color:var(--theme-ok-text)}
+ body .journal-status.pending,body .journal-status.metadata,body.theme-night .journal-status.pending,body.theme-night .journal-status.metadata,body .research-rule.warning,body.theme-night .research-rule.warning{background:var(--theme-amber-bg);color:var(--theme-amber-text)}
+ body .journal-status.review,body.theme-night .journal-status.review,body .research-rule.error,body.theme-night .research-rule.error{background:var(--theme-review-bg);color:var(--theme-review-text)}
+ body .journal-status.missing,body.theme-night .journal-status.missing{background:var(--ui-soft);color:var(--ui-muted)}
+ body .research-rule.info,body.theme-night .research-rule.info{background:var(--theme-info-bg);color:var(--theme-info-text)}
+ body #experimentWorkspace .condition-state.attention,body.theme-night #experimentWorkspace .condition-state.attention{background:var(--theme-amber-bg)!important;color:var(--theme-amber-text)!important}
+ body .intake-duplicate,body.theme-night .intake-duplicate{background:var(--theme-amber-bg);color:var(--theme-amber-text)}
+ body .research-details,body.theme-night .research-details{background:var(--ui-soft)!important;color:var(--ui-text);border-color:var(--ui-line)!important}
+ body #journalSaveState,body.theme-night #journalSaveState{color:var(--ui-muted)}
+ body #journalSaveState.dirty,body.theme-night #journalSaveState.dirty{color:var(--theme-amber-text)}
+ body .wrap>footer{color:var(--ui-muted);border-color:var(--ui-line)}
+ html:is([data-read-size=large],[data-read-size=larger]) .journal-overview span,html:is([data-read-size=large],[data-read-size=larger]) .journal-card-metrics span{font-size:var(--reading-small)!important}
+ html:is([data-read-size=large],[data-read-size=larger]) .journal-overview{flex-wrap:wrap;gap:22px}
+ html[data-read-density=compact] #lab-log .journal-header{padding:25px 27px 0;min-height:0}
+}
+@media screen and (max-width:700px){
+ #lab-log .journal-header{padding:25px 21px 0;gap:0;border-radius:18px}
+ #lab-log .journal-header h2{font-size:32px;line-height:1.2;margin-top:10px}
+ #lab-log .journal-header p{font-size:15px}
+ #lab-log .journal-header::before{width:270px;height:270px;right:-65px;top:12px;opacity:.12}
+ #lab-log .journal-header .journal-actions{width:100%;justify-self:stretch;margin-top:22px}
+ #lab-log .journal-header .journal-actions button{flex:1 1 130px;min-height:48px}
+ .journal-overview{gap:12px;justify-content:space-between;padding:21px 0;margin-top:24px}
+ .journal-overview>div{display:block;flex:1}
+ .journal-overview strong{font-size:29px}
+ .journal-overview span{font-size:14px;display:block;margin-top:6px;overflow-wrap:anywhere}
+ body .journal-card,body.theme-night .journal-card{padding:21px!important}
+ .journal-card h3{font-size:23px}
+ #journalLibrary>.journal-toolbar{display:grid;grid-template-columns:1fr;gap:14px;margin-top:21px}
+ .journal-card-metrics{gap:9px;padding:17px 0}
+ .journal-card-metrics span{font-size:14px;overflow-wrap:anywhere}
+ .journal-project-card .journal-actions{gap:6px}
+ .journal-project-card .journal-actions button{flex:1 1 125px}
+ html:is([data-read-size=large],[data-read-size=larger]) .journal-project-card .journal-actions button{flex:1 1 100%}
+ html[data-read-density=compact] #lab-log .journal-header{padding:21px 18px 0}
+}
+@media print{.journal-overview,.journal-card-metrics{display:none!important}}
+
+@media screen{
+ body :is(h1,h2,h3,h4){font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+ body .mission-metrics,body.theme-night .mission-metrics{background:transparent}
+ body #expFilters label,body.theme-night #expFilters label{color:var(--ui-text)!important;align-items:center;gap:7px;line-height:1.6}
+ #expFilters label::after{content:'';display:inline-block;width:18px;height:4px;border-radius:2px;background:var(--series-color);border:1px solid var(--ui-muted)}
+}
+
+@media screen{
+ body .journal-text,body.theme-night .journal-text,body .ux-tools summary,body.theme-night .ux-tools summary{color:var(--ui-green)}
+ body .ux-tool-grid :is(h3,.lab-tab),body.theme-night .ux-tool-grid :is(h3,.lab-tab){color:var(--ui-muted)}
+ body .ux-tool-grid .lab-tab,body.theme-night .ux-tool-grid .lab-tab{background:var(--ui-paper);border-color:var(--ui-line)}
+ body .ux-tool-grid .lab-tab.selected,body.theme-night .ux-tool-grid .lab-tab.selected{background:var(--ui-soft);color:var(--ui-green)}
+ body .intake-file-info,body.theme-night .intake-file-info,body .intake-drop>span:last-of-type,body.theme-night .intake-drop>span:last-of-type,body .condition-count,body.theme-night .condition-count{color:var(--ui-muted)!important}
+ body #experimentWorkspace .condition-state:not(.attention),body.theme-night #experimentWorkspace .condition-state:not(.attention){background:var(--theme-ok-bg);color:var(--theme-ok-text)!important}
+ body .research-notice:not(.bad),body.theme-night .research-notice:not(.bad){background:var(--ui-soft);color:var(--ui-text);border-color:var(--ui-green)}
+ body .research-notice.bad,body.theme-night .research-notice.bad{background:var(--theme-review-bg);color:var(--theme-review-text)}
+ body #lab-protocol :is(.flow-now,.flow-data,.flow-review,.flow-check),body.theme-night #lab-protocol :is(.flow-now,.flow-data,.flow-review,.flow-check){background:var(--ui-paper);border-color:var(--ui-line);color:var(--ui-text)}
+ body #lab-protocol :is(.flow-now-line p,.flow-additional-content,.flow-review>summary,.flow-criteria p),body.theme-night #lab-protocol :is(.flow-now-line p,.flow-additional-content,.flow-review>summary,.flow-criteria p){color:var(--ui-text);border-color:var(--ui-line)}
+ body #lab-protocol :is(.flow-now-label,.flow-additional>summary,.flow-criteria summary),body.theme-night #lab-protocol :is(.flow-now-label,.flow-additional>summary,.flow-criteria summary){color:var(--ui-green)}
+}

@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 2.4
+# LCpro T Mission Control · Clarity 2.5
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
 
@@ -76,3 +76,11 @@ La modifica è una transazione unica nel database delle schede di analisi: tutte
 La modifica multipla riguarda i metadati delle letture: condizioni dell’esperimento, pianta, foglia e ID delle repliche si gestiscono individualmente, per evitare raggruppamenti biologici involontari.
 
 In **Leggibilità**, accanto ai controlli del tema, scegli testo Standard, Grande o Molto grande e spaziatura Comoda o Compatta. Le preferenze persistono sul dispositivo e funzionano offline; il pulsante Ripristina riporta ai valori iniziali. Non modificano la scala dei report di stampa e non entrano nei backup dei dati scientifici.
+
+## Restyling approvato 2.5
+
+Segoe UI per titoli e interfaccia, palette **Bosco e terracotta** per il giorno e **Notte botanica** per il tema scuro. Il selettore Tema chiaro/scuro conserva la preferenza già presente. Anche il colore della barra di sistema segue il tema. Logo originale, preferenze di testo, spaziatura e animazioni ridotte restano disponibili.
+
+Il Diario mostra riepiloghi calcolati sull’archivio reale, schede con letture/condizioni/ID biologici dichiarati e uno stato aggregato. Gli ID sono conteggi di etichette dichiarate, non una valutazione di indipendenza biologica. Un esperimento senza letture è Bozza; metadati/ID mancanti richiedono completamento; letture da analizzare o fit da rivedere richiedono verifica. Il resto è Salvato.
+
+La palette è estesa a esperimento, importazione, analisi, editor multiplo e recupero bozze. Nel confronto il testo dei filtri resta ad alto contrasto con un campione del colore della serie; i colori delle curve e i dati esportati non cambiano. Nessuna migrazione o modifica agli schemi dei database.
