@@ -1,23 +1,41 @@
-# LCpro T Mission Control · Clarity 1.6 — Visual Edition
+# LCpro T Mission Control · Clarity 1.7
 
-## Nuovo in questa versione
+Aggiornamento del pacchetto 1.6 fornito, senza dipendenze remote.
 
-- **Colori semantici:** Amax osservata (verde petrolio), Asat del modello (blu), messaggi di cautela (ambra), dati non validi o errori (rosso), completamenti verificati (verde). Il colore non implica automaticamente che un valore elevato sia fisiologicamente positivo.
-- **Microanimazioni:** comparsa discreta dei passaggi e dei riquadri principali, progressione della curva adattata e dei punti, feedback del messaggio dopo un salvataggio effettivo. Nessuna animazione modifica valori o calcoli.
-- **Accessibilità:** pulsante *Animazioni on/off*, memorizzato su questo dispositivo; rispetto automatico di `prefers-reduced-motion`, contrasto anche in modalità notte. Colori sempre accompagnati da testo o simboli.
-- **Report PDF:** nel report HTML stampabile i risultati misurati e stimati hanno colori differenti; legenda e impaginazione minimali mantenute. La stampa è statica e senza animazioni.
+## Uso rapido
 
-**Non modificati:** parser CSV, fit matematici, Diario IndexedDB, regole Health Check, sequenze SQS, workflow e struttura degli esperimenti.
+Apri **Esperimenti · condizioni e confronto curve** dalla Home.
+
+1. Crea un esperimento A/Q o A/Ci.
+2. Aggiungi condizioni e metadati: trattamento, temperatura, CO₂, luce, unità e protocollo.
+3. Scegli condizione, ID biologico e campione/foglia. Importa uno o più CSV della stessa replica. Per altre piante ripeti con un altro ID.
+4. Confronta singole letture oppure medie biologiche ± deviazione standard. Filtra le condizioni; esporta SVG, CSV delle medie o stampa/PDF.
+
+Espandi la condizione per modificare nome, metadati e ID biologici, poi premi **Salva condizioni e repliche**. Il tipo di curva è fissato alla creazione. Un CSV corrisponde a una lettura: non si segmentano automaticamente file contenenti più condizioni.
+
+## Repliche e statistiche
+
+L'unità biologica viene dichiarata dall'operatore, non dedotta da file o foglia. Usa lo stesso ID per la stessa unità anche fra condizioni. I conteggi per condizione non sono sommabili fra trattamenti appaiati.
+
+Per ogni X esatta: media dei record per lettura → media delle letture dello stesso ID → media fra ID biologici. Le letture hanno pari peso nella replica; le repliche pari peso nella condizione. n varia con X. DS campionaria con n ≥ 2. ID mancanti esclusi dalle medie, visibili come singole letture. Nessuna interpolazione, test inferenziale o fit nel nuovo confronto. Le linee congiungono osservazioni. Il CSV esporta tutte le condizioni, il grafico quelle selezionate.
+
+In A/Ci le ascisse esattamente uguali possono essere rare: n=1 è possibile. Non vengono forzate griglie comuni. Fit e report storici restano disponibili nel percorso originale. Per adattare individualmente un CSV nuovo, importalo anche nel percorso originale Curve Lab.
+
+## Archivio e backup
+
+Il database originale **LCproTResearch_v1**, store **experiments**, mantiene nome e versione. Le schede sono presentate come esperimenti storici a una condizione, senza assegnare automaticamente repliche biologiche. Alla prima modifica viene creata una copia nel database aggiuntivo **LCproTExperiments_v17**, store **projects**. Il modulo nuovo non modifica le schede originali. Le esclusioni sono rispettate. Puoi anche aggiungere copie di letture storiche a condizioni di nuovi esperimenti.
+
+Il Diario originale conserva audit, workflow, fit, CSV e report. In research-app.js il salvataggio ora attende il completamento della transazione IndexedDB.
+
+Conserva **entrambi** i backup: JSON del Diario originale e backup 1.7 dell'area Esperimenti. Il backup 1.7 contiene condizioni, letture, metadati, CSV, SHA-256 ed esclusioni; non sostituisce audit/workflow/fit del Diario. Il ripristino 1.7 valida tutto prima della scrittura atomica e aggiunge copie con nuovi ID senza sovrascrivere. Limiti importazione: 8 MB/CSV, 45 MB/backup.
 
 ## Aggiornamento GitHub Pages
 
-1. **Prima di aggiornare:** esporta il backup JSON dal Diario e conserva i CSV originali. Non cancellare i dati del sito.
-2. Estrai lo ZIP e carica *tutti i file dell'applicazione* nella radice del repository `lcprot-mission-control` (non una sottocartella), sovrascrivendo quelli omonimi.
-3. Due file **nuovi e necessari**: `visual-edition.css` e `visual-edition.js`. Quattro file aggiornati: `index.html`, `research-app.js`, `manifest.webmanifest`, `sw.js`. Gli altri sono invariati e possono restare nel repository.
-4. Conferma il commit e aspetta il deployment di GitHub Pages. Apri l'app con Internet attivo e ricarica. Verifica che la Console non mostri 404 per i nuovi file.
-5. Verifica su una curva A/Q: Amax verde, Asat blu, avvisi ambra/rosso; prova il pulsante animazioni e il report PDF.
-6. **Offline:** dopo che la pagina aggiornata ha completato il primo caricamento online, prova la modalità aereo. Non rimuovere la PWA e non cancellare i dati per aggiornare la cache.
+1. Esporta il backup del Diario e conserva CSV e vecchio ZIP.
+2. Carica tutti i file del pacchetto nella stessa cartella del repository, sovrascrivendo gli omonimi. Mantieni dominio e percorso dell'app.
+3. Dopo il deployment apri online, lascia aggiornare il service worker e ricarica. Controlla Clarity 1.7 nell'area Esperimenti.
+4. Verifica le schede storiche e prova offline dopo il caricamento online completo. Non cancellare i dati del sito o disinstallare la PWA per aggiornare.
 
-## Limitazioni
+Nuovi file necessari: experiments-core.js, experiments-app.js, experiments.css. Cache aggiornata; percorsi relativi compatibili con sottocartelle. Manifest id, start_url e scope preservati. Nessuna pubblicazione remota effettuata.
 
-Il browser può conservare temporaneamente file di una vecchia versione: se il sito appare invariato, controlla in DevTools > Application > Service Workers e Network quali risorse sono effettivamente caricate. L'opzione per ridurre il movimento del sistema prevale sull'interruttore dell'app. I colori rappresentano categorie di informazione, non diagnosi fisiologiche. Il report PDF deriva dal comando Stampa → Salva PDF e la resa cromatica può dipendere dalle impostazioni di stampa (attivare stampa sfondi, se necessario).
+Vedi TEST-REPORT.md. Tornando alla 1.6 il database originale rimane disponibile, ma quella versione non legge il database aggiuntivo 1.7.

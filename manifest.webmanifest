@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "LCpro T Mission Control — Clarity 1.6",
+  "name": "LCpro T Mission Control â€” Clarity 1.7",
   "short_name": "LCpro T Research",
-  "description": "Percorso LCpro T, dati sperimentali e report con segnali visivi scientifici e animazioni accessibili",
+  "description": "Esperimenti, condizioni, repliche biologiche e confronto curve offline",
   "lang": "it",
   "start_url": "./index.html",
   "scope": "./",

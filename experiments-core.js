@@ -1,0 +1,12 @@
+/* Clarity 1.7: hierarchy and descriptive comparisons. No inferred biological IDs. */
+(function(root){'use strict';
+const finite=Number.isFinite;
+function migrate(records){return records.map(r=>({id:'legacy:'+r.id,name:r.meta?.plant||r.filename||'Scheda storica',kind:r.meta?.type==='aci'?'aci':'aq',legacy:true,conditions:[{id:'original',name:r.meta?.treatment||'Originale',notes:r.meta?.notes||'',readings:[{id:r.id,legacyId:r.id,name:r.filename||'Senza CSV',bio:'',meta:r.meta||{},rawCsv:r.rawCsv||'',exclusions:r.exclusions||[],sha256:r.sha256||''}]}]}));}
+function series(project,core){return project.conditions.flatMap(c=>c.readings.map(r=>{let points=[],error='';try{points=core.readCSV(r.rawCsv).rows.filter(p=>!(r.exclusions||[]).includes(p.index)).map(p=>({x:project.kind==='aci'?p.ci:p.q,a:p.a})).filter(p=>finite(p.x)&&finite(p.a)).sort((a,b)=>a.x-b.x);}catch(e){error=e.message;}return {condition:c.id,conditionName:c.name,reading:r.id,name:r.name,bio:r.bio,points,error};}));}
+function summarize(lines){const result=[];for(const condition of new Set(lines.map(s=>s.condition))){const subset=lines.filter(s=>s.condition===condition&&s.bio.trim()),xs=new Set(subset.flatMap(s=>s.points.map(p=>p.x)));
+for(const x of xs){const biological=new Map();for(const s of subset){const pts=s.points.filter(p=>p.x===x);if(!pts.length)continue;const m=pts.reduce((a,p)=>a+p.a,0)/pts.length;const b=biological.get(s.bio)||[];b.push(m);biological.set(s.bio,b);}
+const values=[...biological.values()].map(v=>v.reduce((a,b)=>a+b,0)/v.length),n=values.length,mean=values.reduce((a,b)=>a+b,0)/n,sd=n>1?Math.sqrt(values.reduce((a,b)=>a+(b-mean)**2,0)/(n-1)):null;result.push({condition,x,mean,sd,n});}}
+return result.sort((a,b)=>a.x-b.x);}
+function validate(p){if(!p||typeof p.id!=='string'||typeof p.name!=='string'||!['aq','aci'].includes(p.kind)||!Array.isArray(p.conditions))throw Error('Esperimento non valido');const ids=new Set();for(const c of p.conditions){if(!c||typeof c.id!=='string'||ids.has(c.id)||typeof c.name!=='string'||!Array.isArray(c.readings))throw Error('Condizione non valida');ids.add(c.id);for(const r of c.readings){if(!r||typeof r.id!=='string'||typeof r.bio!=='string'||typeof r.name!=='string'||typeof r.rawCsv!=='string'||r.rawCsv.length>8*1024*1024||!Array.isArray(r.exclusions))throw Error('Lettura non valida');}}return p;}
+const api={migrate,series,summarize,validate};root.LCExperimentsCore=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
