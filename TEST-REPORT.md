@@ -97,3 +97,14 @@ PASS test-v28.cjs con Edge headless e CSV sintetici: richiesta camera prima dell
 PASS test-v28-metrics.cjs: i sette parametri rimangono calcolati dai dati CSV, con medie biologiche e n per parametro, report ed esportazioni. Le fixture dichiarano esplicitamente impostazioni sconosciute prima dell’importazione. test-regression-v28.cjs e test-v28-management.cjs aggiornano solo questa dichiarazione iniziale del flusso, conservando le verifiche precedenti di dati e migrazione. Limiti: dati sintetici, nessun archivio reale dell’utente disponibile; nessuna verifica su dispositivi iOS/Android fisici.
 
 Verificati anche annullamento della richiesta camera senza importazione e nuova selezione dello stesso file; cambio lettura/esperimento rifiutato durante un salvataggio asincrono delle eccezioni, senza trasferire metadati al CSV successivo.
+
+
+## Analizza 2.9
+
+PASS test-v29-core.cjs: sette parametri, formule e medie biologiche preesistenti; punti per ID coerenti con le medie annidate (B1 con due CSV = un punto di valore 22.5, B2 = 40; media di condizione 31.25, n=2); oggetti originali invariati.
+
+PASS test-v29.cjs su Edge: panoramica, tre famiglie di parametri, vista iniziale biologica e passaggio ai CSV, massimo tre pannelli, selezione X da menu e tastiera su SVG, evidenza coordinata, colori/simboli stabili con filtri, medie/DS/n nelle schede, spiegazione di ID mancanti senza sostituzione con zero. Download SVG principale/coordinato e medie CSV verificati, anteprima della portata delle esportazioni, apertura contestuale di una scheda e ritorno al confronto. Interfaccia a 320 e 390 px senza overflow orizzontale; temi giorno/notte e ricalcolo offline; nessuna eccezione JavaScript. Screenshot controllati visivamente.
+
+PASS test-v28.cjs: camera comune, eccezioni, protezione del salvataggio, conservazione dei CSV, revisione dei fit, backup con ripristino reale e offline. La suite test-regression-v29.cjs conserva le verifiche precedenti, scegliendo esplicitamente la vista CSV quando conta i punti delle singole letture. Le verifiche usano fixture sintetiche, non archivi reali dell’utente; non costituiscono validazione scientifica o test su dispositivi mobili fisici.
+
+PASS completo test-regression-v29.cjs: archivio e migrazione immutati, esclusioni, fit A/Q e A/Ci, diario e bozze, importazione da file/trascinamento, backup con rifiuto SHA errato, ripristino riprendibile e report. I test usano il nuovo accesso alle letture e attendono il completamento delle operazioni asincrone prima delle verifiche.

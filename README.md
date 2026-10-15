@@ -1,6 +1,18 @@
-# LCpro T Mission Control · Clarity 2.8
+# LCpro T Mission Control · Clarity 2.9
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Nuova pagina Analizza · 2.9
+
+**Panoramica → confronto → dettaglio**: riepilogo di condizioni, letture, ID biologici distinti e letture da verificare; camera comune richiudibile; scorciatoie verso grafici, riepilogo e letture.
+
+I parametri sono organizzati in **Scambi gassosi** (An, gs, E), **Uso dell’acqua** (A/E, An/gs) e **Rapporti con la CO₂** (Ci/Ca, An/Ci). Nomi, unità e spiegazioni restano accessibili. La vista iniziale mostra punti degli ID biologici e media ± DS per condizione; **Singole letture / CSV** è una vista di approfondimento. Ogni punto biologico è ottenuto mediando prima i record a X uguale nella lettura e poi le letture dello stesso ID: nessun CSV aggiuntivo diventa una replica indipendente.
+
+Affianca fino a tre parametri con lo stesso intervallo X, ciascuno con scala Y e unità proprie. Seleziona Qleaf o Ci dal menu, oppure attiva un punto con clic o Invio/Spazio: il livello è evidenziato su tutti i pannelli e aggiorna le schede riepilogative. Nessuna interpolazione. Le condizioni mantengono colore e simbolo nel confronto e nei grafici del report. I colori identificano le condizioni e non esprimono un giudizio sui valori.
+
+Il riepilogo usa schede per parametro, raggruppate in sezioni richiudibili. Ogni condizione riporta media, DS e proprio n biologico. Quando manca una media, appare **Non disponibile** con motivo (livello assente, denominatore non valido, ID biologici mancanti); non viene inserito zero. Su smartphone le schede si dispongono in verticale. Record, motivi di indisponibilità ed elenco delle letture restano nei dettagli.
+
+In **Esporta**, l’anteprima distingue il report dell’intero esperimento dai grafici e CSV delle condizioni selezionate. Il report conserva le curve osservate delle singole letture e le tabelle biologiche. Il grafico principale SVG corrisponde alla vista selezionata; **Scarica i grafici coordinati** include tutti i pannelli visibili, ciascuno con scala e legenda. I dati, le formule, i fit e gli schemi degli archivi rimangono compatibili con le versioni precedenti.
 
 ## Camera comune e scheda semplificata · 2.8
 
