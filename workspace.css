@@ -90,3 +90,13 @@
 @media screen and (max-width:700px){#experimentWorkspace .experiment-metrics,#experimentWorkspace .experiment-metric-matrix{padding:15px}#expMetricRecords{width:100%}}
 
 @media(max-width:760px){.exp-chart-scroll[data-metric-axis]::before{content:attr(data-metric-axis)}}
+
+@media screen{
+ #experimentWorkspace #cameraSetup,.camera-intake,#cameraReadingSummary{border:1px solid var(--ui-line);border-radius:14px;background:var(--ui-soft);padding:20px;margin:0 0 24px}#cameraSetup h3,#cameraReadingSummary h3{font-size:22px;margin:8px 0 12px}#cameraSetup p,.camera-intake p,#cameraReadingSummary p{font-size:15px;color:var(--ui-muted);line-height:1.7;overflow-wrap:anywhere}.camera-intake{display:flex;gap:20px;align-items:center;justify-content:space-between}.camera-intake>div{min-width:0}.camera-intake button{flex:none;min-height:44px}
+ #cameraDialog{background:var(--ui-paper);color:var(--ui-text);border:1px solid var(--ui-line);border-radius:18px;padding:25px;width:min(760px,calc(100vw - 28px));max-height:90dvh;overflow:auto;box-sizing:border-box}#cameraDialog::backdrop{background:#101e2d66}#cameraDialog h2{font-size:25px;line-height:1.35;margin:0 0 14px}#cameraDialog p{font-size:15px;line-height:1.65;color:var(--ui-muted)}.camera-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}.camera-fields label{display:grid;gap:7px;font-size:15px;min-width:0}#cameraDialog :is(input,select){width:100%;font-size:16px;min-height:45px;padding:9px}
+ .camera-customize{display:flex!important;flex-direction:row!important;align-items:center;gap:10px;margin-top:17px}.camera-customize input{width:20px;height:20px;accent-color:var(--ui-green)}#cameraReadingInherited{font-size:15px;line-height:1.6;display:block}
+ html:is([data-read-size=large],[data-read-size=larger]) :is(#cameraSetup p,.camera-intake p,#cameraReadingSummary p,#cameraReadingInherited,#cameraDialog p,.camera-fields label){font-size:var(--reading-small)!important}
+}
+@media(max-width:700px){.camera-fields{grid-template-columns:1fr}.camera-intake{align-items:stretch;flex-direction:column}#cameraDialog{padding:20px}}
+
+@media(max-width:700px){#journalEditor .journal-savebar{position:static!important;margin:18px 0;bottom:auto}}

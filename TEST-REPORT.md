@@ -88,3 +88,12 @@ PASS test-v27-ui.cjs su Edge headless con importazione reale di quattro CSV sint
 PASS test-v262.cjs per la gestione delle letture importate: riassegnazione, rimozione recuperabile, backup, recupero offline e archivio storico immutato. PASS test-regression-v26.cjs per migrazione, parser, fit A/Q e A/Ci, bozze, backup riprendibile e report. Screenshot desktop, mobile e report controllati visivamente.
 
 Sono test software con fixture sintetiche, non una validazione scientifica su misure reali o su ogni esportazione LCpro T. Le unità presuppongono le convenzioni CSV del manuale ADC; file convertiti in altre unità richiedono verifica prima dell’uso. Nessun test inferenziale fra condizioni aggiunto.
+
+
+## Camera comune e scheda 2.8
+
+PASS test-v28.cjs con Edge headless e CSV sintetici: richiesta camera prima della preparazione dei CSV, eredità comune nelle schede, campi strumentali nascosti e riepilogo leggibile, eccezione per una sola lettura e per un solo campo, ritorno ai valori comuni, propagazione alle letture già importate e conservazione del record archiviato durante la sola modifica comune. Firma dei fit salvata, invalidazione contestuale dopo modifica comune e parametri precedenti esclusi dal report corrente. Backup completo ripristinato realmente con impostazioni ed eccezioni; CSV originali invariati; reload offline e campi ereditati recuperati. Desktop e smartphone a 390 px senza overflow o eccezioni JavaScript; barra di salvataggio mobile disposta nel flusso.
+
+PASS test-v28-metrics.cjs: i sette parametri rimangono calcolati dai dati CSV, con medie biologiche e n per parametro, report ed esportazioni. Le fixture dichiarano esplicitamente impostazioni sconosciute prima dell’importazione. test-regression-v28.cjs e test-v28-management.cjs aggiornano solo questa dichiarazione iniziale del flusso, conservando le verifiche precedenti di dati e migrazione. Limiti: dati sintetici, nessun archivio reale dell’utente disponibile; nessuna verifica su dispositivi iOS/Android fisici.
+
+Verificati anche annullamento della richiesta camera senza importazione e nuova selezione dello stesso file; cambio lettura/esperimento rifiutato durante un salvataggio asincrono delle eccezioni, senza trasferire metadati al CSV successivo.

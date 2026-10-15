@@ -4,7 +4,7 @@ const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,
 let ready=false,mode='saved',lastProject='',previousPending=0,editing=null,saving=false,currentStep='setup';
 const selection=new Set();
 const project=()=>window.LCExperiments.current();
-function source(r){return window.LCResearch.getState().sessions.find(s=>s.id===(r.legacyId||'reading:'+r.id)&&s.rawCsv===r.rawCsv);}
+function source(r){const s=window.LCResearch.getState().sessions.find(s=>s.id===(r.legacyId||'reading:'+r.id)&&s.rawCsv===r.rawCsv);return window.LCCameraCore.resolve(project(),r,s);}
 function status(r,p){return window.LCJournalCore.status(source(r),{...r,meta:{...r.meta,type:p.kind}});}
 function setMode(next){mode=next;const intake=document.querySelector('.mission-intake');if(intake)intake.hidden=mode!=='import';$('workspaceSaved').hidden=mode!=='saved';for(const b of document.querySelectorAll('[data-intake-mode]')){b.classList.toggle('active',b.dataset.intakeMode===mode);b.setAttribute('aria-pressed',String(b.dataset.intakeMode===mode));}}
 function summaryCounts(p){if(!p)return '';const rows=p.conditions.flatMap(c=>c.readings);return p.conditions.length+' condizioni · '+rows.length+' letture · '+rows.filter(r=>!r.bio.trim()).length+' ID da assegnare';}

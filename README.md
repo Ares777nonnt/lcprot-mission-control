@@ -1,6 +1,16 @@
-# LCpro T Mission Control · Clarity 2.7
+# LCpro T Mission Control · Clarity 2.8
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Camera comune e scheda semplificata · 2.8
+
+In **Organizza → Impostazioni della camera**, dichiara una volta area inserita nello strumento, metodo Tleaf, modalità CO₂, eventuale setpoint, flusso e temperatura camera impostata. Se non lo hai ancora fatto, l’app lo chiede prima di leggere i CSV scelti o trascinati. I valori sconosciuti possono restare non dichiarati; annullare non importa file. Il setpoint compare solo per CO₂ controllata.
+
+Le impostazioni comuni valgono per tutti i CSV dell’esperimento, anche quelli già importati e le letture ripristinate da “Letture rimosse”. Nella **Scheda** restano in primo piano specie, pianta, foglia, data e note. Tipo di curva e condizione sono definiti dall’esperimento. Il riepilogo **Camera: impostazioni ereditate** evita di reinserire i campi strumentali. Attiva **Personalizza per questa lettura** solo per un’eccezione; disattivala e salva per tornare ai valori comuni. Le eccezioni sono per campo: una diversa area non blocca l’eredità del flusso o della temperatura. Una modifica comune conserva le eccezioni esplicite.
+
+I setpoint dichiarati non sostituiscono Qleaf, Ci, Cref, Area o altre misure nei CSV. I sette parametri fisiologici continuano a usare i file originali. I valori comuni sono applicati contestualmente a scheda, controlli qualità e report, senza riscrivere gli archivi storici quando si aprono le letture o si cambia la configurazione comune. Il salvataggio esplicito della scheda conserva una fotografia dei metadati come nelle versioni precedenti.
+
+I fit nuovi registrano anche la firma delle impostazioni camera effettive. Un fit con firma differente o senza firma, quando viene dichiarata una configurazione comune, appare **da rivedere** nel contesto dell’esperimento e non viene presentato come risultato coerente nel report. Gli snapshot precedenti restano conservati. Impostazioni comuni ed eccezioni sono incluse nel backup completo e nel report; i riferimenti non dipendono dagli ID generati durante il ripristino. Nessuna modifica alla versione degli archivi IndexedDB.
 
 ## Parametri fisiologici · 2.7
 
