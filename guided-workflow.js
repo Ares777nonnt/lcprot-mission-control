@@ -119,7 +119,7 @@ function stageLayout(i,s){
  const rest=(a)=>a?.slice(1).map(x=>'<li>'+safe(x)+'</li>').join('')||'';
  const optionalInstructions=rest(g.device)+rest(g.app);
  const total=checks.length,num=requiredCheckIds(i,s).filter(checked).length;
- return `<header class="flow-step-header"><span class="flow-step-kicker">CLARITY 1.5 · PASSAGGIO ${i+1} / 9 · ${safe(stages[i])}</span><h3>${safe(g.title)}</h3><p>${safe(g.focus)}</p></header>`+
+ return `<header class="flow-step-header"><span class="flow-step-kicker">CLARITY 1.6 · PASSAGGIO ${i+1} / 9 · ${safe(stages[i])}</span><h3>${safe(g.title)}</h3><p>${safe(g.focus)}</p></header>`+
  `<section class="flow-now" aria-label="Istruzioni di questo passaggio"><div class="flow-now-line"><span class="flow-now-label">🧪 SULL’LCpro T</span><p>${short(g.device)}</p></div><div class="flow-now-line"><span class="flow-now-label">📝 NELL’APP</span><p>${short(g.app)}</p></div>`+
  `<details class="flow-additional"><summary>Altre indicazioni e spiegazione scientifica</summary><div class="flow-additional-content">${optionalInstructions?'<ul>'+rest(g.device)+rest(g.app)+'</ul>':''}<p><b>Perché:</b> ${safe(g.science)}</p></div></details></section>`+
  `<section class="flow-data" aria-label="Dati e strumenti del passaggio"><div class="flow-section-title"><h4>${i===0?'Registra il campione':i===5?'Carica il file':i===6?'Valuta i dati':i===7?'Analizza e salva':'Completa questo passaggio'}</h4></div>${scratch.innerHTML||'<p class="flow-muted">Non sono richiesti altri campi in questa fase.</p>'}</section>`+
