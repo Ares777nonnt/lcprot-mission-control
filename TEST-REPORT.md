@@ -57,3 +57,8 @@ Regressione precedente in `test-regression-v24.cjs`, con il selettore del dialog
 `test-v26.cjs`: obiettivo e valori comuni; modifica condizione; importazione contestuale; più letture dello stesso ID raggruppate; cambiamento dei valori comuni senza riscrivere la bozza precedente; nuovo CSV con i nuovi valori; assegnazione e spostamento fra condizioni con CSV/SHA/ID preservati e audit; rifiuto di aggiornamento obsoleto; ricerca; apertura scheda nel contesto; note di protocollo preservate; revisione prima del report senza blocco; obiettivo nel report; nuovi metadati nel backup; smartphone, tema scuro e riapertura offline. Dati sintetici, nessun errore JavaScript.
 
 Regressione in `test-regression-v26.cjs`: apre esplicitamente la sezione avanzata per i vecchi controlli di assegnazione e la vista Importa CSV per i valori comuni; mantiene le verifiche precedenti su archivio 1.6, A/Q e A/Ci, esclusioni, medie biologiche, bozze, backup, ripristino riprendibile e report.
+
+
+## Aggiornamento grafico 2.6.1
+
+PASS con test-v261-ui.cjs su Edge headless: flusso Diario/Esperimento/Strumenti, apertura e ritorno delle letture, esportazione, colori giorno/notte e Segoe UI. Dimensioni Standard/Grande/Molto grande a 320 e 390 px senza overflow orizzontale. Credito esatto Giuseppe Muscari Tomajoli, logo originale decodificato e attribuzioni ADC BioScientific ancora accessibili. Nessun errore JavaScript. Screenshot desktop e mobile controllati visivamente. Nessuna modifica ai dati o ai calcoli; restano applicabili i limiti delle verifiche precedenti.

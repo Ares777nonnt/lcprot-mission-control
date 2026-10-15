@@ -1,6 +1,10 @@
-# LCpro T Mission Control · Clarity 2.6
+# LCpro T Mission Control · Clarity 2.6.1
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Tema chiaro e firma 2.6.1
+
+Tema Bosco e terracotta più caldo: intestazioni verdi, riepiloghi colorati, accenti terracotta e ombre leggere sulle schede. Footer con il logo originale e il credito **Creato da Giuseppe Muscari Tomajoli**; guida, fonti e attribuzioni restano accessibili nel pannello dedicato. Segoe UI, dimensioni del testo e tema Notte botanica conservati. Nessuna modifica agli archivi, agli schemi dei database o ai calcoli.
 
 ## Interfaccia 2.2
 
