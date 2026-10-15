@@ -37,3 +37,7 @@ Suite `test-v22-ui.cjs`: Diario predefinito, tre aree principali, creazione dall
 ## Veste grafica 2.3
 
 Suite di interfaccia esistente superata in Edge: navigazione, importazione di esempio, selezione lettura, ritorno al confronto, export, strumenti, larghezza mobile 390 px senza overflow ed errori JavaScript assenti. Schermate desktop, mobile e tema scuro controllate visivamente. Modifica di presentazione, senza variazioni agli schemi dati o ai calcoli.
+
+## Leggibilità 2.3.2
+
+Suite di interfaccia esistente superata su desktop e smartphone 390 px, con controllo visivo delle nuove dimensioni. Riepiloghi su due colonne e grafici scorrevoli senza overflow della pagina. Stampa esclusa dalle nuove regole tipografiche.

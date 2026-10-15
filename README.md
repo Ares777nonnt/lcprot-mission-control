@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 2.3.1
+# LCpro T Mission Control · Clarity 2.3.2
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
 
@@ -62,3 +62,7 @@ Palette botanica con verde salvia e avorio, navigazione con icone vettoriali loc
 ## Logo 2.3.1
 
 Logo fornito dall’utente conservato senza modifiche in app-logo.jpg (1024×1024). Usato da intestazione, favicon, icona Apple e manifest PWA. Nel solo header il margine bianco viene nascosto via CSS; per le icone di sistema il file originale mantiene il margine sicuro. Inclusione offline nel service worker.
+
+## Leggibilità 2.3.2
+
+Testi di supporto da 14 px, pulsanti da 15 px, campi da 16 px. Su smartphone riepiloghi in due colonne, azioni su righe distinte nei display stretti e grafici scorrevoli con assi ingranditi. Modifiche limitate alla presentazione a schermo; stampa e dati invariati.

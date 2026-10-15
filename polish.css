@@ -72,3 +72,77 @@ body .lab-panel,body .ux-tools{border-radius:18px}#lab-log .journal-header{paddi
 .interface-mark.app-logo-mark,body.theme-night .interface-mark.app-logo-mark{position:relative;display:block;flex:0 0 auto;width:60px;height:60px;overflow:hidden;border-radius:50%;background:#000;border:1px solid var(--ui-line);transform:none;box-shadow:0 3px 12px #1e342416}
 .app-logo-mark img{position:absolute;display:block;width:150%;height:150%;max-width:none;left:-24%;top:-21%;object-fit:cover}
 @media(max-width:640px){.interface-mark.app-logo-mark{width:49px;height:49px}}
+
+/* 2.3.2: readable operational text at every viewport; print keeps its own scale. */
+@media screen{
+ body{font-size:16px;line-height:1.65}
+ body :is(.lab-panel,.ux-tools) :is(p,small,label,summary,td,th){font-size:14px;line-height:1.6}
+ body :is(.lab-panel,.ux-tools) :is(input,select,textarea){font-size:16px!important;line-height:1.5}
+ body :is(.lab-panel,.ux-tools) button{font-size:15px!important;min-height:44px;white-space:normal;line-height:1.45}
+ body .ux-primary-nav .ux-main-btn{font-size:15px;min-height:46px}
+ body .hero h1 span{font-size:17px}.hero p{font-size:14px}
+ .themebar button{font-size:13px;min-height:38px}
+ .interface-version{font-size:13px}
+ #lab-log .journal-header p{font-size:15px;max-width:52ch}
+ #lab-log .journal-header .research-kicker,.interface-eyebrow{font-size:13px;letter-spacing:.8px}
+ #journalLibrary>#journalCounts,#journalVisible{font-size:14px}
+ .journal-toolbar label{font-size:14px!important}
+ .journal-card p,.journal-card small,.journal-card-top{font-size:14px;line-height:1.65}
+ .journal-kind,.journal-status{font-size:14px;padding:5px 10px}
+ .journal-card h3{font-size:21px;line-height:1.4}
+ .journal-card .journal-actions{flex-wrap:wrap;gap:10px}
+ .journal-card .journal-actions button{font-size:15px!important}
+ .journal-backup>summary,#recoveryCenter>summary,.journal-backup p,#recoveryCenter p{font-size:14px}
+ #workspaceKind{font-size:14px}
+ #workspaceFrame nav button{font-size:15px;line-height:1.45;min-height:54px}
+ #workspaceFrame nav button span{font-size:13px;width:26px;height:26px}
+ #workspaceFrame #workspaceArchive,#workspaceHint,#expNotice,.interface-switcher{font-size:14px;line-height:1.6}
+ .mission-metrics{gap:12px}
+ .mission-metrics>div{padding:15px!important}
+ .mission-metrics span{font-size:14px;line-height:1.5}
+ .mission-metrics strong{font-size:29px}
+ #experimentWorkspace .condition-state{font-size:14px!important;line-height:1.5;white-space:normal}
+ .condition-count{font-size:15px}
+ .intake-drop strong{font-size:18px}
+ .intake-drop>span:last-of-type,.intake-file-info,.intake-confirm p,#intakeDraftState{font-size:14px}
+ #readingInspector>details>summary{font-size:16px}
+ #analysisReadingCount,#readingInspector p{font-size:14px}
+ .interface-list-group>strong{font-size:13px;letter-spacing:.4px}
+ #readingInspector button{font-size:14px;line-height:1.5}
+ #readingInspector button small{font-size:14px}
+ .interface-export-card p,#exportData p,#exportSummary,.research-heading p{font-size:15px!important}
+ .journal-reading-rail small,#journalSaveState,#recoveryMetaState{font-size:14px}
+ .journal-reading-rail nav button{font-size:14px;min-height:46px;line-height:1.5}
+ .research-faint,.lab-help,.lab-muted,.research-details p,.flow-field,.flow-check-text strong{font-size:14px!important;line-height:1.6}
+ #expLegend{font-size:14px;line-height:1.6;overflow-wrap:anywhere}
+ .ux-tools-hint,.ux-tool-grid h3{font-size:14px}
+ .wrap>footer{font-size:14px;line-height:1.7}
+}
+@media screen and (max-width:700px){
+ .mission-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .mission-metrics>div{padding:13px!important}
+ .mission-metrics span{font-size:14px}
+ #workspaceFrame nav button{font-size:14px;padding:10px 2px}
+ #workspaceFrame nav button span{margin-bottom:7px}
+ .journal-reading-rail nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;width:100%}
+ .journal-reading-rail nav button{font-size:15px;padding:10px 8px}
+ .journal-card .journal-actions button{flex:1 1 125px}
+ .journal-header .journal-actions{flex-wrap:wrap}
+ .journal-header .journal-actions button{flex:1 1 125px}
+ .journal-header button.lab-action{font-size:15px!important;padding:12px!important}
+ .ux-primary-nav .ux-main-btn{font-size:14px!important;gap:6px;padding:10px 4px}
+ .ux-primary-nav .ux-main-btn::before{flex:0 0 15px}
+ .interface-export-card .experiment-report-actions{flex-wrap:wrap}
+ #experimentWorkspace .exp-chart-scroll,.research-graph{overflow-x:auto;overscroll-behavior-x:contain}
+ #experimentWorkspace #expChart,#researchSVG,#researchResidualSVG{min-width:640px}
+ #expChart text,#researchSVG text,#researchResidualSVG text{font-size:20px}
+ .exp-chart-scroll::after{content:'Scorri il grafico per vedere tutti i valori →';display:block;font-size:14px;color:var(--ui-muted);padding:10px 0}
+}
+
+@media screen and (max-width:700px){
+ #expChart text[transform]{display:none}
+ .exp-chart-scroll::before{content:'A (µmol CO₂ m⁻² s⁻¹)';display:block;font-size:14px;color:var(--ui-text);padding:8px 0}
+}
+@media screen and (max-width:420px){
+ .journal-header .journal-actions button,.journal-card .journal-actions button{flex:1 1 100%}
+}
