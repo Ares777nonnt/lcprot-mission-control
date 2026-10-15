@@ -1,6 +1,16 @@
-# LCpro T Mission Control · Clarity 2.9
+# LCpro T Mission Control · Clarity 2.10
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Curve selezionabili e risultati in evidenza · 2.10
+
+In **Analizza → Quali curve vuoi vedere?**, seleziona condizioni o singoli CSV. **Mostra tutte**, **Nascondi tutte**, **Solo questa condizione**, **Solo questa curva** e **Annulla ultima selezione** rendono esplicito cosa viene confrontato. Il checkbox della condizione indica anche una selezione parziale; nascondere l’ultimo CSV deseleziona la condizione. Le letture selezionate compaiono in etichette rimovibili, con conteggi visibili. Una nuova condizione viene resa selezionabile e inclusa automaticamente senza riattivare quelle già nascoste.
+
+La selezione è **temporanea e limitata al confronto**: grafici, medie, DS, n biologico e CSV esportati si aggiornano sui soli CSV selezionati, mantenendo la gerarchia record → lettura → ID biologico → condizione. Non equivale all’esclusione permanente di record e non modifica archivio, audit o file originali. Rimane passando da una vista all’altra durante la sessione; ricaricando l’app si torna a tutte le letture. Per recuperare subito tutto usa Mostra tutte. Non viene dedotta l’indipendenza delle repliche dalla selezione.
+
+**Risultati in evidenza** mostra il valore del parametro principale alla X scelta, con DS e n biologico per ogni condizione. Scegli un riferimento per vedere Δ assoluta e variazione percentuale. La percentuale viene calcolata solo rispetto a una media di riferimento positiva; con riferimento zero, negativo o mancante resta non disponibile. Sono differenze descrittive, non test di significatività. Colori e simboli identificano le condizioni senza giudicare un valore maggiore come migliore.
+
+**Report del confronto selezionato** include soltanto condizioni e CSV selezionati, mantenendo colori e simboli originali. Il report completo dell’esperimento rimane disponibile separatamente e comprende tutte le letture. Grafico SVG, grafici coordinati, medie CSV e parametri per record rispettano la selezione; CSV e SVG riportano il conteggio delle letture selezionate. L’anteprima delle esportazioni chiarisce questa distinzione. Se non è selezionata alcuna curva, i risultati non vengono sostituiti con zeri e le esportazioni del confronto sono disabilitate; backup e report completo restano disponibili.
 
 ## Nuova pagina Analizza · 2.9
 

@@ -108,3 +108,12 @@ PASS test-v29.cjs su Edge: panoramica, tre famiglie di parametri, vista iniziale
 PASS test-v28.cjs: camera comune, eccezioni, protezione del salvataggio, conservazione dei CSV, revisione dei fit, backup con ripristino reale e offline. La suite test-regression-v29.cjs conserva le verifiche precedenti, scegliendo esplicitamente la vista CSV quando conta i punti delle singole letture. Le verifiche usano fixture sintetiche, non archivi reali dell’utente; non costituiscono validazione scientifica o test su dispositivi mobili fisici.
 
 PASS completo test-regression-v29.cjs: archivio e migrazione immutati, esclusioni, fit A/Q e A/Ci, diario e bozze, importazione da file/trascinamento, backup con rifiuto SHA errato, ripristino riprendibile e report. I test usano il nuovo accesso alle letture e attendono il completamento delle operazioni asincrone prima delle verifiche.
+
+
+## Selezione e risultati 2.10
+
+PASS test-v210.cjs su Edge headless: selezione per CSV e condizione, isolare una curva o condizione, mostrare/nascondere tutte, annullamento, stato parziale, rimozione dell’ultima curva dalla condizione e selezione automatica delle nuove condizioni. Medie attese a Qleaf=100: An iniziale 31.25, nascondendo B1-1 diventa 35 con n=2, nascondendo anche B1-2 diventa 40 con n=1 e DS non disponibile. Progetti e record dell’archivio confrontati prima/dopo: identici.
+
+Differenze rispetto al riferimento: 20 contro 31.25 dà Δ=-11.25 e -36%; riferimento 20 dà +56.25% per 31.25. Riferimenti nulli/negativi non producono percentuali fuorvianti. Report filtrato con un solo CSV non include gli altri nomi, mentre il report completo li conserva; report con la sola seconda condizione mantiene il colore originale. SVG e medie CSV riportano la portata della selezione. Stato vuoto senza zeri, esportazioni filtrate disabilitate, selezione conservata fra viste e azzerata dopo reload, ricalcolo offline. Interfaccia a 320/390 px con testo molto grande, temi giorno/notte e nessuna eccezione JavaScript; screenshot controllati visivamente.
+
+PASS test-regression-v210.cjs: formule, fit A/Q e A/Ci, migrazione e archivio storico, esclusioni, importazione guidata/trascinamento, bozze, backup e ripristino riprendibile, report e offline. PASS test-v28.cjs: camera condivisa, eccezioni, protezione del salvataggio e revisione dei fit. Le fixture sono sintetiche e non costituiscono una validazione su dati reali dell’utente o su telefoni fisici.
