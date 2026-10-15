@@ -196,7 +196,29 @@ async function openReading(reading,context){
  const item={id,created:now,updated:now,meta,filename:reading.name,rawCsv:reading.rawCsv,sha256:reading.sha256||'',exclusions:reading.exclusions||[],exclusionNotes:{},audit:[{at:now,type:'experiment_reading',detail:'Lettura collegata a '+context.experiment+' / '+context.condition}]};await transact('readwrite',o=>o.put(item));}
  await refresh();return await selectExperiment(id,true);
 }
-window.LCResearch={reloadArchive:refresh,hasUnsavedChanges,openReading,onTab,getState:()=>({session,sessions,parsed,analysis}),saveWorkflow,makeNew,selectExperiment,saveMeta,saveQuickMeta,attachFile};
+async function bulkMetadata(items,changes){
+ const allowed=['species','cultivar','operator','date','treatment'];
+ const keys=Object.keys(changes);if(!items.length||items.length>200||!keys.length||keys.some(k=>!allowed.includes(k)||typeof changes[k]!=='string'||!changes[k].trim()))throw Error('Seleziona fino a 200 letture e almeno un campo non vuoto.');
+ if(keys.some(k=>changes[k].length>1000))throw Error('Valore troppo lungo.');
+ if(changes.date&&!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(changes.date))throw Error('Data non valida.');
+ const ids=new Set(items.map(i=>i.id));if(ids.size!==items.length)throw Error('Letture duplicate nella selezione.');
+ if(session&&ids.has(session.id)&&hasUnsavedChanges())throw Error('Salva prima le modifiche della lettura aperta.');
+ await window.LCRecovery?.flushMetadata();const drafts=await window.LCVault.getDrafts();if(drafts.some(d=>d.type==='metadata'&&ids.has(d.recordId)))throw Error('Alcune letture hanno bozze di metadati: recuperale o scartale nel Diario prima della modifica multipla.');
+ let changed=0;const batch=uniqueId(),now=new Date().toISOString();
+ await new Promise((resolve,reject)=>{const t=db.transaction(store,'readwrite'),o=t.objectStore(store),q=o.getAll();let failure;
+ q.onsuccess=()=>{try{const next=[];for(const item of items){const found=q.result.find(r=>r.id===item.id);
+ if(item.expected===null?!!found:!found||JSON.stringify(found)!==item.expected)throw Error('Una lettura è cambiata dopo l’anteprima. Chiudi e prepara una nuova selezione.');
+ const r=structuredClone(found||item.template);if(!r||r.id!==item.id||typeof r.rawCsv!=='string')throw Error('Lettura non valida.');
+ const old=r.meta||{},meta={...old,...changes},diff=keys.filter(k=>String(old[k]??'')!==changes[k]);if(!diff.length)continue;
+ r.meta=meta;r.audit=Array.isArray(r.audit)?r.audit:[];if(r.workflow&&diff.some(k=>['species','date','treatment'].includes(k))){r.workflow.done=[];r.workflow.at=0;r.workflow.checks={};r.audit.push({at:now,type:'workflow_invalidation',detail:'Metadati modificati in gruppo: riconsiderare le fasi.'});}
+ r.audit.push({at:now,type:'metadata',detail:'Modifica multipla '+batch+': '+diff.map(k=>k+': '+String(old[k]??'')+' → '+changes[k]).join(' | ')});r.updated=now;next.push(r);
+ }for(const r of next)o.put(r);changed=next.length;}catch(e){failure=e;t.abort();}};
+ t.oncomplete=resolve;t.onabort=()=>reject(failure||t.error||Error('Modifica annullata'));t.onerror=()=>reject(t.error);
+ });
+ let refreshWarning='';try{await refresh();if(session&&ids.has(session.id)){session=structuredClone(sessions.find(s=>s.id===session.id));analysis=null;fillMeta(session.meta);renderCurrent();}}catch(e){refreshWarning=e.message;}
+ window.dispatchEvent(new Event('lc:bulk-metadata'));return {changed,batch,refreshWarning};
+}
+window.LCResearch={bulkMetadata,reloadArchive:refresh,hasUnsavedChanges,openReading,onTab,getState:()=>({session,sessions,parsed,analysis}),saveWorkflow,makeNew,selectExperiment,saveMeta,saveQuickMeta,attachFile};
 async function init(){for(let selectId of ['researchSelect','healthSelect','curveSelect','reportSelect'])$(selectId).addEventListener('change',e=>selectExperiment(e.target.value));
 $('researchNew').onclick=makeNew;$('researchSave').onclick=saveMeta;$('researchDelete').onclick=delExperiment;$('researchFile').onchange=e=>attachCSV(e.target);$('researchBackup').onclick=exportBackup;$('researchRestore').onchange=e=>importBackup(e.target);$('researchIndex').onclick=metaCSV;
 $('healthManualButton').onclick=runManual;

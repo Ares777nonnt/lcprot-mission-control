@@ -41,3 +41,9 @@ Suite di interfaccia esistente superata in Edge: navigazione, importazione di es
 ## Leggibilità 2.3.2
 
 Suite di interfaccia esistente superata su desktop e smartphone 390 px, con controllo visivo delle nuove dimensioni. Riepiloghi su due colonne e grafici scorrevoli senza overflow della pagina. Stampa esclusa dalle nuove regole tipografiche.
+
+## Produttività 2.4
+
+Suite `test-v24.cjs` con dati sintetici in Edge: anteprima e annullamento senza scritture; applicazione su letture non ancora materializzate; conservazione dei CSV, esclusioni e ID biologici; audit e sincronizzazione dei metadati nelle viste esperimento; conflitto su una sola scheda con annullamento dell’intera transazione; protezione bozze; invalidazione workflow e stato fit da rivedere; preferenze persistenti dopo reload; larghezze 320/390/1440 px; dialoghi su smartphone e recupero offline. Nessun errore JavaScript.
+
+Regressione precedente in `test-regression-v24.cjs`, con il selettore del dialogo limitato a quello aperto per distinguere il nuovo editor multiplo dal dialogo delle esclusioni. La migrazione non cambia gli schemi dei database. Archivio reale dell’utente non disponibile; verifica effettuata su fixture sintetiche.

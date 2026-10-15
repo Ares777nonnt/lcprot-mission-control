@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 2.3.2
+# LCpro T Mission Control · Clarity 2.4
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
 
@@ -66,3 +66,13 @@ Logo fornito dall’utente conservato senza modifiche in app-logo.jpg (1024×102
 ## Leggibilità 2.3.2
 
 Testi di supporto da 14 px, pulsanti da 15 px, campi da 16 px. Su smartphone riepiloghi in due colonne, azioni su righe distinte nei display stretti e grafici scorrevoli con assi ingranditi. Modifiche limitate alla presentazione a schermo; stampa e dati invariati.
+
+## Produttività 2.4
+
+Nel Diario, passa a **Letture**, seleziona le schede e premi **Modifica selezionate**. Puoi applicare specie, cultivar, operatore, data/ora e trattamento a un massimo di 200 letture. Ogni campo deve essere selezionato esplicitamente e non può essere vuoto. L’anteprima mostra prima/dopo; nessuna scrittura avviene prima di **Applica alle letture**. Filtrando il Diario la selezione viene limitata alle sole schede ancora visualizzate.
+
+La modifica è una transazione unica nel database delle schede di analisi: tutte le variazioni vengono salvate insieme o annullate. Le letture prive di scheda ricevono una scheda tecnica collegata al loro ID originale, senza creare nuovi esperimenti. CSV, SHA, esclusioni, ID biologici e snapshot dei fit sono conservati. Le modifiche entrano nell’audit; i fit precedenti diventano da rivedere e le verifiche guidate vengono invalidate quando cambiano campi sperimentali fondamentali. Bozze di metadati e modifiche non salvate della lettura selezionata bloccano l’operazione. Un controllo sul contenuto della scheda rifiuta anteprime diventate obsolete. Le copie negli esperimenti leggono i metadati correnti dalla scheda collegata.
+
+La modifica multipla riguarda i metadati delle letture: condizioni dell’esperimento, pianta, foglia e ID delle repliche si gestiscono individualmente, per evitare raggruppamenti biologici involontari.
+
+In **Leggibilità**, accanto ai controlli del tema, scegli testo Standard, Grande o Molto grande e spaziatura Comoda o Compatta. Le preferenze persistono sul dispositivo e funzionano offline; il pulsante Ripristina riporta ai valori iniziali. Non modificano la scala dei report di stampa e non entrano nei backup dei dati scientifici.
