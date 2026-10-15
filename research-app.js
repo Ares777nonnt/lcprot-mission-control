@@ -12,7 +12,7 @@ function uniqueId(){return (crypto.randomUUID?crypto.randomUUID():Date.now().toS
 function transact(mode,operation){return new Promise((resolve,reject)=>{let tx=db.transaction(store,mode),req=operation(tx.objectStore(store));let result;req.onsuccess=()=>{result=req.result;};tx.oncomplete=()=>resolve(result);tx.onabort=()=>reject(tx.error||Error('Transazione annullata'));tx.onerror=()=>reject(tx.error);});}
 function openDb(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window))return reject(Error('IndexedDB non disponibile.'));let req=indexedDB.open(dbName,1);req.onupgradeneeded=()=>{let d=req.result;if(!d.objectStoreNames.contains(store))d.createObjectStore(store,{keyPath:'id'})};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});}
 async function refresh(){sessions=await transact('readonly',o=>o.getAll());sessions.sort((a,b)=>String(b.updated).localeCompare(String(a.updated)));renderSessionSelectors();}
-function renderSessionSelectors(){let controls=['researchSelect','healthSelect','curveSelect','reportSelect'];for(let id of controls){const el=$(id);if(!el)continue;let current=session?.id||'';el.innerHTML='<option value="">— Scegli esperimento —</option>'+sessions.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.meta?.plant||'Senza ID')+' · '+esc(x.meta?.species||'Specie')+' · '+esc(x.filename||'Nessun CSV')+'</option>').join('');el.value=sessions.some(s=>s.id===current)?current:'';}}
+function renderSessionSelectors(){let controls=['researchSelect','healthSelect','curveSelect','reportSelect'];for(let id of controls){const el=$(id);if(!el)continue;let current=session?.id||'';el.innerHTML='<option value="">— Scegli lettura —</option>'+sessions.map(x=>'<option value="'+esc(x.id)+'">'+esc(x.meta?.plant||'Senza ID')+' · '+esc(x.meta?.species||'Specie')+' · '+esc(x.filename||'Nessun CSV')+'</option>').join('');el.value=sessions.some(s=>s.id===current)?current:'';}}
 const dateNow=()=>{let d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16)};
 const baseMeta=()=>({species:'Ocimum basilicum',cultivar:'',plant:'',leaf:'',operator:'',date:dateNow(),type:'aq',light:'led',treatment:'',area:'',tlmethod:'unknown',co2mode:'ambient',co2set:'',flow:'',temp:'',notes:''});
 function fillMeta(meta){for(let e of document.querySelectorAll('[data-rmeta]'))e.value=String(meta[e.dataset.rmeta]??'');}
@@ -60,7 +60,7 @@ function getPoints(){if(!parsed||!session)return [];let kind=session.meta.type;r
 function currentModel(){return $('curveModel').value;}
 function renderCurve(){if(!session||!parsed){$('curveIntro').textContent='Seleziona una scheda con CSV per analizzare la curva.';$('curveResults').innerHTML='';$('curvePoints').innerHTML='';$('researchSVG').innerHTML='';$('curveNotes').innerHTML='';analysis=null;return;}
 const kind=session.meta.type;if(kind==='spot'){$('curveIntro').textContent='Misura puntuale: fit di curva non applicabile.';$('curveResults').innerHTML='';$('curvePoints').innerHTML='';$('researchSVG').innerHTML='';analysis=null;return;}
-$('curveIntro').textContent='Esperimento '+session.meta.plant+' · '+session.filename+' · '+parsed.rows.length+' record; '+exclusions.size+' esclusi. '+(kind==='aci'?'Ci misurato/calcolato dall’LCpro T sull’asse X.':'Qleaf effettivo sull’asse X.');
+$('curveIntro').textContent='Lettura '+session.meta.plant+' · '+session.filename+' · '+parsed.rows.length+' record; '+exclusions.size+' esclusi. '+(kind==='aci'?'Ci misurato/calcolato dall’LCpro T sull’asse X.':'Qleaf effettivo sull’asse X.');
 $('curveControlsAQ').hidden=kind!=='aq';$('curveControlsCi').hidden=kind!=='aci';$('curveModel').value=['rect','nonrect'].includes($('curveModel').value)?$('curveModel').value:'rect';
 let valid=parsed.rows.filter(r=>Number.isFinite(kind==='aci'?r.ci:r.q)&&Number.isFinite(r.a));$('curvePoints').innerHTML=valid.map(r=>{let excluded=exclusions.has(r.index);return '<tr><td><input type="checkbox" data-point="'+r.index+'" '+(!excluded?'checked':'')+' aria-label="Includi record '+r.index+'"></td><td>'+r.index+'</td><td>'+esc(String(kind==='aci'?r.ci:r.q))+'</td><td>'+esc(String(r.a))+'</td><td>'+esc(session.exclusionNotes?.[r.index]||'')+'</td></tr>'}).join('');
 $('curvePoints').querySelectorAll('[data-point]').forEach(el=>el.addEventListener('change',()=>togglePoint(Number(el.dataset.point),el.checked)));
@@ -186,7 +186,13 @@ const newlyDone=(w.done||[]).filter(n=>!(old?.done||[]).includes(n));
 session.workflow=w;
 for(const n of newlyDone)stamp('workflow_stage','Passaggio '+(n+1)+' completato: '+['Scheda','SQS','Camera','Acclimatazione','Acquisizione','CSV','Health Check','Curve Lab','Report / Backup'][n]);
 await transact('readwrite',o=>o.put(session));await refresh();}
-window.LCResearch={onTab,getState:()=>({session,sessions,parsed,analysis}),saveWorkflow,makeNew,selectExperiment,saveMeta,saveQuickMeta,attachFile};
+async function openReading(reading,context){
+ const id='reading:'+reading.id,existing=await transact('readonly',o=>o.get(id));
+ if(!existing){const now=new Date().toISOString(),meta={...baseMeta(),...(reading.meta||{}),plant:reading.bio||reading.meta?.plant||'Da assegnare',type:context.kind,treatment:context.condition,notes:'Esperimento: '+context.experiment};
+ const item={id,created:now,updated:now,meta,filename:reading.name,rawCsv:reading.rawCsv,sha256:reading.sha256||'',exclusions:reading.exclusions||[],exclusionNotes:{},audit:[{at:now,type:'experiment_reading',detail:'Lettura collegata a '+context.experiment+' / '+context.condition}]};await transact('readwrite',o=>o.put(item));}
+ await refresh();await selectExperiment(id);
+}
+window.LCResearch={openReading,onTab,getState:()=>({session,sessions,parsed,analysis}),saveWorkflow,makeNew,selectExperiment,saveMeta,saveQuickMeta,attachFile};
 async function init(){for(let selectId of ['researchSelect','healthSelect','curveSelect','reportSelect'])$(selectId).addEventListener('change',e=>selectExperiment(e.target.value));
 $('researchNew').onclick=makeNew;$('researchSave').onclick=saveMeta;$('researchDelete').onclick=delExperiment;$('researchFile').onchange=e=>attachCSV(e.target);$('researchBackup').onclick=exportBackup;$('researchRestore').onchange=e=>importBackup(e.target);$('researchIndex').onclick=metaCSV;
 $('healthManualButton').onclick=runManual;

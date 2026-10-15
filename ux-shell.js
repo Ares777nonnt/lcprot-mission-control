@@ -11,6 +11,7 @@ function get(){return window.LCResearch?.getState?.()||{};}
 function status(){
  const s=get().session,host=$('uxCurrent'),continueButton=$('uxContinue'),desc=$('uxContinueDesc');
  if(!host)return;
+ if(window.LCExperiments){window.LCExperiments.homeStatus();return;}
  if(!s){host.innerHTML='<b>Nessun esperimento aperto.</b> Inizia una nuova scheda o carica un CSV già acquisito.';continueButton.disabled=true;desc.textContent='Crea prima una scheda sperimentale.';return;}
  continueButton.disabled=false;
  const n=Math.min(8,Math.max(0,Number(s.workflow?.at||0)));
@@ -28,11 +29,20 @@ function stageStatus(){const e=$('uxStageSummary');if(!e)return;const s=get().se
  e.textContent='Fase: '+phase+' · Passaggio '+(at+1)+' di 9 · '+stages[at];
 }
 function go(name){
+ if(name==='compare')name='experiments';
+ const workspace=$('experimentWorkspace');if(workspace)workspace.hidden=name!=='experiments';
+ document.body.classList.toggle('exp-open',name==='experiments');
+ if($('expContext'))$('expContext').hidden=name==='home'||name==='experiments'||!window.LCExperiments?.current();
  if(name==='home'){
   active='home';
   document.querySelectorAll('.lab-panel').forEach(el=>el.hidden=el.id!=='lab-home');
   for(const el of document.querySelectorAll('#modeChooser,#modebar,.beginner-only,#expertArea'))el.classList.add('lab-hidden');
   document.querySelectorAll('.lab-tab').forEach(b=>b.classList.remove('selected'));
+ }else if(name==='experiments'){
+  active='experiments';document.querySelectorAll('.lab-panel').forEach(el=>el.hidden=el.id!=='experimentWorkspace');
+  for(const el of document.querySelectorAll('#modeChooser,#modebar,.beginner-only,#expertArea'))el.classList.add('lab-hidden');
+  document.querySelectorAll('.lab-tab').forEach(b=>b.classList.remove('selected'));
+  window.LCExperiments?.activate();
  }else{
   $('lab-home').hidden=true;
   if(typeof existing==='function')existing(name);
@@ -41,19 +51,20 @@ function go(name){
   active=name==='guide'||!visible?name:visible;
  }
  document.querySelectorAll('[data-ux-go]').forEach(b=>{const on=b.dataset.uxGo===active;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
- $('uxTools')?.classList.toggle('ux-tool-selected',!['home','protocol','log'].includes(active));
- status();stageStatus();
+ $('uxTools')?.classList.toggle('ux-tool-selected',!['home','experiments','protocol','log'].includes(active));
+ status();stageStatus();window.LCExperiments?.refreshContext();
  if(name==='home')window.scrollTo?.({top:0,behavior:'smooth'});
 }
 // Redirect existing global tab callbacks through the shell too.
 window.switchLab=go;
-async function startNew(){try{
+async function startNew(){if(window.LCExperiments){window.LCExperiments.startNew();return;}try{
  if(!window.LCResearch?.makeNew)throw new Error('Archivio non disponibile. Ricarica la pagina online.');
  await window.LCResearch.makeNew();
  if(!get().session)return;
  window.LCGuided?.sync?.(true);go('protocol');
  }catch(err){alert('Impossibile creare la scheda: '+err.message);}}
 async function already(){
+ if(window.LCExperiments){window.LCExperiments.importData();return;}
  try{
   if(!window.LCResearch?.makeNew)throw new Error('Archivio non disponibile');
   // Ogni nuovo CSV deve conservare un originale in una scheda distinta.
@@ -70,7 +81,7 @@ function init(){
  if(!$('lab-home')||typeof existing!=='function')return;
  document.querySelectorAll('[data-ux-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.uxGo)));
  $('uxNew').addEventListener('click',startNew);
- $('uxContinue').addEventListener('click',()=>go('protocol'));
+ $('uxContinue').addEventListener('click',()=>go('experiments'));
  $('uxAlreadyHaveCsv').addEventListener('click',already);
  $('uxHelp').addEventListener('click',()=>go('guide'));
  $('uxTools').addEventListener('toggle',()=>{const t=document.querySelector('[data-ux-tools]');if(t)t.setAttribute('aria-expanded',String($('uxTools').open))});
