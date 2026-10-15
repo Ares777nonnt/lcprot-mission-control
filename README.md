@@ -1,3 +1,13 @@
+## Aggiornamento Clarity 2.11 — 16 ottobre 2026
+
+- Riepilogo del confronto: CSV, ID dichiarati, n effettivo al parametro e alla X scelti, condizioni da completare e limiti.
+- Qualità per condizione: valori mancanti e motivi, record senza X, CSV senza ID biologico, errori di lettura, n inferiore al piano e DS indisponibile con una sola replica. Gli avvisi non certificano la qualità fisiologica.
+- Confronto affiancato A/B fra condizioni selezionate: stesse scale X e Y, medie e ID biologici, scambio del riferimento, differenze assolute e percentuali solo con riferimento positivo. SVG autonomo da condividere. Nessuna interpolazione o test statistico aggiunto.
+- Misure e modelli distinti: fit salvati coerenti separati dai grafici osservati, R², RMSE, unità, IC bootstrap e avvisi. Fit obsoleti esclusi dalle stime correnti; accesso diretto alla lettura.
+- Report HTML autonomo stampabile in PDF: risultati al parametro/X correnti, qualità, confronto a due, note, camera e metodi esistenti. Report completo e report della selezione mantengono ambiti distinti.
+
+Nessuna modifica ai database o alle formule. Selezioni temporanee come nella 2.10; archivi, CSV originali, esclusioni e fit conservati. Nuovi asset inclusi nella cache offline. Test con fixture sintetiche: prova sul campo con un esperimento reale ancora consigliata.
+
 # LCpro T Mission Control · Clarity 2.10
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.

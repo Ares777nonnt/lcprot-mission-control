@@ -1,3 +1,15 @@
+# Verifica Clarity 2.11 — 16 ottobre 2026
+
+PASS — test-v211-core.cjs e test-v29-core.cjs: riepiloghi specifici per parametro/X, ID mancanti, CSV ripetuti senza inflazione di n, denominatori invalidi, X mancante, letture vuote/errori, piano delle repliche, report A/Q e A/Ci, formule dei sette parametri e assenza di modifiche ai dati di origine.
+
+PASS — test-v211.cjs in Edge: selezione di condizioni/CSV, ricalcolo n/DS, confronti A/B e scambio, scale condivise, differenze e riferimenti nulli/negativi, export SVG, report completo/filtrato, riepiloghi qualità, fit coerenti/obsoleti, R²/RMSE/IC/avvisi. Layout 320/390 px, testo ingrandito, giorno/notte e uso offline. Nessun errore JavaScript raccolto. Verifica visiva di grafici, qualità, mobile e report.
+
+PASS — test-regression-v210.cjs: parser e fit preesistenti, asse A/Ci, migrazione storica senza modifiche agli originali, metadati/diario, importazione per lotti, duplicati e guardie atomiche, bozze, backup completo, ripristino interrotto, verifica SHA, report e uso offline sotto sottocartella.
+
+Fixture sintetiche; archivio reale dell’utente non disponibile. Nessuna migrazione di schema richiesta; testata la compatibilità della migrazione storica e dei backup.
+
+---
+
 # Verifica Clarity 2.3 — 15 ottobre 2026
 
 Test automatici Node.js e Microsoft Edge headless tramite Playwright. App servita sotto /lab/ per simulare una sottocartella GitHub Pages. Fixture sintetiche; nessun archivio reale dell'utente disponibile.
