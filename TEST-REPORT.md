@@ -1,4 +1,4 @@
-# Verifica Clarity 2.2 — 15 ottobre 2026
+# Verifica Clarity 2.3 — 15 ottobre 2026
 
 Test automatici Node.js e Microsoft Edge headless tramite Playwright. App servita sotto /lab/ per simulare una sottocartella GitHub Pages. Fixture sintetiche; nessun archivio reale dell'utente disponibile.
 
@@ -33,3 +33,7 @@ Script riproducibile: test-v21.cjs, separato dal pacchetto web. Richiede Node.js
 Suite `test-v22.cjs`: regressione 2.1 adattata ai quattro passaggi; preservazione record 1.6, migrazione, medie biologiche, esclusioni, A/Q e A/Ci, recupero bozze, backup/ripristino con interruzione e report. Dati sintetici; nessun accesso all’archivio reale dell’utente.
 
 Suite `test-v22-ui.cjs`: Diario predefinito, tre aree principali, creazione dall’archivio, quattro passaggi, elenco e dettaglio affiancati su desktop, apertura lettura e ritorno al confronto, esportazione separata, strumenti contestuali, 390 px senza overflow della pagina, tema scuro e assenza di errori JavaScript. Controllo visivo di schermate desktop e mobile. Edge su Windows; non sostituisce una prova su dispositivi fisici né una valutazione di usabilità con utenti.
+
+## Veste grafica 2.3
+
+Suite di interfaccia esistente superata in Edge: navigazione, importazione di esempio, selezione lettura, ritorno al confronto, export, strumenti, larghezza mobile 390 px senza overflow ed errori JavaScript assenti. Schermate desktop, mobile e tema scuro controllate visivamente. Modifica di presentazione, senza variazioni agli schemi dati o ai calcoli.

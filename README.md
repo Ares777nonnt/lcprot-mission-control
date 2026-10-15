@@ -1,4 +1,4 @@
-# LCpro T Mission Control · Clarity 2.2
+# LCpro T Mission Control · Clarity 2.3
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
 
@@ -54,3 +54,7 @@ I database LCproTResearch_v1 e LCproTExperiments_v17 mantengono nomi, versioni e
 4. Verifica Diario, bozze e riapertura offline.
 
 Nuovi file necessari nella 2.1: continuity-core.js, vault.js, recovery.js, experiment-report.js e continuity.css. Tutti i file del pacchetto sono necessari. Per i test e le limitazioni vedi TEST-REPORT.md.
+
+## Veste grafica 2.3
+
+Palette botanica con verde salvia e avorio, navigazione con icone vettoriali locali, intestazione del Diario, schede e riepiloghi con colori leggeri. Nessuna dipendenza da font o immagini remote; tema scuro, animazioni ridotte e stampa preservati. Il flusso e i database restano quelli della versione 2.2.
