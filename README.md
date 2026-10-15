@@ -1,13 +1,17 @@
-# LCpro T Mission Control · Clarity 2.1
+# LCpro T Mission Control · Clarity 2.2
 
 PWA locale, senza dipendenze remote. Esperimenti → condizioni → letture → controllo qualità → curve e report. Conserva lo stesso indirizzo GitHub Pages per mantenere accessibili i dati del browser.
+
+## Interfaccia 2.2
+
+Tre aree: **Diario** (apertura predefinita e archivio), **Esperimento** (lavoro attivo), **Strumenti** (supporto). Quattro passaggi: **Organizza → Acquisisci → Analizza → Esporta**. Nome e tipo di curva restano visibili anche nella lettura. Su desktop l’elenco letture affianca il confronto e i dettagli; su smartphone è richiudibile. Gli stati del Diario sono Bozza, Da completare, Da verificare e Salvato; il pulsante indica l’azione specifica. Palette, controlli, tema scuro e animazioni ridotte sono coerenti. Nessun cambiamento agli schemi dei database o ai calcoli scientifici.
 
 ## Uso
 
 1. Crea un esperimento A/Q o A/Ci e definisci le condizioni.
 2. Carica o trascina i CSV. Assegna condizione, replica biologica e campione a ogni file; verifica anteprime e duplicati, poi conferma le letture.
-3. Apri ogni lettura dal Diario per completare i metadati, controllare i dati e salvare il fit in Curve Lab.
-4. Confronta le condizioni e genera il report dell'intero esperimento dalla scheda Confronto.
+3. In Analizza confronta le condizioni; scegli una lettura nell’elenco per completare la scheda, controllare la qualità e salvare il fit.
+4. In Esporta genera il report dell’intero esperimento, il grafico o le medie CSV.
 5. Dal Diario o dall'esperimento scarica periodicamente il backup completo.
 
 Le repliche biologiche sono dichiarate dall'operatore; non vengono dedotte dai file o dalle foglie. Le medie nell'app usano X esattamente uguali, prima mediano i record della lettura, poi le letture dello stesso ID e infine gli ID biologici. DS disponibile con n ≥ 2. Nessuna interpolazione o inferenza aggiunta. Il piano delle repliche è opzionale e non certifica indipendenza o sufficienza statistica.

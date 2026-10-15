@@ -30,6 +30,8 @@ function stageStatus(){const e=$('uxStageSummary');if(!e)return;const s=get().se
 }
 function go(name){
  if(name==='compare')name='experiments';
+ if(name==='tools'){active='tools';document.body.classList.remove('exp-open');for(const el of document.querySelectorAll('#modeChooser,#modebar,.beginner-only,#expertArea'))el.classList.add('lab-hidden');window.LCJournal?.onNavigate('tools');document.querySelectorAll('.lab-panel').forEach(el=>el.hidden=true);$('uxTools').hidden=false;$('uxTools').open=true;document.body.dataset.appRoute='tools';document.querySelectorAll('[data-ux-go]').forEach(b=>{b.classList.remove('active');b.removeAttribute('aria-current');});document.querySelector('[data-ux-tools]').classList.add('active');window.dispatchEvent(new CustomEvent('lc:navigate',{detail:{name:'tools'}}));return;}
+ if($('uxTools'))$('uxTools').hidden=true;document.querySelector('[data-ux-tools]')?.classList.remove('active');
  const workspace=$('experimentWorkspace');if(workspace)workspace.hidden=name!=='experiments';
  document.body.classList.toggle('exp-open',name==='experiments');
  if($('expContext'))$('expContext').hidden=name==='home'||name==='experiments'||!window.LCExperiments?.current();
@@ -53,6 +55,7 @@ function go(name){
  document.querySelectorAll('[data-ux-go]').forEach(b=>{const on=b.dataset.uxGo===active;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
  $('uxTools')?.classList.toggle('ux-tool-selected',!['home','experiments','protocol','log'].includes(active));
  status();stageStatus();window.LCExperiments?.refreshContext();window.LCJournal?.onNavigate(active);
+ document.body.dataset.appRoute=active;window.dispatchEvent(new CustomEvent('lc:navigate',{detail:{name:active}}));
  if(name==='home')window.scrollTo?.({top:0,behavior:'smooth'});
 }
 // Redirect existing global tab callbacks through the shell too.
@@ -85,11 +88,11 @@ function init(){
  $('uxAlreadyHaveCsv').addEventListener('click',already);
  $('uxHelp').addEventListener('click',()=>go('guide'));
  $('uxTools').addEventListener('toggle',()=>{const t=document.querySelector('[data-ux-tools]');if(t)t.setAttribute('aria-expanded',String($('uxTools').open))});
- document.querySelector('[data-ux-tools]').addEventListener('click',()=>{$('uxTools').open=!$('uxTools').open;if($('uxTools').open)$('uxTools').scrollIntoView({behavior:'smooth',block:'nearest'})});
+ document.querySelector('[data-ux-tools]').addEventListener('click',()=>go('tools'));
  // Sync after asynchronously saving or selecting an experiment; never write user data.
  const obs=new MutationObserver(()=>{if(active==='home')status();if(active==='protocol')stageStatus();});
  const el=$('flowNotice');if(el)obs.observe(el,{childList:true,characterData:true,subtree:true});
- go('home');
+ go('log');
 }
 window.addEventListener('DOMContentLoaded',init);
 })();
