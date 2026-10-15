@@ -14,7 +14,7 @@ function sync(){if(!ready)return;const p=window.LCExperiments.current(),s=window
  for(const b of document.querySelectorAll('[data-workspace-step]')){const on=b.dataset.workspaceStep===selected;b.classList.toggle('active',on);b.disabled=!p&&b.dataset.workspaceStep!=='setup';if(on)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');}
  $('workspaceHint').textContent=readingRoute?'Lettura aperta · '+(s.filename||'Senza CSV'):hints[step];
  const primary=document.querySelector('[data-ux-go="experiments"]');primary.classList.toggle('active',inside);if(inside)primary.setAttribute('aria-current','page');else primary.removeAttribute('aria-current');
- const diary=document.querySelector('[data-ux-go="log"]'),inDiary=!inside&&(route==='log'||readingRoute),inTools=!inside&&!inDiary&&route!=='home';diary.classList.toggle('active',inDiary);if(inDiary)diary.setAttribute('aria-current','page');else diary.removeAttribute('aria-current');const tools=document.querySelector('[data-ux-tools]');tools.classList.toggle('active',inTools);if(inTools)tools.setAttribute('aria-current','page');else tools.removeAttribute('aria-current');
+ const diary=document.querySelector('[data-ux-go="log"]'),inDiary=!inside&&(route==='log'||readingRoute),inTools=!inside&&!inDiary&&route!=='home';diary.classList.toggle('active',inDiary);if(inDiary)diary.setAttribute('aria-current','page');else diary.removeAttribute('aria-current');const tools=document.querySelector('[data-ux-tools]');tools.classList.toggle('active',inTools);tools.setAttribute('aria-expanded',String(route==='tools'));if(inTools)tools.setAttribute('aria-current','page');else tools.removeAttribute('aria-current');
  $('analysisReadingList').innerHTML=p?p.conditions.map(c=>'<div class="interface-list-group"><strong>'+esc(c.name)+'</strong>'+c.readings.map(r=>'<button type="button" data-inspect="'+esc(r.id)+'" class="'+((r.legacyId||'reading:'+r.id)===s?.id?'current':'')+'"><span>'+esc(r.name)+'</span><small>Replica '+esc(r.bio||'da assegnare')+'</small></button>').join('')+'</div>').join(''):'';
  $('analysisReadingCount').textContent=p?p.conditions.reduce((n,c)=>n+c.readings.length,0)+' letture':'';
  $('readingInspector').hidden=!(inside&&(step==='compare'||readingRoute));
@@ -50,5 +50,6 @@ window.addEventListener('DOMContentLoaded',()=>{
  window.addEventListener('lc:navigate',e=>{route=e.detail.name;sync();});window.addEventListener('lc:experiment-step',e=>{step=e.detail.step;sync();});window.addEventListener('lc:research',sync);window.addEventListener('lc:experiments-idle',sync);
  // Keep the compact context in sync with async restores and imports.
  new MutationObserver(sync).observe($('expActiveTitle'),{childList:true,subtree:true,characterData:true});
+ new MutationObserver(sync).observe($('researchNotice'),{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class']});
  });
 })();
