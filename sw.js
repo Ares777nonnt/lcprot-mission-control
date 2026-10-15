@@ -1,7 +1,7 @@
-/* LCpro T Mission Control - offline cache - Clarity 2.0 */
-const CACHE = 'lcprot-mission-clarity-2026-10-15-v10';
+/* LCpro T Mission Control - offline cache - Clarity 2.1 */
+const CACHE = 'lcprot-mission-clarity-2026-10-15-v11';
 const PREFIX = 'lcprot-mission-';
-const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js','./visual-edition.css','./visual-edition.js','./experiments-core.js','./experiments-app.js','./experiments.css','./journal-core.js','./journal.js','./journal.css','./mission-core.js','./mission.js','./mission.css'];
+const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js','./visual-edition.css','./visual-edition.js','./experiments-core.js','./experiments-app.js','./experiments.css','./journal-core.js','./journal.js','./journal.css','./mission-core.js','./mission.js','./mission.css','./continuity-core.js','./vault.js','./recovery.js','./experiment-report.js','./continuity.css'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();

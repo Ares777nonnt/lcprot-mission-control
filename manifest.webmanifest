@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "LCpro T Mission Control — Clarity 2.0",
+  "name": "LCpro T Mission Control — Clarity 2.1",
   "short_name": "LCpro T Research",
-  "description": "Riepilogo esperimenti e importazione guidata dei CSV, con Diario e confronto offline",
+  "description": "Backup unico, recupero bozze e report degli esperimenti, anche offline",
   "lang": "it",
   "start_url": "./index.html",
   "scope": "./",
