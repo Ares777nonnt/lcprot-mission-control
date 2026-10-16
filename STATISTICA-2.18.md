@@ -34,7 +34,7 @@ L’impronta del contesto considera CSV attivi, esclusioni, ID, condizioni, dise
 
 Backup e ripristino conservano cronologia e fonti; i nuovi ID dei CSV vengono propagati a piano, disegno e tracciabilità. La sola rimappatura del ripristino non rende obsolete le analisi. I risultati nei backup sono controllati rispetto ai dati biologici congelati e i riferimenti incoerenti non vengono presentati come fonti verificate. Massimo 200 analisi per esperimento; esportare e organizzare il lavoro prima di raggiungere il limite.
 
-Nessun nuovo archivio IndexedDB o cambio di versione dei database esistenti. CSV originali, esclusioni, cestino, letture, fit e archivio legacy conservano le funzioni precedenti. Il motore e l’interfaccia sono inclusi nella cache v33: calcolo, salvataggio e report funzionano offline e su GitHub Pages, senza CDN o servizi di calcolo esterni.
+Nessun nuovo archivio IndexedDB o cambio di versione dei database esistenti. CSV originali, esclusioni, cestino, letture, fit e archivio legacy conservano le funzioni precedenti. Il motore e l’interfaccia sono inclusi nella cache v34: calcolo, salvataggio e report funzionano offline e su GitHub Pages, senza CDN o servizi di calcolo esterni.
 
 ## Validazione riproducibile
 

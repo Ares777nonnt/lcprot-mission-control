@@ -1,5 +1,5 @@
 /* LCpro T Mission Control - offline cache - Clarity 2.18 */
-const CACHE = 'lcprot-mission-clarity-2026-10-16-v33';
+const CACHE = 'lcprot-mission-clarity-2026-10-16-v34';
 const PREFIX = 'lcprot-mission-';
 const PRECACHE = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./research-core.js','./research-app.js','./guided-workflow.js','./ux-shell.js','./clarity-flow.js','./visual-edition.css','./visual-edition.js','./experiments-core.js','./experiments-app.js','./experiments.css','./journal-core.js','./journal.js','./journal.css','./mission-core.js','./mission.js','./mission.css','./continuity-core.js','./vault.js','./recovery.js','./experiment-report.js','./continuity.css','./interface.css','./interface.js','./polish.css','./app-logo.jpg','./productivity.js','./productivity.css','./forest-night.css','./workspace.js','./workspace.css','./day-edition.css','./camera-core.js','./camera.js','./analysis-board.js','./analysis-board.css','./comparison-focus.js','./comparison-focus.css','./results-insight.js','./results-insight.css','./results-story.js','./results-story.css','./pipeline-care.js','./pipeline-care.css','./results-first.js','./results-first.css','./design-core.js','./design.js','./design.css','./statistics-core.js','./statistics.js','./statistics.css'];
 self.addEventListener('install', event => {
