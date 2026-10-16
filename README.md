@@ -1,3 +1,11 @@
+## Aggiornamento Clarity 2.12 — 16 ottobre 2026
+
+Le analisi sono raccolte in quattro viste: Risultati, Confronto A/B, Tutti i parametri, Qualità e modelli. La selezione di condizioni e CSV è espandibile e resta comune alle viste. Il parametro principale è accompagnato da nome esteso, unità dei valori, X e guida a media/DS/n. Gli altri grafici si aprono su richiesta. Nessuna nuova formula o migrazione dei database.
+
+Report sintetico: valori principali, riferimento, differenze, grafico biologico, sette parametri alla X scelta, limiti, camera e note. Le tabelle sono suddivise in gruppi di massimo tre condizioni. Valori molto piccoli in notazione scientifica, senza trasformarli in zero. Report dettagliato: stesso riepilogo iniziale, indice, letture, tabelle estese, fit coerenti, intervalli e tracciabilità. Il backup resta la fonte dei CSV originali.
+
+L’ambito completo o selezionato è esplicito. Parametro, X, riferimento, modalità e curve vengono acquisiti all’avvio della generazione, anche se l’utente cambia selezione durante l’attesa. HTML autonomo stampabile in PDF. Tutte le nuove risorse sono incluse nella cache PWA offline.
+
 ## Aggiornamento Clarity 2.11 — 16 ottobre 2026
 
 - Riepilogo del confronto: CSV, ID dichiarati, n effettivo al parametro e alla X scelti, condizioni da completare e limiti.

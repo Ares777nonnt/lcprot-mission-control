@@ -1,3 +1,15 @@
+# Verifica Clarity 2.12 — 16 ottobre 2026
+
+PASS — test-v212-core.cjs: report A/Q e A/Ci, parametro/X/riferimento espliciti, unità, valori minimi non azzerati, dati mancanti e vuoti, escaping HTML, gruppi di massimo tre condizioni per tabella e dati originali immutati. test-v29-core.cjs: formule, rapporti per record, medie biologiche annidate, DS/n e punti biologici.
+
+PASS — test-v212.cjs in Edge: quattro viste e tastiera (frecce/Home/End), scelta parametri, selezioni CSV/condizioni conservate, medie e DS, confronto A/B, grafici, fit e qualità, esportazioni complete/filtrate. Report sintetico con valore principale e tabella dei sette parametri; selezione/parametro/X acquisiti prima dell’attesa di generazione. Schermi 320/390 px, caratteri ingranditi, giorno/notte, resa CSS di stampa, reload e uso offline. Nessuna eccezione JavaScript.
+
+PASS — test-regression-v212.cjs: migrazione storica, archivio originale invariato, fit preesistenti e obsoleti, importazione per lotti, asse Ci, duplicati, bozze, backup completo, rifiuto SHA errata, ripristino interrotto, report dettagliato con parametri e metodi e uso offline.
+
+Fixture sintetiche; archivio reale dell’utente non disponibile. Schemi, CSV e formule conservati. Verificate visivamente schede risultato e report anche in resa di stampa.
+
+---
+
 # Verifica Clarity 2.11 — 16 ottobre 2026
 
 PASS — test-v211-core.cjs e test-v29-core.cjs: riepiloghi specifici per parametro/X, ID mancanti, CSV ripetuti senza inflazione di n, denominatori invalidi, X mancante, letture vuote/errori, piano delle repliche, report A/Q e A/Ci, formule dei sette parametri e assenza di modifiche ai dati di origine.
