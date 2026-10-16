@@ -1,3 +1,9 @@
+# Verifica Clarity 2.18 — Statistica
+
+PASS — 50 casi numerici contro SciPy 1.17.1 (t, gl, p, IC 95%), Holm e code di Cauchy. PASS — gerarchia biologica, coppie complete, sette parametri, X mancanti, tracciabilità, backup e risultati storici. PASS — flusso UI, report, mobile/temi, ripristino, migrazione 2.17 → 2.18 e nuovo calcolo offline. Fixture sintetiche, non validazione di esperimenti reali. Dettagli: [STATISTICA-2.18.md](STATISTICA-2.18.md).
+
+---
+
 # Verifica Clarity 2.17 — Disegno sperimentale
 
 PASS — test core del disegno, flusso browser, persistenza, backup/ripristino, report e regressioni. PASS — aggiornamento 2.16 → 2.17 con archivio e service worker attivo, modulo disponibile offline. Fixture sintetiche; dettagli e limiti: [STATISTICA-2.17.md](STATISTICA-2.17.md).

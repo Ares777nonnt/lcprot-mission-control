@@ -1,0 +1,37 @@
+body .statistics-card{padding:22px;margin:20px 0;background:var(--ui-paper);border:1px solid var(--ui-line);border-radius:14px;color:var(--ui-text);overflow-wrap:anywhere}
+body .statistics-card[hidden]{display:none}
+body .statistics-heading{display:flex;justify-content:space-between;align-items:center;gap:16px}
+body .statistics-heading h2{margin:6px 0 12px}
+body .statistics-card p,body #statisticsDialog p{font-size:16px;line-height:1.6;color:var(--ui-muted)}
+body .statistics-context{padding:16px;background:var(--ui-soft);border-radius:12px;margin:16px 0}
+body .statistics-result{margin:18px 0;border-top:1px solid var(--ui-line);padding-top:12px}
+body .statistics-effect strong{display:block;font-size:36px;line-height:1.3;color:var(--ui-text)}
+body .statistics-effect>span{font-size:16px;color:var(--ui-muted)}
+body .statistics-result details,body .statistics-methods{margin:12px 0;font-size:16px;line-height:1.6}
+body .statistics-result summary,body .statistics-methods summary{cursor:pointer;font-weight:600;min-height:40px}
+body .statistics-plot{max-width:650px;background:#fff;border-radius:10px;padding:12px;margin:16px 0}
+body #experimentWorkspace .statistics-plot svg{display:block;width:100%;min-width:0;max-width:100%;height:auto}
+body #statisticsCard,body #statisticsOutput,body .statistics-result,body .statistics-plot{min-width:0;max-width:100%;box-sizing:border-box}
+body #statisticsCard>label{display:block;min-width:0}
+body #statisticsHistory{display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;font-size:16px}
+body .statistics-warning{padding:14px;border-left:4px solid var(--ui-amber);background:var(--theme-amber-bg);color:var(--theme-amber-text)!important;border-radius:6px}
+body .statistics-table{overflow:auto}
+body .statistics-table table{border-collapse:collapse;width:100%;font-size:15px}
+body .statistics-table :is(th,td){padding:10px;text-align:left;border-bottom:1px solid var(--ui-line);overflow-wrap:anywhere}
+body .statistics-methods code,body .statistics-card code{overflow-wrap:anywhere;font-size:13px}
+body #statisticsDialog{width:min(900px,calc(100vw - 24px));max-height:calc(100dvh - 24px);padding:24px;border:1px solid var(--ui-line);border-radius:16px;overflow:auto;background:var(--ui-paper);color:var(--ui-text)}
+body #statisticsDialog::backdrop{background:#10261c80}
+body #statisticsDialog :is(label,input,select,textarea,button,summary){font-size:16px;line-height:1.5}
+body #statisticsDialog label{display:flex;flex-direction:column;gap:8px;margin:12px 0;min-width:0}
+body #statisticsDialog :is(input,select,textarea){width:100%;box-sizing:border-box;min-width:0;border:1px solid var(--ui-line);padding:11px;background:var(--ui-bg);color:var(--ui-text);border-radius:8px}
+body #statisticsDialog button{padding:10px 15px;min-height:44px;cursor:pointer;border:1px solid var(--ui-line);background:var(--ui-paper);color:var(--ui-text);border-radius:8px}
+body #statisticsDialog button.primary{background:var(--theme-accent);color:var(--theme-accent-text);border-color:var(--theme-accent)}
+body .statistics-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}
+body #statisticsDialog .statistics-check{flex-direction:row;align-items:flex-start;gap:12px}
+body #statisticsDialog .statistics-check input{width:21px;height:21px;flex:none;margin-top:3px;accent-color:var(--ui-green)}
+body .statistics-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:20px}
+body #statisticsStatus{color:var(--ui-danger)}
+body #statisticsRestoreSelection{margin:14px 0;max-width:100%;white-space:normal}
+body #statisticsRestoreSelection[hidden]{display:none}
+body #statisticsCard .statistics-plot{width:min(100%,650px)}
+@media(max-width:640px){body .statistics-heading{display:block}body .statistics-heading button{width:100%}body .statistics-card{padding:16px}body #statisticsDialog{padding:18px}body .statistics-fields{grid-template-columns:minmax(0,1fr)}body .statistics-actions{flex-wrap:wrap}body .statistics-effect strong{font-size:32px}}

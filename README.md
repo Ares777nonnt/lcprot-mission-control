@@ -1,3 +1,7 @@
+## Clarity 2.18 — Confronto statistico
+
+Welch per unità indipendenti e t appaiato per coppie dichiarate, a X osservate identiche. Differenza B − A, IC 95%, n effettivo, p nei dettagli e Holm per famiglie di parametri. Analisi salvate e verificabili, report coerenti, backup e calcolo offline. Uso, limiti e validazione riproducibile: [STATISTICA-2.18.md](STATISTICA-2.18.md).
+
 ## Clarity 2.17 — Disegno e repliche
 
 Configurazione esplicita di unità indipendenti, condizioni indipendenti/appaiate e abbinamenti manuali. Dichiarazione verificabile, backup e report coordinati, PWA offline. Prima fase preparatoria: nessun test inferenziale aggiunto. Guida e verifiche: [STATISTICA-2.17.md](STATISTICA-2.17.md).
