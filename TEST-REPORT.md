@@ -1,3 +1,9 @@
+# Verifica Clarity 2.19 — Risultati delle curve
+
+PASS — nuova gerarchia, fit visibili, punto al buio esplicito, report, selezione, mobile e offline. Migrazione 2.18.1 → 2.19 con archivi identici. Statistica e 50 riferimenti numerici conservati. Dettagli: [RISULTATI-2.19.md](RISULTATI-2.19.md).
+
+---
+
 # Verifica Clarity 2.18.1 — Prerequisiti della statistica
 
 PASS — cause del pulsante disabilitato, inclusione esplicita dei CSV, disegno non confermato/complesso/da verificare, accesso alla configurazione e conservazione della selezione del grafico. Flusso statistico, report, backup, mobile/offline e validazione numerica conservati. Dettagli: [CORREZIONE-2.18.1.md](CORREZIONE-2.18.1.md).

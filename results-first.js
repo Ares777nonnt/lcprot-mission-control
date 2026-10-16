@@ -1,4 +1,4 @@
-/* Clarity 2.18.1: one comparison, progressive detail, explicit report scope.
+/* Clarity 2.19: one comparison, progressive detail, explicit report scope.
  * Presentation and report preferences only. IndexedDB schemas are unchanged. */
 (function(root){'use strict';
 const $=id=>document.getElementById(id),C=root.LCExperimentsCore,I=root.LCResultsInsight,

@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict');
+require('./experiments-core.js');require('./research-core.js');require('./curve-results.js');
+const C=globalThis.LCExperimentsCore,R=globalThis.LCResearchCore,V=globalThis.LCCurveResults;
+const row=(id,bio,a)=>({id,name:id,bio,exclusions:[],rawCsv:`Record,Qleaf,A\n1,0,-1\n2,100,${a}`});
+const p={kind:'aq',conditions:[{id:'a',name:'<Controllo>',readings:[row('a1','P1',10),row('a2','P1',20),row('a3','P2',30),row('missing','',999)]}]};
+const peak=V.overview(p,C.metricDataset(p,R))[0].peak;assert.equal(peak.mean,22.5);assert.equal(peak.n,2);assert.equal(peak.x,100);
+assert.match(V.levelText(p,0),/Misura al buio/);assert.doesNotMatch(V.levelText({kind:'aci'},0),/buio/);
+assert.match(V.observedHTML(p,C.metricDataset(p,R)),/&lt;Controllo&gt;/);
+const c=p.conditions[0],r=c.readings[0],none=[{c,r,state:{label:'Fit da rivedere',fit:null}}];
+assert.match(V.estimatesHTML({kind:'aci'},none,false),/Vcmax, J operativo/);assert.doesNotMatch(V.estimatesHTML({kind:'aci'},none,false),/Asat, α/);
+const items=[{c,r,state:{label:'Fit salvato',fit:{model:'FvCB-min',params:{Vcmax:40,Joper:90,Rd:1},issues:['Controllare temperatura <25'],metrics:{r2:.99},ci:{}}}}];
+const html=V.estimatesHTML({kind:'aci'},items,false);assert.match(html,/Vcmax apparente/);assert.match(html,/J operativo/);assert.match(html,/40/);assert.match(html,/temperatura &lt;25/);assert.doesNotMatch(html,/>Asat</);
+assert.match(V.observedHTML({conditions:[]},[]),/Seleziona almeno/);
+console.log('PASS biological peak after technical-repeat aggregation, missing IDs, A/Q vs A/Ci labels, stale-fit blanks, model warnings and escaping');

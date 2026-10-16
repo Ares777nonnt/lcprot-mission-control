@@ -1,4 +1,4 @@
-/* Clarity 2.18.1: explicit design metadata. No inferential tests. */
+/* Clarity 2.19: explicit design metadata. No inferential tests. */
 (function(root){'use strict';
 const modes={undeclared:'Da definire',independent:'Unità diverse tra condizioni',paired:'Stesse unità tra condizioni'},units={plant:'Pianta',pot:'Vaso',plot:'Parcella',other:'Altra unità'};
 const text=(s,max=200)=>typeof s==='string'&&s.length<=max;

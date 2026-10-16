@@ -1,3 +1,7 @@
+## Clarity 2.19 — Risultati della curva in evidenza
+
+Prima l’intera curva: massimo delle medie osservate per condizione, grafico e parametri dei fit salvati per CSV. Il confronto a un livello è separato, con avviso esplicito per Qleaf = 0. Report nello stesso ordine, archivio e formule invariati.
+
 ## Clarity 2.18.1 — Motivi del pulsante disabilitato
 
 Stato del disegno visibile nel modulo statistico, spiegazioni dei prerequisiti e comandi per aprire la configurazione o includere esplicitamente i CSV mancanti nella selezione. Formule e analisi conservate. Dettagli: [CORREZIONE-2.18.1.md](CORREZIONE-2.18.1.md).
