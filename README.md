@@ -1,3 +1,7 @@
+## Clarity 2.20 — Confronto dei parametri fra condizioni
+
+Asat e altri parametri dei fit affiancati per condizione, con riferimento, media, DS e n biologico. Ripetizioni tecniche mediate prima, modelli diversi separati. Dettagli: [CONFRONTO-FIT-2.20.md](CONFRONTO-FIT-2.20.md).
+
 ## Clarity 2.19 — Risultati della curva in evidenza
 
 Prima l’intera curva: massimo delle medie osservate per condizione, grafico e parametri dei fit salvati per CSV. Il confronto a un livello è separato, con avviso esplicito per Qleaf = 0. Report nello stesso ordine, archivio e formule invariati.

@@ -1,3 +1,9 @@
+# Verifica Clarity 2.20 — Confronto fra condizioni
+
+PASS — aggregazione biologica dei parametri, controlli UI, report, mobile/notte, migrazione reale 2.19 → 2.20, archivi identici e offline. Statistica esistente e 50 riferimenti numerici conservati. Dettagli: [CONFRONTO-FIT-2.20.md](CONFRONTO-FIT-2.20.md).
+
+---
+
 # Verifica Clarity 2.19 — Risultati delle curve
 
 PASS — nuova gerarchia, fit visibili, punto al buio esplicito, report, selezione, mobile e offline. Migrazione 2.18.1 → 2.19 con archivi identici. Statistica e 50 riferimenti numerici conservati. Dettagli: [RISULTATI-2.19.md](RISULTATI-2.19.md).

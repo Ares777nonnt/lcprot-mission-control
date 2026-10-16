@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');require('./experiments-core.js');require('./fit-comparison.js');const V=globalThis.LCFitComparison;
+const p={kind:'aq',conditions:[{id:'a',name:'Controllo <A>'},{id:'b',name:'Stress'}]};
+const item=(condition,bio,value,extra={})=>({c:p.conditions.find(c=>c.id===condition),r:{id:Math.random().toString(),bio},state:{fit:{model:'rect',params:{Asat:value,alpha:.05},issues:[],...extra}}});
+const rows=[item('a','P1',8),item('a','P1',12),item('a','P2',20),item('b','P3',30),item('b','P4',40),item('a','',999),{...item('a','P5',999),state:{fit:null}},item('a','P1',200,{model:'nonrect'}),item('a','P7',999,{model:'unknown'})];
+let result=V.aggregate(p,rows),g=result.groups[0],a=g.conditions[0].byKey.Asat,b=g.conditions[1].byKey.Asat;
+assert.equal(result.groups.length,2);assert.equal(result.missing,1);assert.equal(result.unassigned,1);assert.equal(result.unsupported,1);assert.equal(a.mean,15);assert.equal(a.n,2);assert.equal(a.csv,3);assert.equal(a.sd,Math.sqrt(50));assert.equal(b.mean,35);assert.match(V.delta(b,a),/Δ \+20/);assert.match(V.delta(b,a),/133,3%/);assert.equal(g.conditions[0].byKey.Rd.mean,null);assert.equal(g.conditions[0].byKey.Rd.n,0);
+assert.equal(result.groups[1].conditions[0].byKey.Asat.n,1);assert.equal(result.groups[1].conditions[0].byKey.Asat.sd,null);
+assert.match(V.delta({mean:1},{mean:0}),/% non disponibile/);assert.match(V.delta({mean:null},{mean:1}),/Differenza non disponibile/);
+assert.match(V.reportHTML(p,rows,'a'),/Controllo &lt;A&gt;/);assert.match(V.reportHTML(p,rows,'a'),/n = 2/);
+const ci={kind:'aci',conditions:p.conditions},ciRows=[item('a','P1',1,{model:'FvCB-min',settings:{gamma:42.75,k:710},params:{Vcmax:50,Joper:100,Rd:1}}),item('b','P2',1,{model:'FvCB-min',settings:{gamma:50,k:710},params:{Vcmax:70,Joper:120,Rd:2}})];
+result=V.aggregate(ci,ciRows);assert.equal(result.groups.length,2);assert.equal(result.groups[0].conditions[1].byKey.Vcmax.n,0);assert.match(V.reportHTML(ci,ciRows,'a'),/J operativo/);assert.doesNotMatch(V.reportHTML(ci,ciRows,'a'),/>Asat</);
+console.log('PASS equal-weight biological aggregation, technical repeats, per-parameter n, DS, missing/stale/unsupported fits, absent IDs, model and biochemical-constant separation, descriptive deltas and report escaping');
