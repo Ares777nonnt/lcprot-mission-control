@@ -7,7 +7,7 @@ const project=()=>window.LCExperiments.current();
 function source(r){const s=window.LCResearch.getState().sessions.find(s=>s.id===(r.legacyId||'reading:'+r.id)&&s.rawCsv===r.rawCsv);return window.LCCameraCore.resolve(project(),r,s);}
 function status(r,p){return window.LCJournalCore.status(source(r),{...r,meta:{...r.meta,type:p.kind}});}
 function setMode(next){mode=next;const intake=document.querySelector('.mission-intake');if(intake)intake.hidden=mode!=='import';$('workspaceSaved').hidden=mode!=='saved';for(const b of document.querySelectorAll('[data-intake-mode]')){b.classList.toggle('active',b.dataset.intakeMode===mode);b.setAttribute('aria-pressed',String(b.dataset.intakeMode===mode));}}
-function summaryCounts(p){if(!p)return '';const rows=p.conditions.flatMap(c=>c.readings);return p.conditions.length+' condizioni · '+rows.length+' letture · '+rows.filter(r=>!r.bio.trim()).length+' ID da assegnare';}
+function summaryCounts(p){if(!p)return '';const rows=p.conditions.flatMap(c=>c.readings);return p.conditions.length+' condizioni · '+rows.length+' letture · '+new Set(rows.map(r=>r.bio.trim()).filter(Boolean)).size+' ID biologici'+(rows.some(r=>!r.bio.trim())?' · '+rows.filter(r=>!r.bio.trim()).length+' da assegnare':'');}
 function actionVisibility(){document.querySelector('.workspace-next').hidden=['compare','export'].includes(currentStep);}
 function sync(){if(!ready)return;const p=project(),pending=$('intakeRows').children.length,changed=lastProject!==p?.id&&lastProject!==p?.sourceLegacy;
 if(changed){selection.clear();$('workspaceOperationStatus').textContent='';$('workspaceCondition').value='';$('workspaceSearch').value='';mode=p?.conditions.some(c=>c.readings.length)?'saved':'import';}

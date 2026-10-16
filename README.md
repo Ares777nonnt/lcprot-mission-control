@@ -1,3 +1,7 @@
+## Clarity 2.14 — Risultato prima
+
+Percorso Organizza → Importa → Risultati, camera prima dei CSV, confronto numerico e grafico in primo piano, legenda selezionabile e approfondimenti su richiesta. Report con ambito esplicito e sezioni personalizzabili. Archivio e formule preservati. Dettagli e verifiche: [REWORK-2.14.md](REWORK-2.14.md).
+
 ## Correzioni e audit Clarity 2.13 — 16 ottobre 2026
 
 Camera: il modulo si apre anche con metadati non salvati e offre salvataggio della scheda o conservazione di una bozza. Gli avvisi operativi sono contestuali e chiudibili; le cautele dei fit sono espandibili. Grafici e residui obsoleti sono rimossi quando il fit non è valido. Il salvataggio dei fit richiede metadati salvati.

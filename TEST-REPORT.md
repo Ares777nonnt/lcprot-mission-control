@@ -1,3 +1,9 @@
+# Verifica Clarity 2.14 — 16 ottobre 2026
+
+PASS — flusso completo, risultati e selezioni, report con sezioni e ambito esplicito, migrazione/backup/fit, camera/cestino/bozze, PWA offline e HTTP 503, schermi 320/390 px e temi. Fixture sintetiche, nessuna eccezione JavaScript nei test. Copertura e limiti: [REWORK-2.14.md](REWORK-2.14.md).
+
+---
+
 # Verifica Clarity 2.13 — 16 ottobre 2026
 
 PASS — audit mirato di camera bloccata da metadati pendenti, bozza recuperabile, errori chiudibili/contestuali, pulizia di fit e residui obsoleti, blocco del salvataggio con metadati non salvati. CSV incompleti rifiutati prima di scrivere; indici storici preservati.
