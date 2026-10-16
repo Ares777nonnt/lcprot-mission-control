@@ -1,4 +1,4 @@
-/* Clarity 2.15 · Risultato prima. Laboratorio palette and reading preferences. */
+/* Clarity 2.16 · Risultato prima. Smeraldo palette and reading preferences. */
 @media screen{
  body.results-first .wrap{max-width:1240px}
  body.results-first #workspaceFrame{padding:24px 26px 0}
@@ -170,7 +170,7 @@
 }
 @media print{#resultsToolbar,#resultsScopeButton,#storyCurveDetails,#resultsDetails,#resultsSecondaryActions,#resultsImportFlow,#resultsPrepareReport,.results-project-management{display:none!important}#resultsHeadline{display:flex;justify-content:space-between;gap:20px}#resultsHeadline strong{font-size:22pt;display:block}.results-pair-cards .result-difference{display:none}#resultsSelectionLegend{display:flex;gap:16px}#resultsSelectionLegend input{display:none}}
 
-/* Laboratorio: flat surfaces and restrained technical accents. */
+/* Smeraldo: light surfaces, dark values, color reserved for controls. */
 @media screen{
  body.results-first,body.results-first.theme-night{background:var(--ui-bg);background-image:none}
  body.results-first .hero,body.results-first .hero .interface-brand{background:none;box-shadow:none}
@@ -201,8 +201,14 @@
  body.results-first #experimentWorkspace .intake-drop{background:var(--ui-soft);border-color:var(--ui-green);border-radius:10px;box-shadow:none}
  body.results-first .intake-drop-icon{background:var(--ui-paper);color:var(--ui-green);border-radius:6px}
  body.results-first #workspaceReview{background:var(--ui-soft);border-color:var(--ui-line)}
- body.results-first #resultsHeadline>div>strong{color:var(--ui-green)}
+ body.results-first #resultsHeadline>div>strong{color:var(--ui-text)}
  body.results-first #resultsPrepareReport,body.results-first #experimentWorkspace button.primary{box-shadow:none;border-radius:7px}
  body.results-first .creator-credit{border-color:var(--ui-line)}
  body.results-first .creator-credit p{color:var(--ui-text)}
+}
+@media screen{
+ body.theme-night :is(#boardPlots,#comparisonSpotlight,#curveSelection,#insightPair,#boardExtraPlots,#boardCards) [stroke="#155eef"]{stroke:#84abff}
+ body.theme-night :is(#boardPlots,#comparisonSpotlight,#curveSelection,#insightPair,#boardExtraPlots,#boardCards) [fill="#155eef"]{fill:#84abff}
+ body.theme-night :is(#boardPlots,#comparisonSpotlight,#curveSelection,#insightPair,#boardExtraPlots,#boardCards) [stroke="#b45309"]{stroke:#f6b578}
+ body.theme-night :is(#boardPlots,#comparisonSpotlight,#curveSelection,#insightPair,#boardExtraPlots,#boardCards) [fill="#b45309"]{fill:#f6b578}
 }

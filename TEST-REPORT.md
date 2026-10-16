@@ -1,3 +1,9 @@
+# Verifica Clarity 2.16 — Smeraldo
+
+PASS — palette e contrasto campionato ≥4,5:1, pannelli bianchi e valori inchiostro, logo/font conservati, assenza foglia e Tech Space. Flusso CSV/confronto/report, archivio invariato, 320/390 px, temi e offline senza eccezioni JavaScript. Fixture sintetiche; copertura e limiti: [STYLE-2.16.md](STYLE-2.16.md).
+
+---
+
 # Verifica Clarity 2.15 — Laboratorio
 
 PASS — Diario/Importa/Risultati giorno e notte, foglia rimossa, logo e font preservati, contrasto campionato ≥4,5:1, mobile 320/390 px, flusso CSV e confronto biologico, report, archivio invariato e PWA offline. Nessuna eccezione JavaScript. Fixture sintetiche; copertura e limiti: [STYLE-2.15.md](STYLE-2.15.md).

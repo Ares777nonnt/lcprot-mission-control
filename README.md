@@ -1,3 +1,7 @@
+## Clarity 2.16 — Bianco, Inchiostro e Smeraldo
+
+Palette scelta: sfondi chiari, schede bianche, testi e numeri inchiostro, verde smeraldo per azioni e selezioni. Curve blu/arancio, report coordinati e tema scuro leggibile. Layout, logo, dati e formule conservati. Dettagli: [STYLE-2.16.md](STYLE-2.16.md).
+
 ## Clarity 2.15 — Laboratorio
 
 Nuova palette bianco, blu petrolio e azzurro, anche nel tema scuro. Rimossa la foglia decorativa, superfici più pulite e report coordinati. Logo, font, archivio e flusso della 2.14 conservati. Dettagli: [STYLE-2.15.md](STYLE-2.15.md).
