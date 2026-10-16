@@ -1,4 +1,4 @@
-/* Clarity 2.14 · Risultato prima. Approved palettes and reading preferences. */
+/* Clarity 2.15 · Risultato prima. Laboratorio palette and reading preferences. */
 @media screen{
  body.results-first .wrap{max-width:1240px}
  body.results-first #workspaceFrame{padding:24px 26px 0}
@@ -169,3 +169,40 @@
  body.results-first #journalLibrary .journal-card{padding:18px}
 }
 @media print{#resultsToolbar,#resultsScopeButton,#storyCurveDetails,#resultsDetails,#resultsSecondaryActions,#resultsImportFlow,#resultsPrepareReport,.results-project-management{display:none!important}#resultsHeadline{display:flex;justify-content:space-between;gap:20px}#resultsHeadline strong{font-size:22pt;display:block}.results-pair-cards .result-difference{display:none}#resultsSelectionLegend{display:flex;gap:16px}#resultsSelectionLegend input{display:none}}
+
+/* Laboratorio: flat surfaces and restrained technical accents. */
+@media screen{
+ body.results-first,body.results-first.theme-night{background:var(--ui-bg);background-image:none}
+ body.results-first .hero,body.results-first .hero .interface-brand{background:none;box-shadow:none}
+ body.results-first .hero .app-logo-mark{transform:none;box-shadow:none;border-color:var(--ui-line)}
+ body.results-first .interface-version{background:var(--ui-soft);border:1px solid var(--ui-line);border-radius:6px;color:var(--ui-green)}
+ body.results-first .themebar :is(button,summary){border-radius:6px;box-shadow:none;background:var(--ui-paper);color:var(--ui-muted)}
+ body.results-first .ux-primary-nav{background:var(--theme-nav);border:1px solid var(--ui-line);border-radius:10px;box-shadow:none}
+ body.results-first .ux-primary-nav .ux-main-btn{border-radius:6px}
+ body.results-first .ux-primary-nav .ux-main-btn.active{background:var(--ui-paper);color:var(--ui-green);box-shadow:inset 0 -2px var(--theme-art)}
+ body.results-first #workspaceFrame,body.results-first #lab-log .journal-header{background:var(--ui-paper);border-color:var(--ui-line);box-shadow:none}
+ body.results-first #lab-log .journal-header{border-radius:12px;border-top:3px solid var(--theme-accent)}
+ body.results-first #lab-log .journal-header::before,body.results-first #lab-log .journal-header::after{content:none!important;display:none!important;background:none!important}
+ body.results-first #lab-log .journal-header :is(h2,p){color:var(--ui-text)}
+ body.results-first #lab-log .journal-header .research-kicker{color:var(--ui-green)}
+ body.results-first #workspaceFrame{border-radius:12px 12px 0 0}
+ body.results-first #workspaceFrame nav button.active{color:var(--ui-green);border-bottom-color:var(--theme-art)!important;background:var(--ui-soft)}
+ body.results-first #workspaceKind{border-radius:5px;background:var(--ui-soft);color:var(--ui-green)}
+ body.results-first #experimentWorkspace{border-radius:0 0 12px 12px}
+ body.results-first :is(#comparisonSpotlight,#boardPlots,.interface-export-card,.intake-row,#resultsImportFlow .results-import-camera){border-radius:10px;box-shadow:none}
+ body.results-first #journalLibrary .journal-card{border-radius:10px!important;box-shadow:none!important}
+ body.results-first #journalLibrary .journal-project-card::before{content:none;display:none}
+ body.results-first #journalLibrary .journal-project-card .journal-actions .lab-action:not(.secondary){color:var(--ui-green)!important}
+ body.results-first #journalLibrary .journal-header .lab-action:not(.secondary){background:var(--theme-accent);border-color:var(--theme-accent);color:var(--theme-accent-text);box-shadow:none;border-radius:7px}
+ body.results-first #journalLibrary .journal-header .lab-action.secondary{background:var(--ui-paper)!important;color:var(--ui-green)!important;border-color:var(--ui-line)!important}
+ body.results-first :is(.workspace-bio-title,.workspace-bio-group,.workspace-condition-card,.interface-export-card){background:var(--ui-paper);border-color:var(--ui-line);box-shadow:none}
+ body.results-first .workspace-bio-title{background:var(--ui-soft)}
+ body.results-first #experimentWorkspace .workspace-condition-card{background:var(--ui-paper);border-color:var(--ui-line);box-shadow:none}
+ body.results-first #experimentWorkspace .intake-drop{background:var(--ui-soft);border-color:var(--ui-green);border-radius:10px;box-shadow:none}
+ body.results-first .intake-drop-icon{background:var(--ui-paper);color:var(--ui-green);border-radius:6px}
+ body.results-first #workspaceReview{background:var(--ui-soft);border-color:var(--ui-line)}
+ body.results-first #resultsHeadline>div>strong{color:var(--ui-green)}
+ body.results-first #resultsPrepareReport,body.results-first #experimentWorkspace button.primary{box-shadow:none;border-radius:7px}
+ body.results-first .creator-credit{border-color:var(--ui-line)}
+ body.results-first .creator-credit p{color:var(--ui-text)}
+}

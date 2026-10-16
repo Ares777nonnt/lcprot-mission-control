@@ -1,14 +1,14 @@
 {
   "id": "./",
-  "name": "LCpro T Mission Control — Clarity 2.13",
+  "name": "LCpro T Mission Control — Clarity 2.15",
   "short_name": "LCpro T Research",
-  "description": "Diario, esperimenti e strumenti: organizza, acquisisci, analizza ed esporta anche offline",
+  "description": "Diario, esperimenti e strumenti: organizza, importa, confronta e prepara report anche offline",
   "lang": "it",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#faf8f5",
-  "theme_color": "#faf8f5",
+  "background_color": "#f4f7fb",
+  "theme_color": "#f4f7fb",
   "icons": [
     {
       "src": "./app-logo.jpg",

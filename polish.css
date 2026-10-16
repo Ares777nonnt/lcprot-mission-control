@@ -1,4 +1,4 @@
-/* Clarity 2.3 · a warmer botanical identity, without changing the workflow. */
+/* Legacy component geometry; Laboratorio tokens and final surfaces are shared. */
 :root{--ui-bg:#f4f5ef;--ui-text:#233f36;--ui-muted:#61756a;--ui-line:#dce5da;--ui-green:#256950;--ui-soft:#eaf3e9;--ui-amber:#875716;--ui-shadow:0 8px 30px #263f2e07;--ui-accent:#df9873}
 body{background:radial-gradient(ellipse at 85% 0%,#e6efdf 0,transparent 42%),var(--ui-bg);letter-spacing:-.12px}
 body.theme-night{--ui-bg:#14241e;--ui-paper:#1d3229;--ui-text:#ecf4e9;--ui-muted:#b2c7b7;--ui-line:#365143;--ui-green:#b6e3c2;--ui-soft:#294738;--ui-amber:#f4d28c;--ui-shadow:0 8px 30px #00000014;--ui-accent:#edb291;background:radial-gradient(ellipse at 85% 0%,#254433 0,transparent 45%),var(--ui-bg)}
@@ -23,7 +23,6 @@ body input:focus,body select:focus,body textarea:focus{border-color:var(--ui-gre
 /* The archive gets a calm welcome band, with decorative line art rather than imagery. */
 #lab-log:has(#journalLibrary:not([hidden])){padding:0!important;overflow:hidden}
 #lab-log .journal-header{position:relative;isolation:isolate;padding:31px 30px 29px;margin:0;background:linear-gradient(115deg,#214f40,#376a4d);color:#fff;min-height:146px;box-sizing:border-box;overflow:hidden;gap:22px}
-.journal-header::before{content:'';position:absolute;right:11%;top:-72px;width:300px;height:300px;z-index:-1;opacity:.16;background:center/contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300' fill='none' stroke='%23d7efbd' stroke-width='1'%3E%3Cellipse cx='150' cy='150' rx='100' ry='140' transform='rotate(40 150 150)'/%3E%3Cpath d='M52 265L246 30M105 202L66 118M143 158L128 60M178 118L189 37M106 202L204 224M143 158L256 165M178 118L277 99'/%3E%3C/svg%3E")}
 #lab-log .journal-header h2{font-size:31px;letter-spacing:-1px;line-height:1.2;margin:6px 0 7px;color:#fff}
 #lab-log .journal-header .research-kicker{color:#c4dfb6;font-size:10px;letter-spacing:1.6px}#lab-log .journal-header p{color:#deeadb;font-size:13px;max-width:48ch;line-height:1.6}
 .journal-header .journal-actions{position:relative;gap:9px}.journal-header button.lab-action:not(.secondary){background:#e5f0d5;border-color:#e5f0d5;color:#244c39;box-shadow:0 3px 8px #1233211a}.journal-header button.lab-action.secondary{background:#ffffff0c!important;color:#fff!important;border-color:#ffffff45!important}

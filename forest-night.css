@@ -1,7 +1,7 @@
-/* Clarity 2.5 · approved Bosco e terracotta / Notte botanica, Segoe UI. */
+/* Clarity 2.15 · Laboratorio: white, petroleum blue, azure. Segoe UI. */
 @media screen{
- :root{--ui-bg:#faf8f5;--ui-paper:#fff;--ui-text:#23352d;--ui-muted:#62766a;--ui-line:#dbe3dd;--ui-green:#365d4a;--ui-soft:#e9f0ea;--ui-amber:#875617;--ui-danger:#994b3d;--ui-shadow:0 6px 20px #263d2e05;--theme-accent:#b45e43;--theme-accent-text:#fff;--theme-hero:#e9f0e8;--theme-hero-end:#f3f6ee;--theme-border:#ceddd0;--theme-nav:#e8efe8;--theme-art:#6e9479;--theme-amber-bg:#fff0dd;--theme-amber-text:#875617;--theme-review-bg:#fbe9e1;--theme-review-text:#985239;--theme-ok-bg:#e7f0eb;--theme-ok-text:#3c6b56;--theme-info-bg:#e9f0f7;--theme-info-text:#365b78}
- body.theme-night{--ui-bg:#151d29;--ui-paper:#1d2939;--ui-text:#edf1f5;--ui-muted:#b1bdcb;--ui-line:#39485b;--ui-green:#9bb5cc;--ui-soft:#2b3e53;--ui-amber:#f1cf90;--ui-danger:#efbca4;--ui-shadow:0 6px 20px #0000000a;--theme-accent:#f39a54;--theme-accent-text:#241a12;--theme-hero:#243247;--theme-hero-end:#1d293a;--theme-border:#41536a;--theme-nav:#202e40;--theme-art:#8ca6c1;--theme-amber-bg:#493b25;--theme-amber-text:#f1cf90;--theme-review-bg:#4a322d;--theme-review-text:#efbca4;--theme-ok-bg:#284238;--theme-ok-text:#b5dbc7;--theme-info-bg:#263c52;--theme-info-text:#bed7ef;color-scheme:dark}
+ :root{--ui-bg:#f4f7fb;--ui-paper:#ffffff;--ui-text:#18323e;--ui-muted:#506673;--ui-line:#d4e0e8;--ui-green:#075b70;--ui-soft:#eaf3f8;--ui-amber:#805311;--ui-danger:#a23640;--ui-shadow:0 3px 14px #193b4c06;--theme-accent:#075b70;--theme-accent-text:#ffffff;--theme-hero:#ffffff;--theme-hero-end:#f0f7fc;--theme-border:#ccdde8;--theme-nav:#eaf3f8;--theme-art:#2387b0;--theme-amber-bg:#fff4dc;--theme-amber-text:#805311;--theme-review-bg:#fbecef;--theme-review-text:#983340;--theme-ok-bg:#e5f3ed;--theme-ok-text:#276446;--theme-info-bg:#e6f2fb;--theme-info-text:#175c83}
+ body.theme-night{--ui-bg:#0f1b24;--ui-paper:#172935;--ui-text:#e8f3fa;--ui-muted:#a7bdca;--ui-line:#35505f;--ui-green:#79c7e6;--ui-soft:#203c4c;--ui-amber:#f4cc80;--ui-danger:#ffb3bf;--ui-shadow:0 3px 14px #0000000a;--theme-accent:#82cdef;--theme-accent-text:#0b2635;--theme-hero:#172935;--theme-hero-end:#1c3443;--theme-border:#35505f;--theme-nav:#172935;--theme-art:#79c7e6;--theme-amber-bg:#3d301b;--theme-amber-text:#f4cc80;--theme-review-bg:#422831;--theme-review-text:#ffb3bf;--theme-ok-bg:#193b32;--theme-ok-text:#9edcbd;--theme-info-bg:#203c50;--theme-info-text:#a0d7f3;color-scheme:dark}
  body,body.theme-night{background:var(--ui-bg);color:var(--ui-text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
  body :is(button,input,select,textarea,svg){font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
  body .wrap{max-width:1400px}
@@ -23,8 +23,6 @@
  /* Journal: same proportions and pale welcome surface as the approved mockup. */
  #lab-log:has(#journalLibrary:not([hidden])),body.theme-night #lab-log:has(#journalLibrary:not([hidden])){padding:0!important;background:transparent;border:0;box-shadow:none;overflow:visible}
  #lab-log .journal-header,body.theme-night #lab-log .journal-header{display:grid;grid-template-columns:minmax(0,1fr);background:linear-gradient(115deg,var(--theme-hero),var(--theme-hero-end));border:1px solid var(--theme-border);border-radius:20px;padding:32px 35px 0;gap:0;color:var(--ui-text);min-height:0}
- #lab-log .journal-header::before{right:35px;top:-5px;width:340px;height:320px;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 310' fill='none' stroke='%236e9479' stroke-width='1.1'%3E%3Cpath d='M75 310C81 253 122 174 210 37M124 223C47 226 28 167 38 117c63 9 95 44 86 106Zm35-62C103 142 97 96 122 49c48 26 63 66 37 112Zm32-62C154 65 172 22 215 5c25 42 13 72-24 94ZM145 192c80 20 133-11 151-67-74-10-129 14-151 67Zm36-65c64 1 108-35 111-91-61 9-101 40-111 91Z'/%3E%3C/svg%3E")}
- body.theme-night #lab-log .journal-header::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 310' fill='none' stroke='%238ca6c1' stroke-width='1.1'%3E%3Cpath d='M75 310C81 253 122 174 210 37M124 223C47 226 28 167 38 117c63 9 95 44 86 106Zm35-62C103 142 97 96 122 49c48 26 63 66 37 112Zm32-62C154 65 172 22 215 5c25 42 13 72-24 94ZM145 192c80 20 133-11 151-67-74-10-129 14-151 67Zm36-65c64 1 108-35 111-91-61 9-101 40-111 91Z'/%3E%3C/svg%3E")}
  #lab-log .journal-header>div:first-child{max-width:65ch}
  #lab-log .journal-header h2{color:var(--ui-text);font-size:38px;line-height:1.2;letter-spacing:-1px;font-weight:650;margin:10px 0 13px}
  #lab-log .journal-header .research-kicker{color:var(--ui-green);font-size:13px;font-weight:600;letter-spacing:1.4px}
@@ -103,7 +101,6 @@
  #lab-log .journal-header{padding:25px 21px 0;gap:0;border-radius:18px}
  #lab-log .journal-header h2{font-size:32px;line-height:1.2;margin-top:10px}
  #lab-log .journal-header p{font-size:15px}
- #lab-log .journal-header::before{width:270px;height:270px;right:-65px;top:12px;opacity:.12}
  #lab-log .journal-header .journal-actions{width:100%;justify-self:stretch;margin-top:22px}
  #lab-log .journal-header .journal-actions button{flex:1 1 130px;min-height:48px}
  .journal-overview{gap:12px;justify-content:space-between;padding:21px 0;margin-top:24px}

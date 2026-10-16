@@ -1,3 +1,7 @@
+## Clarity 2.15 — Laboratorio
+
+Nuova palette bianco, blu petrolio e azzurro, anche nel tema scuro. Rimossa la foglia decorativa, superfici più pulite e report coordinati. Logo, font, archivio e flusso della 2.14 conservati. Dettagli: [STYLE-2.15.md](STYLE-2.15.md).
+
 ## Clarity 2.14 — Risultato prima
 
 Percorso Organizza → Importa → Risultati, camera prima dei CSV, confronto numerico e grafico in primo piano, legenda selezionabile e approfondimenti su richiesta. Report con ambito esplicito e sezioni personalizzabili. Archivio e formule preservati. Dettagli e verifiche: [REWORK-2.14.md](REWORK-2.14.md).

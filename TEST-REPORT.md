@@ -1,3 +1,9 @@
+# Verifica Clarity 2.15 — Laboratorio
+
+PASS — Diario/Importa/Risultati giorno e notte, foglia rimossa, logo e font preservati, contrasto campionato ≥4,5:1, mobile 320/390 px, flusso CSV e confronto biologico, report, archivio invariato e PWA offline. Nessuna eccezione JavaScript. Fixture sintetiche; copertura e limiti: [STYLE-2.15.md](STYLE-2.15.md).
+
+---
+
 # Verifica Clarity 2.14 — 16 ottobre 2026
 
 PASS — flusso completo, risultati e selezioni, report con sezioni e ambito esplicito, migrazione/backup/fit, camera/cestino/bozze, PWA offline e HTTP 503, schermi 320/390 px e temi. Fixture sintetiche, nessuna eccezione JavaScript nei test. Copertura e limiti: [REWORK-2.14.md](REWORK-2.14.md).
