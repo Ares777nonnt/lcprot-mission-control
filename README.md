@@ -1,3 +1,7 @@
+## Clarity 2.17 — Disegno e repliche
+
+Configurazione esplicita di unità indipendenti, condizioni indipendenti/appaiate e abbinamenti manuali. Dichiarazione verificabile, backup e report coordinati, PWA offline. Prima fase preparatoria: nessun test inferenziale aggiunto. Guida e verifiche: [STATISTICA-2.17.md](STATISTICA-2.17.md).
+
 ## Clarity 2.16 — Bianco, Inchiostro e Smeraldo
 
 Palette scelta: sfondi chiari, schede bianche, testi e numeri inchiostro, verde smeraldo per azioni e selezioni. Curve blu/arancio, report coordinati e tema scuro leggibile. Layout, logo, dati e formule conservati. Dettagli: [STYLE-2.16.md](STYLE-2.16.md).

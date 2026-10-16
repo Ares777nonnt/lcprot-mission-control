@@ -1,3 +1,9 @@
+# Verifica Clarity 2.17 — Disegno sperimentale
+
+PASS — test core del disegno, flusso browser, persistenza, backup/ripristino, report e regressioni. PASS — aggiornamento 2.16 → 2.17 con archivio e service worker attivo, modulo disponibile offline. Fixture sintetiche; dettagli e limiti: [STATISTICA-2.17.md](STATISTICA-2.17.md).
+
+---
+
 # Verifica Clarity 2.16 — Smeraldo
 
 PASS — palette e contrasto campionato ≥4,5:1, pannelli bianchi e valori inchiostro, logo/font conservati, assenza foglia e Tech Space. Flusso CSV/confronto/report, archivio invariato, 320/390 px, temi e offline senza eccezioni JavaScript. Fixture sintetiche; copertura e limiti: [STYLE-2.16.md](STYLE-2.16.md).
