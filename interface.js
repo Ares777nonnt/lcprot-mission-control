@@ -1,4 +1,4 @@
-/* Clarity 2.12: unified workspace. Presentation only; stored schemas stay unchanged. */
+/* Clarity 2.13: unified workspace. Presentation only; stored schemas stay unchanged. */
 (function(){'use strict';
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let route='log',step='setup',ready=false;
@@ -8,7 +8,7 @@ function sync(){if(!ready)return;const p=window.LCExperiments.current(),s=window
  const linked=p?.conditions.some(c=>c.readings.some(r=>(r.legacyId||'reading:'+r.id)===s?.id));
  const readingRoute=['health','research-curves','report','log'].includes(route)&&!!s&&(route!=='log'||!$('journalEditor').hidden);
  const inside=route==='experiments'||readingRoute&&linked;
- $('workspaceFrame').hidden=!inside;const notice=$('researchNotice');if(notice)notice.hidden=route==='experiments'&&!notice.classList.contains('bad')||/^Archivio (pronto|locale caricato)/.test(notice.textContent);document.body.classList.toggle('workspace-reading',!!(inside&&readingRoute));
+ $('workspaceFrame').hidden=!inside;const notice=$('researchNotice');if(notice)notice.hidden=!notice.textContent.trim()||notice.dataset.dismissedMessage===notice.textContent||notice.dataset.noticeRoute&&notice.dataset.noticeRoute!==route||notice.dataset.noticeRecord&&notice.dataset.noticeRecord!==s?.id||route==='experiments'&&!notice.classList.contains('bad')||/^Archivio (pronto|locale caricato)/.test(notice.textContent);document.body.classList.toggle('workspace-reading',!!(inside&&readingRoute));
  $('workspaceName').textContent=p?.name||'Nuovo esperimento';$('workspaceKind').textContent=p?(p.kind==='aci'?'A/Ci':'A/Q'):'Organizzazione';
  const selected=readingRoute?'compare':step;
  for(const b of document.querySelectorAll('[data-workspace-step]')){const on=b.dataset.workspaceStep===selected;b.classList.toggle('active',on);b.disabled=!p&&b.dataset.workspaceStep!=='setup';if(on)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');}
@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded',()=>{
  const diary=nav.querySelector('[data-ux-go="log"]'),experiment=nav.querySelector('[data-ux-go="experiments"]'),tools=nav.querySelector('[data-ux-tools]');
  nav.append(diary,experiment,tools);diary.textContent='Diario';experiment.textContent='Esperimento';tools.textContent='Strumenti';
  tools.setAttribute('aria-controls','uxTools');$('uxTools').hidden=true;$('uxTools').querySelector('summary').innerHTML='Strumenti di supporto <span class="ux-tools-hint">Guida, sequenze e funzioni avanzate</span>';
- document.querySelector('.hero').innerHTML='<div class="interface-brand"><span class="interface-mark app-logo-mark"><img src="./app-logo.jpg" alt="Logo LCpro T: fiore arancione su un cielo stellato" width="1024" height="1024" decoding="async"></span><div><h1>LCpro T <span>Mission Control</span></h1><p>Esperimenti, letture e risultati</p></div></div><span class="interface-version">Clarity 2.12</span>';
+ document.querySelector('.hero').innerHTML='<div class="interface-brand"><span class="interface-mark app-logo-mark"><img src="./app-logo.jpg" alt="Logo LCpro T: fiore arancione su un cielo stellato" width="1024" height="1024" decoding="async"></span><div><h1>LCpro T <span>Mission Control</span></h1><p>Esperimenti, letture e risultati</p></div></div><span class="interface-version">Clarity 2.13</span>';
  const skip=document.createElement('a');skip.className='interface-skip';skip.href='#interfaceMain';skip.textContent='Vai al contenuto';document.body.prepend(skip);const main=document.createElement('div');main.id='interfaceMain';main.tabIndex=-1;nav.after(main);
  const frame=document.createElement('section');frame.id='workspaceFrame';frame.hidden=true;frame.innerHTML='<div class="workspace-title"><div><span class="interface-eyebrow">ESPERIMENTO APERTO</span><h2 id="workspaceName"></h2></div><span id="workspaceKind"></span><button type="button" id="workspaceArchive">Tutti gli esperimenti</button></div><nav aria-label="Passaggi dell’esperimento">'+Object.entries(labels).map(([k,v],i)=>'<button type="button" data-workspace-step="'+k+'"><span>'+(i+1)+'</span> '+v+'</button>').join('')+'</nav><p id="workspaceHint" role="status"></p>';main.after(frame);
  $('workspaceArchive').onclick=()=>{window.LCJournal.resetView();window.switchLab('log');};frame.addEventListener('click',e=>{const key=e.target.closest('[data-workspace-step]')?.dataset.workspaceStep;if(!key)return;window.switchLab('experiments');window.LCExperiments.setStep(key);});

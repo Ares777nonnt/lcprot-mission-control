@@ -1,3 +1,13 @@
+## Correzioni e audit Clarity 2.13 — 16 ottobre 2026
+
+Camera: il modulo si apre anche con metadati non salvati e offre salvataggio della scheda o conservazione di una bozza. Gli avvisi operativi sono contestuali e chiudibili; le cautele dei fit sono espandibili. Grafici e residui obsoleti sono rimossi quando il fit non è valido. Il salvataggio dei fit richiede metadati salvati.
+
+**Elimina esperimento** è disponibile nelle schede del Diario e in **Organizza → Gestisci esperimento**. Dopo conferma, l’esperimento passa nel **Cestino esperimenti** del Diario; **Ripristina esperimento** recupera struttura, CSV, assegnazioni, collegamenti ai fit e bozze, anche offline. Il cestino è incluso nel backup completo. Le schede individuali già salvate non vengono eliminate. Nessun nuovo schema di database: `trashedAt` è un campo facoltativo del progetto.
+
+Nuove importazioni con righe strutturalmente incomplete sono bloccate prima del salvataggio. I file storici sono segnalati senza alterare originali o indici delle esclusioni. La PWA usa la cache anche in caso di errori HTTP temporanei del server.
+
+Copertura, problemi riprodotti e limiti: [Audit della pipeline](AUDIT-PIPELINE-2.13.md).
+
 ## Aggiornamento Clarity 2.12 — 16 ottobre 2026
 
 Le analisi sono raccolte in quattro viste: Risultati, Confronto A/B, Tutti i parametri, Qualità e modelli. La selezione di condizioni e CSV è espandibile e resta comune alle viste. Il parametro principale è accompagnato da nome esteso, unità dei valori, X e guida a media/DS/n. Gli altri grafici si aprono su richiesta. Nessuna nuova formula o migrazione dei database.

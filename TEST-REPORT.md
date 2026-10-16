@@ -1,3 +1,15 @@
+# Verifica Clarity 2.13 — 16 ottobre 2026
+
+PASS — audit mirato di camera bloccata da metadati pendenti, bozza recuperabile, errori chiudibili/contestuali, pulizia di fit e residui obsoleti, blocco del salvataggio con metadati non salvati. CSV incompleti rifiutati prima di scrivere; indici storici preservati.
+
+PASS — eliminazione/conferma/annulla/ripristino esperimenti, CSV e fit preservati, bozze recuperate, reload/offline, conferma obsoleta rifiutata, esperimenti storici materializzati senza modificare l’originale. Cestino nei backup e rimappatura dei riferimenti.
+
+PASS — regressione completa, camera comune/eccezioni, gestione singola/multipla letture, sette parametri, confronto e report, migrazione, SHA, backup e recupero interrotto. PWA con rete assente e HTTP 503; moduli mobile giorno/notte e nessuna eccezione JavaScript.
+
+Resoconto completo: [AUDIT-PIPELINE-2.13.md](AUDIT-PIPELINE-2.13.md). Fixture sintetiche e profili di prova; archivio reale non modificato.
+
+---
+
 # Verifica Clarity 2.12 — 16 ottobre 2026
 
 PASS — test-v212-core.cjs: report A/Q e A/Ci, parametro/X/riferimento espliciti, unità, valori minimi non azzerati, dati mancanti e vuoti, escaping HTML, gruppi di massimo tre condizioni per tabella e dati originali immutati. test-v29-core.cjs: formule, rapporti per record, medie biologiche annidate, DS/n e punti biologici.
