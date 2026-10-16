@@ -1,3 +1,9 @@
+# Verifica Clarity 2.18.1 — Prerequisiti della statistica
+
+PASS — cause del pulsante disabilitato, inclusione esplicita dei CSV, disegno non confermato/complesso/da verificare, accesso alla configurazione e conservazione della selezione del grafico. Flusso statistico, report, backup, mobile/offline e validazione numerica conservati. Dettagli: [CORREZIONE-2.18.1.md](CORREZIONE-2.18.1.md).
+
+---
+
 # Verifica Clarity 2.18 — Statistica
 
 PASS — 50 casi numerici contro SciPy 1.17.1 (t, gl, p, IC 95%), Holm e code di Cauchy. PASS — gerarchia biologica, coppie complete, sette parametri, X mancanti, tracciabilità, backup e risultati storici. PASS — flusso UI, report, mobile/temi, ripristino, migrazione 2.17 → 2.18 e nuovo calcolo offline. Fixture sintetiche, non validazione di esperimenti reali. Dettagli: [STATISTICA-2.18.md](STATISTICA-2.18.md).

@@ -1,3 +1,7 @@
+## Clarity 2.18.1 — Motivi del pulsante disabilitato
+
+Stato del disegno visibile nel modulo statistico, spiegazioni dei prerequisiti e comandi per aprire la configurazione o includere esplicitamente i CSV mancanti nella selezione. Formule e analisi conservate. Dettagli: [CORREZIONE-2.18.1.md](CORREZIONE-2.18.1.md).
+
 ## Clarity 2.18 — Confronto statistico
 
 Welch per unità indipendenti e t appaiato per coppie dichiarate, a X osservate identiche. Differenza B − A, IC 95%, n effettivo, p nei dettagli e Holm per famiglie di parametri. Analisi salvate e verificabili, report coerenti, backup e calcolo offline. Uso, limiti e validazione riproducibile: [STATISTICA-2.18.md](STATISTICA-2.18.md).

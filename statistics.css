@@ -31,6 +31,14 @@ body #statisticsDialog .statistics-check{flex-direction:row;align-items:flex-sta
 body #statisticsDialog .statistics-check input{width:21px;height:21px;flex:none;margin-top:3px;accent-color:var(--ui-green)}
 body .statistics-actions{display:flex;justify-content:flex-end;gap:12px;margin-top:20px}
 body #statisticsStatus{color:var(--ui-danger)}
+body #statisticsDialog .statistics-prerequisites{margin-top:18px;padding:16px;background:var(--ui-soft);color:var(--ui-text);border:1px solid var(--ui-line);border-radius:10px;font-size:16px;line-height:1.6;overflow-wrap:anywhere}
+body #statisticsDialog .statistics-prerequisites ul{padding-left:22px;margin-bottom:0}
+body #statisticsDialog .statistics-prerequisites li{margin:8px 0}
+body #statisticsDialog .statistics-design-state{padding:16px;margin:18px 0;background:var(--ui-soft);border:1px solid var(--ui-line);border-radius:10px;overflow-wrap:anywhere}
+body #statisticsDialog .statistics-design-state>strong{font-size:18px}
+body #statisticsDialog .statistics-unblock{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+body #statisticsDialog .statistics-unblock button{max-width:100%;white-space:normal;text-align:left}
+body #statisticsDialog [hidden]{display:none!important}
 body #statisticsRestoreSelection{margin:14px 0;max-width:100%;white-space:normal}
 body #statisticsRestoreSelection[hidden]{display:none}
 body #statisticsCard .statistics-plot{width:min(100%,650px)}
