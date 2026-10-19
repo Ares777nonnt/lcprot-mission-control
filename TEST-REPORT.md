@@ -1,3 +1,9 @@
+# Verifica Clarity 2.21 — AI locale
+
+PASS — trasporto loopback, contesto biologico, streaming, interruzioni/errori, note e report revisionati, token non persistito, backup/rimappatura, migrazione reale 2.20 → 2.21 e uso senza server. Prova reale con Gemma E4B su dati sintetici. Confronto fisiologico e statistica precedenti conservati. Guida: [AI-LOCALE-2.21.md](AI-LOCALE-2.21.md).
+
+---
+
 # Verifica Clarity 2.20 — Confronto fra condizioni
 
 PASS — aggregazione biologica dei parametri, controlli UI, report, mobile/notte, migrazione reale 2.19 → 2.20, archivi identici e offline. Statistica esistente e 50 riferimenti numerici conservati. Dettagli: [CONFRONTO-FIT-2.20.md](CONFRONTO-FIT-2.20.md).

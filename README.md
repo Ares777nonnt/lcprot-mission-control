@@ -1,3 +1,7 @@
+## Clarity 2.21 — Assistente AI locale
+
+Collegamento esplicito al modello sul proprio computer, contesto dei CSV selezionati, risposte progressive e interrompibili. Note revisionate nell’esperimento e nel backup; inclusione facoltativa e verificata nel report. Nessun provider cloud. Guida: [AI-LOCALE-2.21.md](AI-LOCALE-2.21.md).
+
 ## Clarity 2.20 — Confronto dei parametri fra condizioni
 
 Asat e altri parametri dei fit affiancati per condizione, con riferimento, media, DS e n biologico. Ripetizioni tecniche mediate prima, modelli diversi separati. Dettagli: [CONFRONTO-FIT-2.20.md](CONFRONTO-FIT-2.20.md).

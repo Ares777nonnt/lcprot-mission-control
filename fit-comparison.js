@@ -1,4 +1,4 @@
-/* Clarity 2.20: descriptive comparisons of saved curve parameters.
+/* Clarity 2.21: descriptive comparisons of saved curve parameters.
  * CSV fits -> declared biological ID -> condition. No new fit or statistical test. */
 (function(root){'use strict';
 const F=Number.isFinite,C=root.LCExperimentsCore,esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=v=>F(v)?Number(v.toPrecision(4)).toLocaleString('it-IT',{maximumFractionDigits:6}):'Non disponibile';

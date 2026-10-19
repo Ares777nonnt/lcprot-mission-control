@@ -1,4 +1,4 @@
-/* Clarity 2.20. Local two-sided t inference on biological units, not CSV rows. */
+/* Clarity 2.21. Local two-sided t inference on biological units, not CSV rows. */
 (function(root){'use strict';
 const E=()=>root.LCExperimentsCore,D=()=>root.LCDesignCore,engine='LCStatistics/1.0.0',F=Number.isFinite;
 const fail=message=>{throw Error(message);};
