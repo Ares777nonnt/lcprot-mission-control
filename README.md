@@ -1,3 +1,7 @@
+## Clarity 2.22 — AI locale leggera
+
+Ragionamento disattivato, risposte brevi e verifica del profilo prima di ogni richiesta. Nessun caricamento automatico, note storiche e archivio preservati. Guida: [AI-LOCALE-2.22.md](AI-LOCALE-2.22.md).
+
 ## Clarity 2.21 — Assistente AI locale
 
 Collegamento esplicito al modello sul proprio computer, contesto dei CSV selezionati, risposte progressive e interrompibili. Note revisionate nell’esperimento e nel backup; inclusione facoltativa e verificata nel report. Nessun provider cloud. Guida: [AI-LOCALE-2.21.md](AI-LOCALE-2.21.md).

@@ -1,4 +1,4 @@
-/* Clarity 2.21: whole-curve observations, saved model estimates, then a chosen level.
+/* Clarity 2.22: whole-curve observations, saved model estimates, then a chosen level.
  * Presentation only. No automatic fitting or changes to archived records. */
 (function(root){'use strict';
 const C=root.LCExperimentsCore,F=Number.isFinite,

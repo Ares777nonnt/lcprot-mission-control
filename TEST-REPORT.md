@@ -1,3 +1,17 @@
+# Verifica Clarity 2.22 — AI locale leggera
+
+PASS — unità del protocollo nativo, ragionamento off, massimo 320 token, domanda 600 caratteri, limite 7000 byte UTF-8, preflight del modello caricato, rifiuto di profili troppo grandi, server simulato nel browser, blocco fra schede, streaming, interruzioni/errori/401, revisione e note, report corrispondenti, token non persistito, backup/rimappatura, temi e larghezze 320/390/1380 px.
+
+PASS — migrazione reale 2.21 → 2.22 con service worker attivo: CSV originali, esclusioni, campi futuri e nota AI storica identici. PWA offline e generazione con server app HTTP 503 e server AI simulato locale attivo.
+
+PASS — regressioni confronto fit e risultati osservati; 50 casi statistici contro SciPy 1.17.1. Nessuna modifica degli algoritmi fisiologici/statistici.
+
+LIMITAZIONE — tentativo end-to-end con Gemma reale nel browser 2.22 fermato prima della generazione dal controllo RAM del test (0,54 GB liberi dopo il caricamento). Modello liberato nel finally. Non costituisce PASS del collegamento end-to-end reale 2.22 né verifica di stabilità hardware. La precedente prova API nativa breve, fuori dal browser PWA, era completata in circa 20 secondi dopo l’aggiornamento driver. La PWA non può leggere RAM/VRAM del sistema o proteggere da un guasto del driver.
+
+Guida: [AI-LOCALE-2.22.md](AI-LOCALE-2.22.md). Test ripetibile: node local-ai.test.cjs.
+
+---
+
 # Verifica Clarity 2.21 — AI locale
 
 PASS — trasporto loopback, contesto biologico, streaming, interruzioni/errori, note e report revisionati, token non persistito, backup/rimappatura, migrazione reale 2.20 → 2.21 e uso senza server. Prova reale con Gemma E4B su dati sintetici. Confronto fisiologico e statistica precedenti conservati. Guida: [AI-LOCALE-2.21.md](AI-LOCALE-2.21.md).
